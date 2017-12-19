@@ -18,6 +18,7 @@ tests/tables.pdf
 *.brf
 *.tdo
 annex-*.pdf
+*.pdf
 *.gz
 *.pyc
 .~lock.*
