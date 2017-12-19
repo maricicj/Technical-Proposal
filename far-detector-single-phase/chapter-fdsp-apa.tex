@@ -1,0 +1,230 @@
+\chapter{Anode Plane Assemblies}
+\label{ch:fdsp-apa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Overview of Anode Plane Assemblies}
+\label{sec:fdsp-apa-ov}
+
+\fixme{Some initial text suggested by Anne (in fact the APA section in the protodune SP TDR has a lot of good descriptive text)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Introduction}
+\label{sec:fdsp-apa-intro}
+
+Anode Plane Assemblies (APAs) are the far detector elements utilized to sense ionization created by
+charged particles traversing the liquid argon volume inside the single-phase TPC. The planes are interleaved with Cathode Plane Assemblies (CPAs), as shown in Figure..., to establish the required electric fields and form drift volumes for the charged particles. 
+
+\fixme{Include an image of the overall system, indicating its parts. Show how the system fits into the overall detector.}
+
+The operating principle is illustrated in Figure... (add figure)
+
+An APA consists of a rectangular framework with a fine wire mesh stretched across it, over which are wrapped four layers of sense and shielding wires...
+...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Design Considerations}
+\label{sec:fdsp-apa-des-consid}
+
+
+%%%%%  Design to identify MIPs -- wire pitch and other params
+The APA design must enable identification of minimum-ionizing particles (MIPs). This is a function of several detector parameters, including: argon purity, drift distance, diffusion, wire pitch, and Equivalent Noise Charge (ENC).  DUNE-SP requires that MIPs originating anywhere inside the active volume of the detector be reconstructed with 100$\%$ efficiency.   The choice of wire pitch, of $\sim$5\,mm, for the wire layers on the APA, combined with key parameters for other TPC systems (described in their respective sections of the TDR), is expected to enable the 100$\%$ MIP identification efficiency.
+
+%%%%% Locate vertices, determine fiducial vol, then back to vertex...?
+DUNE-SP requires that it be possible to determine the fiducial volume (via analysis) to $<$1$\%$, which in turn requires reaching a vertex resolution of $\sim$1.5\,cm along each coordinate direction. (The fiducial volume, among other factors, determines the number of target nucleons, which is a component in cross section measurements.) 
+The fine granularity of the APA wires enables excellent precision in identifying the location of any vertices in an event, (e.g., the primary vertex in a neutrino interaction or gamma conversion points in a $\pi^{0}$ decay), which has a direct impact on reconstruction efficiency.
+In practice, the resolution on the drift-coordinate ($x$) of a vertex or hit will be better than that on its location in the $y-z$ plane, due to the combination of drift-velocity and electronics sampling-rate...
+
+...
+
+\fixme{Anne suggests: Within this section add ref to requirements document  when it's ready, and maybe list the most important half dozen in a table here). E.g.,}  
+
+\begin{dunetable}
+[Important requirements on the APA design]
+{p{0.8\textwidth}}
+{apaphysicsparams}
+{Important requirements on the APA design (Sample only!)}   
+Requirement  \\ \toprowrule
+ The APA wire spacing shall be chosen to provide high efficiency in distinguishing electron shower from photon showers \\ \colhline
+ The APA wire planes shall be oriented relative to each other to optimize the measurement of high energy and low energy tracks from accelerator  \\ \colhline
+ ...\\ 
+\end{dunetable}
+
+\fixme{By the end of the volume, for every requirement listed in this section, there should exist an explanation of how it will be satisfied.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Scope}
+\label{sec:fdsp-apa-scope}
+
+The scope of the Anode Plane Assembly (APA) system includes the continued procurement of materials for, and the fabrication, testing, delivery and installation of the following systems: 
+
+\begin{itemize}
+\item stainless steel APA frame, 150 per module 
+\item wire mesh that covers the frame on both sides, ...
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Design of Anode Plane Assemblies}
+\label{sec:fdsp-apa-design}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Frames}
+\label{sec:fdsp-apa-frames}
+
+\fixme{Include an image of the subsystem (frame), indicating its parts. Show how the system fits into the overall system (APA).}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boards}
+\label{sec:fdsp-apa-boards}
+
+\fixme{Include an image of the subsystem (boards), indicating its parts. Show how the system fits into the overall system (APA).}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Wires}
+\label{sec:fdsp-apa-wires}
+
+\fixme{Include an image of the subsystem (wires), indicating its parts. Show how the system fits into the overall system (APA).}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Quality Assurance}
+\label{sec:fdsp-apa-qa}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Production and Assembly of Anode Plane Assemblies}
+\label{sec:fdsp-apa-prod-assy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Wire Winding Machine}
+\label{sec:fdsp-apa-winding}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tooling}
+\label{sec:fdsp-apa-tooling}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Assembly Procedures}
+\label{sec:fdsp-apa-assy}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Anode Plane Assembly Interfaces}
+\label{sec:fdsp-apa-intfc}
+
+\fixme{Include an image of each interface in appropriate section.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{LBNF Cryostat and Detector Support Structure}
+\label{sec:fdsp-apa-intfc-lbnf-dss}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Photon Detection System}
+\label{sec:fdsp-apa-intfc-pds}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TPC Electronics}
+\label{sec:fdsp-apa-intfc-elec}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Anode Plane Assembly installation, Integration and Commissioning}
+\label{sec:fdsp-apa-install}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Transport and Handling}
+\label{sec:fdsp-apa-install-transport}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Integration with PDS and TPC Electronics}
+\label{sec:fdsp-apa-install-pds-elec}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calibration}
+\label{sec:fdsp-apa-install-calib}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quality Control for Anode Plane Assemblies}
+\label{sec:fdsp-apa-qc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Protection and Assembly (Local)}
+\label{sec:fdsp-apa-qc-local}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Post-factory Installation (Remote)}
+\label{sec:fdsp-apa-qc-remote}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Anode Plane Assembly Safety}
+\label{sec:fdsp-apa-safety}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% add subsections and labels if needed \subsection{}
+%\label{sec:fdsp-apa-safety-}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{}
+%\label{sec:fdsp-apa-safety}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Anode Plane Assembly Organization}
+\label{sec:fdsp-apa-org}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Consortium Organization}
+\label{sec:fdsp-apa-org-consortium}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Planning Assumptions}
+\label{sec:fdsp-apa-org-assmp}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{WBS and Responsibilities}
+\label{sec:fdsp-apa-org-wbs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{High-level Cost and Schedule}
+\label{sec:fdsp-apa-org-cs}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
