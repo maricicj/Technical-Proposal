@@ -1,0 +1,32 @@
+\ifdefined\isfinal\documentclass[final]{dune}\else\documentclass{dune}\fi
+\pdfoutput=1            % must be in first 5 lines so arXiv finds it
+\graphicspath{ {figures/}{executive-summary/figures/}{executive-summary/generated/} }
+
+\input{common/preamble}
+
+\renewcommand\thedoctitle{\voltitleexecsumm} % defined in common/defs.tex
+%\def\titleextra{\includegraphics[width=0.55\textwidth]{energy_nu_no}} -- change image file
+\begin{document}
+
+\input{common/init}
+
+\input{common/acronyms-shared-vol1-2-4}
+\input{common/acronyms-shared-vol1-2}
+\input{common/acronyms-shared-vol2-4}
+\input{common/acronyms-vol2}
+
+\input{executive-summary/chapter-execsumm-lbnf}
+\cleardoublepage
+
+\input{executive-summary/chapter-execsumm-far-detector}
+\cleardoublepage
+
+\input{executive-summary/chapter-execsumm-near-detector}
+\cleardoublepage
+
+\input{executive-summary/chapter-execsumm-physics}
+\cleardoublepage
+
+
+\input{common/final}
+\end{document}
