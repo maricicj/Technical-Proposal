@@ -79,10 +79,10 @@ Please follow these four important guidelines that will help avoid headaches:
 
 Shortly after successful commits are pushed, these links should point to updated files:  
 
-* [Executive Summary Volume](https://dune.bnl.gov/docs/executive-summary.pdf)
-* [FD Single-Phase Volume](https://dune.bnl.gov/docs/far-detector-single-phase.pdf)
-* [FD Dual-Phase Volume](https://dune.bnl.gov/docs/far-detector-dual-phase.pdf)
-* [Software and Computing Volume](https://dune.bnl.gov/docs/software-computing.pdf)
+* [Executive Summary Volume](https://dune.bnl.gov/docs/technical-proposal/executive-summary.pdf)
+* [FD Single-Phase Volume](https://dune.bnl.gov/docs/technical-proposal/far-detector-single-phase.pdf)
+* [FD Dual-Phase Volume](https://dune.bnl.gov/docs/technical-proposal/far-detector-dual-phase.pdf)
+* [Software and Computing Volume](https://dune.bnl.gov/docs/technical-proposal/software-computing.pdf)
 
 If a build fails an error message will be sent to the committer.
 
