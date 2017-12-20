@@ -24,48 +24,56 @@ Do you want to reference content from previous design reports? Go to:
 ## Quick start
 This shows how to clone the repository and build a TP volume. Bare bones. See more detailed and non-TP-specific information in the "Best practices" section below and at [Document Guidance](https://github.com/DUNE/document-guidance).
 
--  [Get a github account](https://help.github.com/articles/signing-up-for-a-new-github-account) and send your username to Brett (see bottom of page).
+-  [Get a github account](https://help.github.com/articles/signing-up-for-a-new-github-account) and send your username to Brett (bv@bnl.gov).
 -  [Install Git on Mac](https://github.com/DUNE/document-guidance/blob/master/install-git-on-mac.org), requires Mac OS X, [Apple ID](https://appleid.apple.com), [XCode](https://developer.apple.com/xcode/downloads), and [Command Line Tools](https://developer.apple.com/download/more/).
 -  [Github Desktop](https://desktop.github.com/) Manage your [GitHub flow](https://guides.github.com/introduction/flow/) using this dandy interface. 
 
 If you need a reliable LaTeX installation, Tom Junk has installed texlive 2017 in his area on the dunegpvm's at Fermilab. Feel free to use it! Just login and run his setup file:
 
+```
 #+BEGIN_EXAMPLE
   $ ssh dunesl7gpvm01.fnal.gov  
   for bash and sh:  $ source /grid/fermiapp/products/dune/texlive2017/setup.sh
   for tcsh and csh: $ source /grid/fermiapp/products/dune/texlive2017/setup.csh
   $ mkdir /my/work/area
 #+END_EXAMPLE
+```
 
 
  
 - Type this sequence to clone the repository:
+```
 #+BEGIN_EXAMPLE
   $ cd /my/work/area
   $ git clone https://github.com/DUNE/Technical-Proposal.git
 #+END_EXAMPLE
+```
  
 - Do a test edit and test build, e.g., the software-computing volume (yes, run pdflatex twice)
+```
 #+BEGIN_EXAMPLE
   $ cd DUNE-TDR
   $ pdflatex software-computing
   $ pdflatex software-computing
 #+END_EXAMPLE
+```
  
 - Type this sequence to commit (after it builds successfully):
+```
 #+BEGIN_EXAMPLE
   $ git commit -a -m "Brief explanation of what you updated"
   $ git push
 #+END_EXAMPLE
+```
 
 
 ## Best practices for interacting with GitHub
 Please follow these four important guidelines that will help avoid headaches:
 
-1. *Always do a pull immediately before you begin working on a file just in case someone else modified it recently.*
-2. *We recommend that you compile frequently as you compose and edit; it will be easier to resolve any compilation problems.*
-3. *Make sure the document compiles before you commit it and push it to the repository. Ask Anne if you need help.*
-4. *Commit and push immediately after you finish your edits so that others have the best chance of picking up your changes before they edit.  (Yes, git can resolve conflicts, but it's better to avoid them.)*
+1. Always do a pull immediately before you begin working on a file just in case someone else modified it recently.
+2. We recommend that you compile frequently as you compose and edit; it will be easier to resolve any compilation problems.
+3. Make sure the document compiles before you commit it and push it to the repository. Ask Anne (aheavey@fnal.gov) if you need help.
+4. Commit and push immediately after you finish your edits so that others have the best chance of picking up your changes before they edit.  (Yes, git can resolve conflicts, but it's better to avoid them.)
 
 ## Autobuilt PDFs from the repository
 
