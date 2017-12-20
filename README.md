@@ -3,7 +3,7 @@ Info and links on this page:
 
 * Guidelines
 * Quick Start
-* Best Practices
+* Best Practices for interacting with github
 * Find auto-build PDF files of each Volume
 * Management
 * Major news (regarding any changes to this repository)
@@ -15,16 +15,18 @@ Please follow the editing guidelines in [Document Guidance](https://github.com/D
 * how to get the files and build the document
 * DUNE standards for editing (images, tables, labels, citations, numbers/units, upper/lower case, grammar, punctuation, inserting "fixmes", etc.)
 
-A Quick Start section from the guidance document web page is copied below
-Do you want to reference content from the CDR? Go to [CDR](https://github.com/DUNE/cdr).
+Do you want to reference content from previous design reports? Go to: 
 
+* [CDR](https://github.com/DUNE/cdr)
+* [ProtoDUNE-SP TDR](https://github.com/DUNE/protodune-tdr)
+* (We can add others, or you can go to [the DUNE area in github](https://github.com/DUNE) and search for the one you want.)
 
 ## Quick start
-This shows how to clone the TDR repository and build the physics volume. Bare bones. See more detailed and non-TDR-specific information in the "Best practices" and "Getting Started" sections below.
+This shows how to clone the repository and build a TP volume. Bare bones. See more detailed and non-TP-specific information in the "Best practices" section below and at [Document Guidance](https://github.com/DUNE/document-guidance).
 
--  [[https://help.github.com/articles/signing-up-for-a-new-github-account][Get a github account]] and send your username to Brett (see bottom of page).
--  [[https://github.com/DUNE/document-guidance/blob/master/install-git-on-mac.org][Install Git on Mac]], requires Mac OS X, [[https://appleid.apple.com][Apple ID]], [[https://developer.apple.com/xcode/downloads][XCode]], and [[https://developer.apple.com/download/more/][Command Line Tools]].
--  [[https://desktop.github.com/][Github Desktop]] Manage your [[https://guides.github.com/introduction/flow/][GitHub flow]] using this dandy interface. 
+-  [Get a github account](https://help.github.com/articles/signing-up-for-a-new-github-account) and send your username to Brett (see bottom of page).
+-  [Install Git on Mac](https://github.com/DUNE/document-guidance/blob/master/install-git-on-mac.org), requires Mac OS X, [Apple ID](https://appleid.apple.com), [XCode](https://developer.apple.com/xcode/downloads), and [Command Line Tools](https://developer.apple.com/download/more/).
+-  [Github Desktop](https://desktop.github.com/) Manage your [GitHub flow](https://guides.github.com/introduction/flow/) using this dandy interface. 
 
 If you need a reliable LaTeX installation, Tom Junk has installed texlive 2017 in his area on the dunegpvm's at Fermilab. Feel free to use it! Just login and run his setup file:
 
@@ -40,14 +42,14 @@ If you need a reliable LaTeX installation, Tom Junk has installed texlive 2017 i
 - Type this sequence to clone the repository:
 #+BEGIN_EXAMPLE
   $ cd /my/work/area
-  $ git clone https://github.com/DUNE/DUNE-TDR.git
+  $ git clone https://github.com/DUNE/Technical-Proposal.git
 #+END_EXAMPLE
  
-- Do a test edit and test build (yes, run pdflatex twice)
+- Do a test edit and test build, e.g., the software-computing volume (yes, run pdflatex twice)
 #+BEGIN_EXAMPLE
   $ cd DUNE-TDR
-  $ pdflatex volume-physics
-  $ pdflatex volume-physics
+  $ pdflatex software-computing
+  $ pdflatex software-computing
 #+END_EXAMPLE
  
 - Type this sequence to commit (after it builds successfully):
