@@ -84,7 +84,7 @@ Shortly after successful commits are pushed, these links should point to updated
 * [FD Dual-Phase Volume](https://dune.bnl.gov/docs/technical-proposal/far-detector-dual-phase.pdf)
 * [Software and Computing Volume](https://dune.bnl.gov/docs/technical-proposal/software-computing.pdf)
 
-If a build fails an error message will be sent to the committer.
+If a build fails an error message will be sent to the committer if they have registered an email with GitHub.
 
 
 
