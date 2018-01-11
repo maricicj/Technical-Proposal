@@ -77,48 +77,38 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 %\fixme{not sure what subsections are needed: power supplies, feedthroughs?}
 
 %%%%
-\subsection{Cryogenic Analog Front-end Electronics}
+\subsection{Cryogenic Analog FE Electronics}
 \label{sec:fddp-tpc-elec-design-cryofe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Signal Feedthroughs}
+\subsection{Signal Feedthrough Chimneys}
 \label{sec:fddp-tpc-elec-design-sft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Low-voltage Power Supplies}
+\subsection{Low-voltage Power Supplies for FE Electronics}
 \label{sec:fddp-tpc-elec-design-lvps}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Digital Electronics}
+\subsection{Network-based uTCA Architecture}
 \label{sec:fddp-tpc-elec-design-utca}
 
-\subsection{Digital Electronics}
-\label{sec:fddp-tpc-elec-design-cro}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Digital AMC Electronics}
+\label{sec:fddp-tpc-elec-design-amc}
 
 %JD -- do we want a subsection of Digital Electronics -
 %discuss micro-tca standard etc
 %and then subsection on Charge ReadOut?
 %ie split this into two?
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Timing Distribution}
+\label{sec:fddp-tpc-elec-wr}
+% WR description and card development
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronics for Light Readout}
 \label{sec:fddp-tpc-elec-design-lro}
-
-
-\subsection{Trigger}
-\label{sec:fddp-tpc-elec-trigger}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{??}
-%\label{sec:fddp-tpc-elec-??}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Quality Assurance}
-\label{sec:fddp-tpc-elec-qa}
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,27 +116,24 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \label{sec:fddp-tpc-elec-prod-assy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Slavic -- chimney is this us????
-
-\subsection{Cryogenic Analog Front-end ASICs and Cards}
+\subsection{Cryogenic Analog FE Electronics}
 \label{sec:fddp-tpc-elec-prod-fe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Signal Feedthroughs}
+\subsection{Signal Feedthrough Chimneys}
 \label{sec:fddp-tpc-elec-prod-sft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Analog Electronics External Cabling}
-\label{sec:fddp-tpc-elec-prod-fecable}
+\subsection{Timing System and uTCA}
+\label{sec:fddp-tpc-elec-prod-utca}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Low-voltage Power Supply System}
-\label{sec:fddp-tpc-elec-prod-lvps}
+%\subsection{Low-voltage Power Supply System}
+%\label{sec:fddp-tpc-elec-prod-lvps}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Digital Electronics}
-\label{sec:fddp-tpc-elec-prod-utca}
+%\subsection{Digital Electronics}
+%\label{sec:fddp-tpc-elec-prod-utca}
 
 \subsection{Charge Readout Electronics}
 \label{sec:fddp-tpc-elec-prod-cro}
@@ -155,17 +142,13 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \subsection{Light Readout Electronics}
 \label{sec:fddp-tpc-elec-prod-lro}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Tooling}
-%\label{sec:fddp-tpc-elec-tooling}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Assembly Procedures}
 %\label{sec:fddp-tpc-elec-assy}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Quality Assurance}
+\label{sec:fddp-tpc-elec-qa}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -175,29 +158,29 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 %\fixme{Include an image of each interface in appropriate section.}
 
 %\fixme{Add in appropriate subsections for the pieces that TPC Electronics interfaces with. These initial ones may not be right.}
-
-\subsection{DAQ System}
-\label{sec:fddp-tpc-elec-intfc-daq}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cryostat and Cryogenics}
+\label{sec:fddp-tpc-elec-intfc-cryo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Slow Control System and Cryogenic}
+\subsection{Slow Control System}
 \label{sec:fddp-tpc-elec-intfc-sc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DAQ System}
+\label{sec:fddp-tpc-elec-intfc-daq}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Photon Detection System}
 \label{sec:fddp-tpc-elec-intfc-pmt}
 
 %JD suggestions, include also CRP ?? or not???
-\subsection{CRP}
-\label{sec:fddp-tpc-elec-intfc-crp}
-
-
+%\subsection{CRP}
+%\label{sec:fddp-tpc-elec-intfc-crp}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{?}
 %\label{sec:fddp-tpc-elec-intfc-?}
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -208,11 +191,8 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \subsection{Transport and Handling}
 \label{sec:fddp-tpc-elec-install-transport}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Integration with (???)}
-%\label{sec:fddp-tpc-elec-install-integ}
-\subsection{Signal Feedthroughs}
+\subsection{Signal Feedthrough Chimneys}
 \label{sec:fddp-tpc-elec-install-sft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -220,19 +200,24 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \label{sec:fddp-tpc-elec-install-utca}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Infrastructure}
-\label{sec:fddp-tpc-elec-install-cable}
+%\subsection{Infrastructure}
+%\label{sec:fddp-tpc-elec-install-cable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Integration}
 %\label{sec:fddp-tpc-elec-install-integ}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Integration within DAQ}
+\label{sec:fddp-tpc-elec-install-daq}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calibration?}
+\subsection{Integration with Photon Detection System}
+\label{sec:fddp-tpc-elec-install-pmt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calibration}
 \label{sec:fddp-tpc-elec-install-calib}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quality Control}
@@ -248,9 +233,6 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \label{sec:fddp-tpc-elec-qc-remote}
 
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Safety}
 \label{sec:fddp-tpc-elec-safety}
@@ -263,7 +245,6 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{}
 %\label{sec:fddp-tpc-elec-safety}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
