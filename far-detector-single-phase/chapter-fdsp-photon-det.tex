@@ -1,6 +1,7 @@
 \chapter{Photon Detection System}
 \label{ch:fdsp-pd}
 \fixme{\color{blue} Chapter editor: Wilson}
+%
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -54,6 +55,8 @@ Requirement  \\ \toprowrule
 
 \fixme{By the end of the volume, for every requirement listed in this section, there should exist an explanation of how it will be satisfied.}
 
+\subsection{Criteria for photon collection options performance evaluation}?\fixme{\color{blue} Content: Segreto}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scope}
@@ -86,34 +89,35 @@ The scope of the Photon Detection system includes the continued procurement of m
 \label{sec:fdsp-pd-pc}
 \fixme{\color{blue} Content: Cavanna/Whittington/Machado}
 
-Several photon collector three options remain under consideration in the following we summarize the design and development status for each.
+At the time of the Technical Proposal there are three photon collector options  under consideration, in the following we summarize the design and development status for each. [For the Technical Design Report there will be a baseline design and an alternate.]
 
-\subsubsection{FNAL/MIT bars (4 pages)}
+\subsubsection{Dip-Coated Light Guides (4 pages)}
 \label{ssec:fdsp-pd-pc-bar1}
+\fixme{\color{blue} Content: Toups (tbc)}
 
-
-\subsubsection{IU bars (4 pages)}
+\subsubsection{Double-Shift Light Guides (4 pages)}
 \label{ssec:fdsp-pd-pc-bar2}
-
+\fixme{\color{blue} Content: Whittington}
 
 \subsubsection{ARAPUCA (4 pages)}
 \label{ssec:fdsp-pd-pc-arapuca}
+\fixme{\color{blue} Content: Cavanna (?)}
 
 \subsubsection{Hybrid or New Options (2 pages)}
 \label{ssec:fdsp-pd-pc-new}
 
-\subsection{Techniques to Supplement or Enhance Scintillation Light Yield}
+\subsection{New Techniques to Supplement or Enhance Light Yield}
 \label{sec:fdsp-pd-enh}
 \fixme{\color{blue} Content: Cavanna/Whittington/Machado}
 
-The Technical Proposal and TDR may include any proposals to augment the capabilities of the photon
+The Technical Proposal and TDR may include proposals to augment the capabilities of the photon
 collector modules. In the case that the hardware requirements for such proposals would pose a minimal
-impact on the detector design, additional R\&D beyond the timescale of the TDR may be possible.
+impact on the detector design, additional R\&D beyond the timescale of the TDR may be required since it may impact the second 10~kt module if not the first. 
 Some examples include:
 \begin{itemize}
-\item TPB-Coated Reflector Foils
-\item Xenon-Doped LAr
-\item TPB-Doped LAr
+\item TPB-Coated Reflector Foils (Szelc)
+\item Xenon-Doped LAr (Escobar/Para)
+\item TPB-Doped LAr (Escobar)
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,7 +142,7 @@ Some examples include:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Production and Assembly of the Photon Detection System}
+\section{Production and Assembly}
 \label{sec:fdsp-pd-prod-assy}
 \fixme{(Length: TDR=40 pages, TP=8 pages)}
 
@@ -147,10 +151,10 @@ Some examples include:
 \label{sec:fdsp-pd-prod-pc}
 \fixme{\color{blue} Content: Cavanna/Whittington/Machado}
 	
-\subsubsection{FNAL/MIT bars (2 pages)}
+\subsubsection{Dip-Coated Light Guides (2 pages)}
 \label{ssec:fdsp-pd-pc-prod-bar1}
 
-\subsubsection{IU bars (2 pages)}
+\subsubsection{Double-Shift Light Guides (2 pages)}
 \label{ssec:fdsp-pd-pc-prod-bar2}
 
 \subsubsection{ARAPUCA (2 pages)}
@@ -169,7 +173,7 @@ Some examples include:
 \label{sec:fdsp-pd-assy-frames}
 \fixme{\color{blue} Content:   (2 pages) - Warner}
 	
-\fixme{Different subsections for bars and ARAPUCA?}
+\fixme{Same for bars and ARAPUCAs?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Photosensor Modules}
@@ -179,11 +183,10 @@ Some examples include:
 \fixme{Just cold boards?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{(Common Tooling}
-\label{sec:fdsp-pd-assy-ct}
-\fixme{\color{blue} Content:  Warner}
-
-\fixme{Is there common tooling or is described separately in the PC section?}
+%\subsection{(Common Tooling} -- Probably not worth bothering about, except for QA/QC scanners, etc.
+%\label{sec:fdsp-pd-assy-ct}
+%\fixme{\color{blue} Content:  Warner}
+%\fixme{Is there common tooling or is described separately in the PC section?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Assembly Procedures}
@@ -194,10 +197,10 @@ PC assembly modules (ready for APA installation).
 
 \fixme{Can we have a single section that describes how the bars and/or ARAPUCA are assembled into PC modules or do we need a separate subsub(!)section for each?}
 
-\subsubsection{FNAL/MIT Modules (2 pages)}
+\subsubsection{Dip-Coated Light Guide Modules (2 pages)}
 \label{ssec:fdsp-pd-pc-assy-bar1}
 
-\subsubsection{IU Modules (2 pages)}
+\subsubsection{Double-Shift Light Guide Modules (2 pages)}
 \label{ssec:fdsp-pd-pc-assy-bar2}
 
 \subsubsection{ARAPUCA Modules (2 pages)}
@@ -206,7 +209,7 @@ PC assembly modules (ready for APA installation).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{PDS Electronics}
+\subsection{Electronics}
 \label{sec:fdsp-pd-assy-pde}
 \fixme{\color{blue} Content: (2 pages) Moreno/Franchi/Djuric}
 
@@ -224,16 +227,16 @@ PC assembly modules (ready for APA installation).
 
 
 \begin{itemize}
-\item Sub-assemblies- different for different options?
-\item Completed modules- same/different for different options?
+\item Sub-assemblies- same for all modules.
+\item Completed modules- largely same for different option, at least for TP.
 \end{itemize}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Photon Detection System Interfaces}
+\section{System Interfaces}
 \label{sec:fdsp-pd-intfc}
-\fixme{\color{blue} Content: Buchanan/Kemp}
+\fixme{\color{blue} Content: Kemp}
 \fixme{(Length: TDR=10 pages, TP=2 pages)}
 
 \fixme{Include an image of each interface in appropriate section.}
@@ -256,7 +259,7 @@ consideration within the APA Consortium's schedule. Some examples include:
 \label{sec:fdsp-pd-intfc-feed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{PD electronics}
+\subsection{Electronics}
 \label{sec:fdsp-pd-intfc-feed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,11 +276,10 @@ consideration within the APA Consortium's schedule. Some examples include:
 
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Photon Detection System Installation, Integration and Commissioning}
+\section{Installation, Integration and Commissioning}
 \label{sec:fdsp-pd-install}
-\fixme{\color{blue} Content: Buchanan/Kemp}
+\fixme{\color{blue} Content: Kemp}
 \fixme{(Length: TDR=30 pages, TP=6 pages)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -289,19 +291,17 @@ consideration within the APA Consortium's schedule. Some examples include:
 \subsection{Integration with APA  (2 pages)}
 \label{sec:fdsp-pd-install-pd-apa}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Installation into cryostat/cabling  (1 pages)}
+\label{sec:fdsp-pd-install-pd-cryo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calibration/Monitoring  (2 pages)}
+\subsection{Calibration/Monitoring  (1 pages)}
 \label{sec:fdsp-pd-install-calib}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{XX  (? pages)}
-\label{sec:fdsp-pd-install-xxx}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Quality Control for Photon Detection System}
+\section{Quality Control}
 \label{sec:fdsp-pd-qc}
 \fixme{\color{blue} Content: Warner}
 \fixme{(Length: TDR=10 pages, TP=2 pages)}
@@ -317,9 +317,8 @@ consideration within the APA Consortium's schedule. Some examples include:
 \label{sec:fdsp-pd-qc-remote}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Photon Detection System Safety}
+\section{Safety}
 \label{sec:fdsp-pd-safety}
 \fixme{\color{blue} Content: Warner}
 \fixme{(Length: TDR=5 pages, TP=1 pages)}
