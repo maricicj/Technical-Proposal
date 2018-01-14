@@ -1,5 +1,7 @@
 \chapter{TPC Electronics}
 \label{ch:fddp-tpc-elec}
+%try to modify file
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{TPC Electronics System Overview}
@@ -70,19 +72,43 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \label{sec:fddp-tpc-elec-design}
 
 
-\fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
+%\fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
 
-\fixme{not sure what subsections are needed: power supplies, feedthroughs?}
+%\fixme{not sure what subsections are needed: power supplies, feedthroughs?}
+
+%%%%
+\subsection{Cryogenic Analog FE Electronics}
+\label{sec:fddp-tpc-elec-design-cryofe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{??}
-\label{sec:fddp-tpc-elec-??}
+\subsection{Signal Feedthrough Chimneys}
+\label{sec:fddp-tpc-elec-design-sft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Quality Assurance}
-\label{sec:fddp-tpc-elec-qa}
+\subsection{Low-voltage Power Supplies for FE Electronics}
+\label{sec:fddp-tpc-elec-design-lvps}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Network-based uTCA Architecture}
+\label{sec:fddp-tpc-elec-design-utca}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Digital AMC Electronics}
+\label{sec:fddp-tpc-elec-design-amc}
+
+%JD -- do we want a subsection of Digital Electronics -
+%discuss micro-tca standard etc
+%and then subsection on Charge ReadOut?
+%ie split this into two?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Timing Distribution}
+\label{sec:fddp-tpc-elec-wr}
+% WR description and card development
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Electronics for Light Readout}
+\label{sec:fddp-tpc-elec-design-lro}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,35 +116,71 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \label{sec:fddp-tpc-elec-prod-assy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{?}
-\label{sec:fddp-tpc-elec-?}
-
-
+\subsection{Cryogenic Analog FE Electronics}
+\label{sec:fddp-tpc-elec-prod-fe}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Tooling}
-\label{sec:fddp-tpc-elec-tooling}
+\subsection{Signal Feedthrough Chimneys}
+\label{sec:fddp-tpc-elec-prod-sft}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Timing System and uTCA}
+\label{sec:fddp-tpc-elec-prod-utca}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Low-voltage Power Supply System}
+%\label{sec:fddp-tpc-elec-prod-lvps}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Digital Electronics}
+%\label{sec:fddp-tpc-elec-prod-utca}
+
+\subsection{Charge Readout Electronics}
+\label{sec:fddp-tpc-elec-prod-cro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Light Readout Electronics}
+\label{sec:fddp-tpc-elec-prod-lro}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Assembly Procedures}
-\label{sec:fddp-tpc-elec-assy}
+%\subsection{Assembly Procedures}
+%\label{sec:fddp-tpc-elec-assy}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Quality Assurance}
+\label{sec:fddp-tpc-elec-qa}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Interfaces}
 \label{sec:fddp-tpc-elec-intfc}
 
-\fixme{Include an image of each interface in appropriate section.}
+%\fixme{Include an image of each interface in appropriate section.}
 
-\fixme{Add in appropriate subsections for the pieces that TPC Electronics interfaces with. These initial ones may not be right.}
+%\fixme{Add in appropriate subsections for the pieces that TPC Electronics interfaces with. These initial ones may not be right.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cryostat and Cryogenics}
+\label{sec:fddp-tpc-elec-intfc-cryo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{?}
-\label{sec:fddp-tpc-elec-intfc-?}
+\subsection{Slow Control System}
+\label{sec:fddp-tpc-elec-intfc-sc}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DAQ System}
+\label{sec:fddp-tpc-elec-intfc-daq}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Photon Detection System}
+\label{sec:fddp-tpc-elec-intfc-pmt}
+
+%JD suggestions, include also CRP ?? or not???
+%\subsection{CRP}
+%\label{sec:fddp-tpc-elec-intfc-crp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{?}
+%\label{sec:fddp-tpc-elec-intfc-?}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,17 +191,33 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \subsection{Transport and Handling}
 \label{sec:fddp-tpc-elec-install-transport}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Signal Feedthrough Chimneys}
+\label{sec:fddp-tpc-elec-install-sft}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Digital uTCA crates}
+\label{sec:fddp-tpc-elec-install-utca}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Infrastructure}
+%\label{sec:fddp-tpc-elec-install-cable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integration with (???)}
-\label{sec:fddp-tpc-elec-install-integ}
-
+%\subsection{Integration}
+%\label{sec:fddp-tpc-elec-install-integ}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calibration?}
+\subsection{Integration within DAQ}
+\label{sec:fddp-tpc-elec-install-daq}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Integration with Photon Detection System}
+\label{sec:fddp-tpc-elec-install-pmt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calibration}
 \label{sec:fddp-tpc-elec-install-calib}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quality Control}
@@ -155,9 +233,6 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \label{sec:fddp-tpc-elec-qc-remote}
 
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Safety}
 \label{sec:fddp-tpc-elec-safety}
@@ -170,7 +245,6 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{}
 %\label{sec:fddp-tpc-elec-safety}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
