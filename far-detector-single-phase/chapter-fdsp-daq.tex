@@ -30,7 +30,7 @@ The operating principle is illustrated in Figure~\ref{figure-label}... (add figu
 The Data Acquisition System design must enable... 
 ...
 
-\fixme{Anne suggests: Within this section add ref to requirements document  when it's ready, and maybe list the most important half dozen in a table here). E.g.,}  
+\fixme{Anne suggests: Within this section add ref to requirements document when it's ready, and maybe list the most important half dozen in a table here). E.g.,}  
 
 \begin{dunetable}
 [Important requirements on the DAQ system design]
@@ -55,54 +55,79 @@ The scope of the Data Acquisition System includes the continued procurement of m
 \fixme{Whatever the items are...}
 
 \begin{itemize}
-\item SiPMs 
-\item  ...
+\item Readout electronics 
+\item 
 \end{itemize}
 
 
+\newpage 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DAQ Design}
 \label{sec:fdsp-daq-design}
 
 
-\fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overview}
+\label{sec:fdsp-daq-ltr}
 
-\fixme{not sure what subsections are needed: ?}
+Here we describe the overall readout and data acquistion strategy. This will include the high-level data flow diagram, which is divided in functional boxes, each of which are described in turn in the sections below.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{??}
-\label{sec:fdsp-daq-??}
+\subsection{Local Readout \& Buffering}
+\label{sec:fdsp-daq-ltr}
+
+Describe how the data is received from the detector electronics, and buffered while awaiting a trigger decision, together with any processing that affects stored data.  The starting point is data incoming from the WIBs and the end point is corresponding data sitting in memory ready for event building. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Quality Assurance}
-\label{sec:fdsp-daq-qa}
+\subsection{Local Trigger Primitive Generation}
+\label{sec:fdsp-daq-ltr}
+
+In this section we describe generation of basic information that is used in making a trigger decision.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dataflow Control}
+\label{sec:fdsp-daq-hlt}
+
+Describe the {\it infrastructure} used to receive trigger primitives, makes trigger decisions, apply prescales, send readout messages back to the buffers etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Data Selection Algorithms}
+\label{sec:fdsp-daq-hlt}
+
+This section describes the strategy for using the trigger/dataflow infrastructure, with example algorithms.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Event Builder}
+\label{sec:fdsp-daq-eb}
+
+What happens to data after leaving readout buffers.
+
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{High-Level Trigger}
+% \label{sec:fdsp-daq-eb}
+%
+% Data selection after event building.
+%
+
+\subsection{Timing \& Synchronization}
+\label{sec:fdsp-daq-hlt}
+
+Describe the generation of timing/synchronisation signals and and distribution to the detectors.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Computing \& Network Infrastructure}
+\label{sec:fdsp-daq-infra}
 
+Describes the infrastructure that will support the software components described above.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Production and Assembly}
-\label{sec:fdsp-daq-prod-assy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Run Control \& Monitoring}
+\label{sec:fdsp-daq-tcm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\label{sec:fdsp-daq-?}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{?}
-\label{sec:fdsp-daq-??}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Tooling}
-\label{sec:fdsp-daq-tooling}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Assembly Procedures}
-\label{sec:fdsp-daq-assy}
-
+Describe how the system is controlled and monitored.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,16 +136,64 @@ The scope of the Data Acquisition System includes the continued procurement of m
 
 \fixme{Include an image of each interface in appropriate section.}
 
-\fixme{Add in appropriate subsections for the pieces that the Data Acquisition System interfaces with. These initial ones may not be right.}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{TPC Electronics}
 \label{sec:fdsp-daq-intfc-elec}
 
+Summarise TPC/DAQ interface
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-\label{sec:fdsp-daq-intfc-?}
+\subsection{PD Electronics}
+\label{sec:fdsp-daq-intfc-photon}
+
+Summarise photon system/DAQ interface.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Offline Computing}
+\label{sec:fdsp-daq-intfc-fnal-cmptg}
+
+Where the data goes after it leaves DAQ.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Slow Control}
+\label{sec:fdsp-daq-intfc-ext}
+
+Summarise the interface with slow control.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{External Systems}
+\label{sec:fdsp-daq-intfc-ext}
+
+Need to receive information on beam spills, SNEWS.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Production and Assembly}
+\label{sec:fdsp-daq-prod-assy}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Electronics Production}
+% \label{sec:fdsp-daq-?}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Assembly}
+% \label{sec:fdsp-daq-??}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Tooling}
+% \label{sec:fdsp-daq-tooling}
+%
+% \fixme{Don't think we need this one}
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Assembly Procedures}
+% \label{sec:fdsp-daq-assy}
+%
+% \fixme{Or this one}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,35 +201,41 @@ The scope of the Data Acquisition System includes the continued procurement of m
 \label{sec:fdsp-daq-install}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Transport and Handling}
+\subsection{Installation}
+\label{sec:fdsp-daq-install-transport}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Integration with TPC/PD Electronics}
 \label{sec:fdsp-daq-install-transport}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integration with (electronics, ???)}
-\label{sec:fdsp-daq-install-pd-???}
+\subsection{Commissioning}
+\label{sec:fdsp-daq-commissioning}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calibration?}
-\label{sec:fdsp-daq-install-calib}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Calibration?}
+% \label{sec:fdsp-daq-install-calib}
+%
+% \fixme{Not needed ?}
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Quality Control}
-\label{sec:fdsp-daq-qc}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Protection and Assembly (Local)}
-\label{sec:fdsp-daq-qc-local}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Post-factory Installation (Remote)}
-\label{sec:fdsp-daq-qc-remote}
-
-
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Quality Control}
+% \label{sec:fdsp-daq-qc}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Protection and Assembly (Local)}
+% \label{sec:fdsp-daq-qc-local}
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Post-factory Installation (Remote)}
+% \label{sec:fdsp-daq-qc-remote}
+%
+%
 
 
 
