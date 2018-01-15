@@ -1,15 +1,17 @@
 \chapter{TPC Electronics}
 \label{ch:fdsp-tpc-elec}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{TPC Electronics System Overview}
+\section{System Overview}
 \label{sec:fdsp-tpc-elec-ov}
 
 \fixme{Some initial text suggested by Anne (in fact the APA section in the protodune SP TDR has a lot of good descriptive text)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction}
-\label{sec:fdsp-tpc-elec-intro}
+\label{sec:fdsp-tpc-elec-ov-intro}
 
 The TPC Electronics System provides the ...
 The system includes (whatever it includes), as shown in Figure.... 
@@ -25,8 +27,7 @@ The operating principle is illustrated in Figure~\ref{figure-label}... (add figu
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Design Considerations}
-\label{sec:fdsp-tpc-elec-des-consid}
-
+\label{sec:fdsp-tpc-elec-ov-consid}
 
 %%%%%  Design to identify MIPs -- wire pitch and other params
 The TPC Electronics system design must enable... 
@@ -47,10 +48,9 @@ Requirement  \\ \toprowrule
 
 \fixme{By the end of the volume, for every requirement listed in this section, there should exist an explanation of how it will be satisfied.}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Scope}
-\label{sec:fdsp-tpc-elec-scope}
+\subsection{Scope and Requirements}
+\label{sec:fdsp-tpc-elec-ov-scope}
 
 The scope of the TPC Electronics system includes the continued procurement of materials for, and the fabrication, testing, delivery and installation of the following systems: 
 
@@ -64,7 +64,7 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{TPC Electronics System Design}
+\section{System Design}
 \label{sec:fdsp-tpc-elec-design}
 
 
@@ -73,34 +73,70 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \fixme{not sure what subsections are needed: power supplies, feedthroughs?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{??}
-\label{sec:fdsp-tpc-elec-??}
+\subsection{Grounding and Shielding}
+\label{sec:fdsp-tpc-elec-design-ground}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Quality Assurance}
-\label{sec:fdsp-tpc-elec-qa}
+\subsection{Distribution of Wire-Bias Voltages}
+\label{sec:fdsp-tpc-elec-design-bias}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Front-End Mother Board (FEMB)}
+\label{sec:fdsp-tpc-elec-design-femb}
+
+%%%%%%%%%%%%%%%%%
+\subsubsection{Overview}
+\label{sec:fdsp-tpc-elec-design-femb-ov}
+
+%%%%%%%%%%%%%%%%%
+\subsubsection{Front-End ASIC}
+\label{sec:fdsp-tpc-elec-design-femb-fe}
+
+%%%%%%%%%%%%%%%%%
+\subsubsection{ADC ASIC}
+\label{sec:fdsp-tpc-elec-design-femb-adc}
+
+%%%%%%%%%%%%%%%%%
+\subsubsection{COLDATA ASIC}
+\label{sec:fdsp-tpc-elec-design-femb-coldata}
+
+%%%%%%%%%%%%%%%%%
+\subsubsection{Cold Electronics Box}
+\label{sec:fdsp-tpc-elec-design-femb-box}
+
+%%%%%%%%%%%%%%%%%
+\subsubsection{Alternative Designs}
+\label{sec:fdsp-tpc-elec-design-femb-alt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cold Electronics Feedthroughs and Cold Cables}
+\label{sec:fdsp-tpc-elec-design-ft}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Warm Interface Electronics}
+\label{sec:fdsp-tpc-elec-design-warm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{External Power and Supplies}
+\label{sec:fdsp-tpc-elec-design-external}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Production and Assembly}
-\label{sec:fdsp-tpc-elec-prod-assy}
+\label{sec:fdsp-tpc-elec-prod}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{?}
-\label{sec:fdsp-tpc-elec-?}
-
-
+\subsection{ASIC Procurement}
+\label{sec:fdsp-tpc-elec-prod-asic}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Tooling}
-\label{sec:fdsp-tpc-elec-tooling}
+\subsection{Board Assembly}
+\label{sec:fdsp-tpc-elec-prod-board}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Assembly Procedures}
-\label{sec:fdsp-tpc-elec-assy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cables}
+\label{sec:fdsp-tpc-elec-prod-cables}
 
 
 
@@ -113,40 +149,51 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \fixme{Add in appropriate subsections for the pieces that TPC Electronics interfaces with. These initial ones may not be right.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{?}
-\label{sec:fdsp-tpc-elec-intfc-?}
+\subsection{APAs}
+\label{sec:fdsp-tpc-elec-intfc-apa}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DAQ}
+\label{sec:fdsp-tpc-elec-intfc-daq}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Other Interfaces}
+\label{sec:fdsp-tpc-elec-intfc-other}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Installation, Integration and Commissioning}
-\label{sec:fdsp-tpc-elec-install}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Transport and Handling}
-\label{sec:fdsp-tpc-elec-install-transport}
-
+\section{Quality Assurance}
+\label{sec:fdsp-tpc-elec-qa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integration with (???)}
-\label{sec:fdsp-tpc-elec-install-integ}
-
+\subsection{Initial Design Validation}
+\label{sec:fdsp-tpc-elec-qa-initial}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calibration?}
-\label{sec:fdsp-tpc-elec-install-calib}
+\subsection{Integrated Test Facilities}
+\label{sec:fdsp-tpc-elec-qa-facilities}
 
+%%%%%%%%%%%%%%%%%%
+\subsubsection{ProtoDUNE-SP}
+\label{sec:fdsp-tpc-elec-qa-facilities-pdune}
+
+%%%%%%%%%%%%%%%%%%
+\subsubsection{Small Test TPC}
+\label{sec:fdsp-tpc-elec-qa-facilities-small}
+
+%%%%%%%%%%%%%%%%%%
+\subsubsection{Additional Test Facilities}
+\label{sec:fdsp-tpc-elec-qa-facilities-other}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quality Control}
 \label{sec:fdsp-tpc-elec-qc}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Protection and Assembly (Local)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Production (Local)}
 \label{sec:fdsp-tpc-elec-qc-local}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Post-factory Installation (Remote)}
@@ -154,20 +201,27 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Installation, Integration, and Commissioning}
+\label{sec:fdsp-tpc-elec-install}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Installation and Integration with APAs}
+\label{sec:fdsp-tpc-elec-install-apa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cabling}
+\label{sec:fdsp-tpc-elec-install-cabling}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calibration}
+\label{sec:fdsp-tpc-elec-install-calib}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Safety}
 \label{sec:fdsp-tpc-elec-safety}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% add subsections and labels if needed \subsection{}
-%\label{sec:fdsp-tpc-elec-safety-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{}
-%\label{sec:fdsp-tpc-elec-safety}
 
 
 
@@ -179,11 +233,9 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 \subsection{Single-Phase TPC Electronics Consortium Organization}
 \label{sec:fdsp-tpc-elec-org-consortium}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Planning Assumptions}
 \label{sec:fdsp-tpc-elec-org-assmp}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{WBS and Responsibilities}
@@ -192,17 +244,3 @@ The scope of the TPC Electronics system includes the continued procurement of ma
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{High-level Cost and Schedule}
 \label{sec:fdsp-tpc-elec-org-cs}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
