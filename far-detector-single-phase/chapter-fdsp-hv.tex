@@ -9,9 +9,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction}
 \label{sec:fdsp-hv-intro}
+A liquid argon cryostat requires an equipotential plane of high voltage (CPA-plane), and a precisely regulated interior electric field to drive electrons from particle interactions to the sensor planes (APA's, see volume 3A). This requires planar components (CPA's)  held at high voltage, and formed sets of conductors at graded voltages on the top and bottom (FC's) and sides (EW-FC's) of the central drift volume. After a discussion of the materials used in construction, this document will discuss the CPA-plane first, followed by the field shaping components. 
 
-The High Voltage System provides the bias voltage to the CPAs to create the \SI{500}{V/cm} drift field...
-The system includes (whatever it includes), as shown in Figure.... 
 
 \fixme{Include an image of the overall system, indicating its parts. Show how the system fits into the overall detector.}
 
@@ -25,10 +24,10 @@ The operating principle is illustrated in Figure~\ref{figure-label}... (add figu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Design Considerations}
 \label{sec:fdsp-hv-des-consid}
-
+This section contains best practices and requirements, as well as interferences and experience from ProtoDune. A discussion of MONITORING REQUIREMENTS will also come here.
 
 %%%%%  Design to identify MIPs -- wire pitch and other params
-The HV system design must enable... 
+ 
 ...
 
 \fixme{Anne suggests: Within this section add ref to requirements document  when it's ready, and maybe list the most important half dozen in a table here). E.g.,}  
@@ -48,19 +47,18 @@ Requirement  \\ \toprowrule
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Scope}
+\subsection{Scope (Rob)}
 \label{sec:fdsp-hv-scope}
 
 The scope of the HV system includes the continued procurement of materials for, and the fabrication, testing, delivery and installation of the following systems: 
 
-\fixme{Whatever the items are...}
+The TPC has a central Cathode Plane (CPA-plane), 7m wide and 6m tall, with two symmetric drift volumes on both sides. The Cathode Plane is assembled from 6 side-by-side Cathode Plane Assemblies (CPA's). Each CPA is 1.2m in width and 6m tall, formed from 3 vertically stacked modules, and supported from above by the CPA installation rail, through a single link.
+A CPA consists of a FR4 frame that encloses and supports the resistive panels (modules).  Each CPA is approximately 1.1m wide and 6m long and is constructed from three modules.  Six CPA's together form the CPA plane. 
+The sides of the drift volumes on both sides of the CPA-plane are covered by the FC and EW-FC field cage modules to define a uniform drift field of 500V/cm, which decreases gradually over 3.6m from the high voltage CPA (-180kV) to ground potential at the APA sensor planes, . The cathode bias is provided by an external high voltage power supply through an HV feedthrough connecting to the CPA-plane inside the cryostat.
+The Field Cage modules have two distinctive types: the top/bottom (FC), and the end wall (EW-FC). Each module is constructed from an array of roll-formed aluminum open profiles supported by two FRP (fiber reinforced plastic) structural beams. A resistive divider chain interconnects all the metal profiles to provide a linear voltage gradient between the cathode and anode planes.  The top/bottom modules are nominally 2.3m wide by 3.6m long. 
 
-\begin{itemize}
-\item cathode plane assemblies (CPAs)
-\item field cage
-\item power supplies 
-\item feedthroughs, ...
-\end{itemize}
+A ground plane of tiled perforated stainless steel sheet panels is mounted on the outside surface of each of the top/bottom field cage modules with a 20cm clearance. The top and bottom  FC modules are supported by the CPAs and APAs. The end wall modules are 1.5m tall by 3.6m long. They are stacked 4 units high to cover the 6m height of the TPC.  These EW-FC modules are supported by the installation rails above  the APAs and CPAs, which are part of the Detector Support Structure (DSS). 
+
 
 
 
@@ -68,34 +66,25 @@ The scope of the HV system includes the continued procurement of materials for, 
 \section{HV System Design}
 \label{sec:fdsp-hv-design}
 
-
-\fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
-
-\fixme{not sure what subsections are needed: power supplies, feedthroughs?}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cathode Plane Assemblies (CPAs)}
-\label{sec:fdsp-hv-cpa}
+\subsection {High Voltage Power Supply and Feedthrough (Sarah)}
+\subsection{CPA (Vic, Steve)}
+\subsection{Field Cages}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Field Cage}
-\label{sec:fdsp-hv-fc}
+\subsubsection{Top and Bottom field cages (Mike)}
+Discussion of Top and Bottom field cages comes here.
+\subsubsection{ Endwall field cages (Thomas)}
+Discussion of Endwall Field cages comes here.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Feedthroughs}
-\label{sec:fdsp-hv-feed}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{?}
-\label{sec:fdsp-hv-?}
+\subsection{Electrical Interconnections (Glenn)}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Quality Assurance}
 \label{sec:fdsp-hv-qa}
 
-
+\fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,33 +92,35 @@ The scope of the HV system includes the continued procurement of materials for, 
 \label{sec:fdsp-hv-prod-assy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{CPA and Field Cage Modules}
+\subsection{Power Supplies and Feedthroughs}
+\label{sec:fdsp-hv-supplies-feedthroughs}
+
+Discussion of parts procurement, assembly, and testing.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{CPA}
 \label{sec:fdsp-hv-supplies}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Feedthroughs?}
-\label{sec:fdsp-hv-feedthroughs}
+Discussion of parts procurement, assembly, and testing.
+
+\subsection{Field Cages}
+
+\subsubsection{Top and Bottom field cages}
+Discussion of parts procurement, assembly, and testing.
+
+\subsubsection{Endwall field cages}
+Discussion of parts procurement, assembly, and testing.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Power Supplies?}
-\label{sec:fdsp-hv-supplies}
+\subsection{Electrical Interconnections}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Tooling}
-\label{sec:fdsp-hv-tooling}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Assembly Procedures}
-\label{sec:fdsp-hv-assy}
+Discussion of parts procurement, assembly, and testing.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Interfaces}
+\section{Interfaces (Bo)}
+There will be an excellent table of interfaces, and accompanying text.
 \label{sec:fdsp-hv-intfc}
 
 \fixme{Include an image of each interface in appropriate section.}
@@ -137,18 +128,26 @@ The scope of the HV system includes the continued procurement of materials for, 
 \fixme{Add in appropriate subsections for the pieces that HV interfaces with. These initial ones may not be right.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{CPA and Field Cage}
+\subsection{Interfaces to APA}
 \label{sec:fdsp-hv-intfc-cpa-fc}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Photon Detection System}
-\label{sec:fdsp-hv-intfc-pds}
+\subsection{Interface to DSS}
+\label{sec:fdsp-hv-intfc-dss}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{TPC Electronics}
-\label{sec:fdsp-hv-intfc-elec}
+\subsection{Interface to PDS}
+\label{sec:fdsp-hv-intfc-pds}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface to CE}
+\label{sec:fdsp-hv-intfc-ce}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface to Calibration}
+\label{sec:fdsp-hv-intfc-cal}
 
 
 
@@ -162,18 +161,13 @@ The scope of the HV system includes the continued procurement of materials for, 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integration with (??)}
+\subsection{Integration }
 \label{sec:fdsp-hv-install-pds-elec}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calibration?}
-\label{sec:fdsp-hv-install-calib}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quality Control}
+
+There will be excellent quality control, based on documented assembly, testing, transport, and installation procedures.
 \label{sec:fdsp-hv-qc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,6 +185,9 @@ The scope of the HV system includes the continued procurement of materials for, 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Safety}
+
+Safety will be the highest priority at all times. There will be documented assembly, testing, transport, and installation procedures.
+
 \label{sec:fdsp-hv-safety}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
