@@ -254,6 +254,7 @@
 \presetkeys{todonotes}{disable}{}
 \newcommand{\hlfix}[2]{}
 \newcommand{\fixme}[1]{}
+\newcommand{\metainfo}[1]{}
 
 \else
 % "draft"
@@ -261,6 +262,8 @@
 \presetkeys{todonotes}{fancyline}{}
 \newcommand{\hlfix}[2]{\texthl{#1}\todo{#2}}
 \newcommand{\fixme}[1]{\todo[inline]{#1}}
+\newcommand{\metainfo}[1]{\todo[inline,backgroundcolor=yellow]{#1}}
+
 \linenumbers
 \fi
 

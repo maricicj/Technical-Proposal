@@ -1,0 +1,64 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{DAQ Design}
+\label{sec:fdsp-daq-design}
+
+\metainfo{16 Pages}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overview}
+\label{sec:fdsp-daq-ltr}
+
+Here we describe the overall readout and data acquistion strategy. This will include the high-level data flow diagram, which is divided in functional boxes, each of which are described in turn in the sections below.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Local Readout \& Buffering}
+\label{sec:fdsp-daq-ltr}
+
+Describe how the data is received from the detector electronics, and buffered while awaiting a trigger decision, together with any processing that affects stored data.  The starting point is data incoming from the WIBs and the end point is corresponding data sitting in memory ready for event building. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Local Trigger Primitive Generation}
+\label{sec:fdsp-daq-ltr}
+
+In this section we describe generation of basic information that is used in making a trigger decision.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dataflow}
+\label{sec:fdsp-daq-hlt}
+
+Describe the dataflow {\it infrastructure}. This should cover transport of local trigger information, infrastructure for generating local and global triggers, as well as what happens to the data once a trigger is generated (ie. event building). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Data Selection Algorithms}
+\label{sec:fdsp-daq-hlt}
+
+This section describes the strategy for using the trigger/dataflow infrastructure, with example algorithms.
+
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{High-Level Trigger}
+% \label{sec:fdsp-daq-eb}
+%
+% Data selection after event building.
+%
+
+\subsection{Timing \& Synchronization}
+\label{sec:fdsp-daq-hlt}
+
+Describe the generation of timing/synchronisation signals and and distribution to the detectors.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Computing \& Network Infrastructure}
+\label{sec:fdsp-daq-infra}
+
+Describes the infrastructure that will support the software components described above.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Run Control \& Monitoring}
+\label{sec:fdsp-daq-tcm}
+
+Describe how the system is controlled and monitored.
+
