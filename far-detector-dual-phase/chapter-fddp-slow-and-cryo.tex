@@ -17,9 +17,9 @@ The system includes (whatever it includes), as shown in Figure....
 
 \fixme{Include an image of the overall system, indicating its parts. Show how the system fits into the overall detector.}
 
-The operating principle is illustrated in Figure~\ref{figure-label}... (add figure)
+The operating principle is illustrated in Figure~\ref{fig:dp-cisc-pop}... (add figure)
 
-\begin{dunefigure}[optional caption for LoF]{fig:figure-label}
+\begin{dunefigure}[optional caption for LoF]{fig:dp-cisc-pop}
 {required full caption (Credit: xyz)}
 %\includegraphics[width=0.8\textwidth]{image-filename}
 \end{dunefigure}
@@ -38,7 +38,7 @@ The Slow Controls and Cryogenics Instrumentation design must enable...
 \begin{dunetable}
 [Important requirements on the system design]
 {p{0.8\textwidth}}
-{apaphysicsparams}
+{tab:dp-cisc-requirements}
 {Important requirements on the system design}   
 Requirement  \\ \toprowrule
   \\ \colhline
@@ -73,7 +73,15 @@ The scope of the Slow Controls and Cryogenics Instrumentation includes the conti
 
 \fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
 
-\fixme{not sure what subsections are needed: power supplies, feedthroughs?}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fluid Dynamics Simulations}
+\label{sec:fddp-slow-cryo-cfd}
+
+\fixme{provide overview and definition of required CFD, encompassing
+  relevant WBS items for ``Simulation studies of fluid dynamics within
+  the cryostat'' for the purity monitor system, the temperature
+  measurement system, and the level monitoring...}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Purity Monitors}
@@ -83,13 +91,43 @@ The scope of the Slow Controls and Cryogenics Instrumentation includes the conti
 \subsection{Thermometers}
 \label{sec:fddp-slow-cryo-therm}
 
+\fixme{Have something general here about the purpose of the entire
+  system. At the end the idea is to build a 3D temperature map.}
+
+% % % %
+\paragraph{Static T-Gradient Thermometers}
+
+% % % %
+\paragraph{Dynamic T-Gradient Thermometers}
+
+% % % %
+\paragraph{Individual Sensors}
+
+% % % %
+\paragraph{Readout system for thermometers}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Liquid Level Monitoring}
-\label{sec:fddp-slow-cryo-liiq-lev}
+\label{sec:fddp-slow-cryo-liq-lev}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gas Analyzers}
 \label{sec:fddp-slow-cryo-gas-anlyz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cameras}
+\label{sec:fddp-slow-cryo-cameras}
+
+% % % %
+\paragraph{Cryogenic Cameras (cold)}
+
+% % % %
+\paragraph{Inspection Cameras (warm)}
+
+% % % %
+\paragraph{Light emitting system}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cryogenics Test Facility}
@@ -118,15 +156,20 @@ The scope of the Slow Controls and Cryogenics Instrumentation includes the conti
 
 \fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
 
-\fixme{not sure what subsections are needed: power supplies, feedthroughs?}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cameras}
-\label{sec:fddp-slow-cryo-cameras}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Slow Controls Hardware}
 \label{sec:fddp-slow-cryo-hdwr}
+
+% % % %
+\paragraph{Slow Controls Network Hardware}
+
+% % % %
+\paragraph{Slow Controls Signal Processing Hardware}
+
+% % % %
+\paragraph{Slow Controls Computing Hardware}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Slow Controls Infrastructure}
@@ -165,7 +208,34 @@ The scope of the Slow Controls and Cryogenics Instrumentation includes the conti
 
 \fixme{Include an image of each interface in appropriate section.}
 
-\fixme{Add in appropriate subsections for the pieces that this interfaces with. These initial ones may not be right.}
+\fixme{Add in appropriate subsections for the pieces that this interfaces with. These initial ones may not be right, or some interfaces may be missing.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with External Cryogenic Systems}
+\label{sec:fddp-slow-cryo-ext-cryo}
+
+\fixme{specify external interface of Cryo Inst. Systems with systems outside the cryostat (with LBNF), detector Interface to LBNF design teams working on the design on cryogenic systems (including cryogenic piping)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with Environmental and Building Controls}
+\label{sec:fddp-slow-cryo-slow-enviro}
+
+\fixme{describe interface with LBNF on environmental and building controls}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with High Voltage Systems}
+\label{sec:fddp-slow-cryo-slow-hv}
+
+\fixme{Describe interface with HV systems, including use of cameras for HV monitoring, and also drift HV, current toroid, ground planes, and field cage pickoffs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with DAQ/Electronics}
+\label{sec:fddp-slow-cryo-slow-daq}
+
+\fixme{Describe interface with DAQ system, including Interface with DAQ/Electronics groups for a slow controls test facility at SURF, possibly as part of the DAQ test stand}
 
 
 
