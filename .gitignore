@@ -18,7 +18,6 @@ tests/tables.pdf
 *.brf
 *.tdo
 annex-*.pdf
-*.pdf
 *.gz
 *.pyc
 .~lock.*
@@ -31,3 +30,7 @@ install
 test.tex
 foo
 auto
+executive-summary.pdf
+far-detector-dual-phase.pdf
+far-detector-single-phase.pdf
+software-computing.pdf

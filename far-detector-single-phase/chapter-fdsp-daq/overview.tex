@@ -8,19 +8,24 @@
 \subsection{Introduction}
 \label{sec:fdsp-daq-intro}
 
-The Data Acquisition System provides ...
-The system includes (whatever it includes), as shown in Figure.... 
+The overall DUNE Far Detector Data Acquisition System (DAQ) is
+illustrated in Fig.~\ref{fig:daq-overview}.
+\fixme{Describe figure here.}
 
-\metainfo{Include a figure drawn in terms of Sec~\ref{sec:fdsp-daq-design} aand with ``boxes'' roughly at the granularity of its sub-sections.}
+Figure.~\ref{fig:daq-overview-sp} illustrates the data flow and the
+exchange of trigger and monitoring messages.
 
-The operating principle is illustrated in Figure~\ref{figure-label}... (add figure)
 
-\begin{dunefigure}[optional caption for LoF]{fig:figure-label}
-{required full caption (Credit: xyz)}
-%\includegraphics[width=0.8\textwidth]{image-filename}
+
+\begin{dunefigure}[DAQ Overview]{fig:daq-overview}
+  {An overview of high-level DAQ components and their connections for the full Far Detector with details showing the multiplicity of front ends for the Single-Phase \SI{10}{\kton} module.}
+% This PDF is made from the .dot of the same name.
+\includegraphics[width=0.8\textwidth]{daq-overview.pdf}%
 \end{dunefigure}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Design Considerations}
 \label{sec:fdsp-daq-des-consid}
 
@@ -50,6 +55,8 @@ Requirement  \\ \toprowrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Scope}
 \label{sec:fdsp-daq-scope}
+
+\metainfo{This section may also wish to refer to Fig.~\ref{fig:daq-overview}.}
 
 The scope of the Data Acquisition System includes the continued procurement of materials for, and the fabrication, testing, delivery and installation of the following systems: 
 

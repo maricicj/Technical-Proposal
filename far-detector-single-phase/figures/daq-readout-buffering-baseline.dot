@@ -1,0 +1,89 @@
+digraph top {
+        graph[color=cornflowerblue,compound=true,ordering=out,fontcolor=white,splines=false,layout=dot,rankdir=LR,style=filled,fontsize=20];
+        node[shape=box,style="rounded,filled",color=darkgoldenrod1,fontsize=16];
+        subgraph cluster_sp{
+                label="Single-Phase Module -- 1 APA";
+                subgraph cluster_wibs {
+                        label="Cold Electronics";
+                        graph[color=deepskyblue4];
+                        node[shape=record,color=deepskyblue];
+                        wib1[label="{WIB1\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib2[label="{WIB2\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib3[label="{WIB3\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib4[label="{WIB4\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib5[label="{WIB5\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                }
+                subgraph cluster_daqsp{
+                        label="Single-Phase DAQ"
+                        graph[color=darkgoldenrod4];
+                        node[color=darkgoldenrod1];
+                        subgraph cluster_daqfe{
+                                label="DAQ Front End for One APA";
+                                graph[color=darkgoldenrod3]
+                                node[color=darkgoldenrod1]
+                                subgraph cluster_rces {
+                                        label="ACTA COB";
+                                        graph[color=darkgoldenrod2]
+                                        rce1[label="RCE1"];
+                                        rce2[label="RCE2"];
+                                        rce3[label="RCE3"];
+                                        rce4[label="RCE4"];
+                                }
+                                subgraph cluster_felixpc {
+                                        label="FELIX Host Computer";
+                                        graph[color=darkgoldenrod2]
+                                        felix[label="FELIX\nPCIe board"];
+                                        ring[shape=circle,label="10s RAM\nRing\nBuffer"];
+                                }
+                        }
+                        subgraph cluster_daqblob {
+                                graph[color=darkgoldenrod3];
+                                label="Module-level\nDAQ Components";
+                                eb[label="Event Builder"];
+                                mtl[label="Module\nTrigger Logic"];
+                        }
+                        
+                }
+        }
+        wib1:c1->rce1:w;
+        wib1:c2->rce2:w;
+        wib1:c3->rce3:w;
+        wib1:c4->rce4:w;
+
+        wib2:c1->rce1:w;
+        wib2:c2->rce2:w;
+        wib2:c3->rce3:w;
+        wib2:c4->rce4:w;
+
+        wib3:c1->rce1:w;
+        wib3:c2->rce2:w[label="4x 1 Gbps fibers"];
+        wib3:c3->rce3:w;
+        wib3:c4->rce4:w;
+
+        wib4:c1->rce1:w;
+        wib4:c2->rce2:w;
+        wib4:c3->rce3:w;
+        wib4:c4->rce4:w;
+
+        wib5:c1->rce1:w;
+        wib5:c2->rce2:w;
+        wib5:c3->rce3:w;
+        wib5:c4->rce4:w;
+        
+        edge[penwidth=4];
+
+        rce1:e->felix[label="Data and Trigger Primitives\n2x 10 Gbps fibers / link"];
+        rce2:e->felix;
+        rce3:e->felix;
+        rce4:e->felix[label=""];
+        
+        edge[penwidth=16,dir=none];
+        felix->ring[label="10 GB/s DMA\n\n"];
+
+        edge[penwidth=2,dir=forward];
+        ring->eb[label="select\ntriggered"];
+        
+        edge[penwidth=1,style=dashed,constraint=false];
+        felix->mtl;
+        mtl->eb;
+}
