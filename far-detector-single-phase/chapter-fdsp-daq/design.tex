@@ -7,13 +7,17 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Overview}
+\subsection{Overview (Giles Barr)}
 \label{sec:fdsp-daq-ltr}
 
-Here we describe the overall readout and data acquistion strategy. This will include the high-level data flow diagram, which is divided in functional boxes, each of which are described in turn in the sections below.
+Here we describe the overall readout and data acquistion
+strategy. This will include the high-level data flow diagram,
+(Figure~\ref{fig:daq-readout-buffering-baseline} may be sufficient)
+which is divided in functional boxes, each of which are described in
+turn in the sections below.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Local Readout \& Buffering}
+\subsection{Local Readout \& Buffering (Giles Barr \& Brett Viren)}
 \label{sec:fdsp-daq-ltr}
 
 \metainfo{Describe how the data is received from the detector electronics, and buffered while awaiting a trigger decision, together with any processing that affects stored data.  The starting point is data incoming from the WIBs and the end point is corresponding data sitting in memory ready for event building. }
@@ -32,7 +36,7 @@ readout and buffering data flow in the context of a single APA.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Local Trigger Primitive Generation}
+\subsection{Local Trigger Primitive Generation (Josh Klein \& Brett Viren)}
 \label{sec:fdsp-daq-ltr}
 
 \fixme{Below are from slides bv may show at the Jan WS.  Content copied here and now as a starting point.}
@@ -115,15 +119,15 @@ respond to this scenario include....\fixme{Ideas?}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Dataflow}
+\subsection{Dataflow (Giles Barr \& Josh Klein \& Brett Viren)}
 \label{sec:fdsp-daq-hlt}
 
-\metainfo{Describe the dataflow {\it infrastructure}. This should cover transport of local trigger information, infrastructure for generating local and global triggers, as well as what happens to the data once a trigger is generated (ie. event building).
+\metainfo{Describe the dataflow {\it infrastructure}. This should cover buffer and transport of data and trigger information, infrastructure for generating local and global trigger commands (but not their algorithms, that's next), as well as what happens to the data once a trigger is generated (ie. event building).
 Figure~\ref{fig:daq-readout-buffering-baseline} may be referenced}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Data Selection Algorithms}
+\subsection{Data Selection Algorithms (Josh Klein \& Brett Viren)}
 \label{sec:fdsp-daq-sel}
 
 This section describes the strategy for using the trigger/dataflow infrastructure, with example algorithms.
