@@ -63,14 +63,17 @@ coincidence is then sent via running a script on the SNEWS server at BNL
 provided by the experiment wishing to receive the alert.  The latency
 from neutrino burst is set by the response time of the second fastest
 detector to report to SNEWS: this could be as short as seconds, but
-might be tens of seconds.
+might be tens of seconds.  At latencies larger than \SI{10}{s}, full
+data might not be available, but compressed data might writeable.
 
 There are other astrophysical triggers available for occurrences which
-DUNE might not sensitive to individually, but could be either rarely
-or if taken as an ensemble.  Gravitational wave triggers
-will be available (details being worked out during the current LIGO
-shutdown), as will high energy photon transients, most notably gamma ray
-bursts.  In fact, cooperation between LIGO/VIRGO and the Gamma Ray
-Coordinates Network (GCN)\footnote{Described in detail at \url{https://gcn.gsfc.nasa.gov/gcn_describe.html}} via network sockets on the time
-scale of seconds enabled the discovery that ``short/hard'' gamma ray
-bursts are caused by colliding neutron stars\cite{kilonova}.
+DUNE might not sensitive to individually, but could be either rarely or
+if taken as an ensemble.  Gravitational wave triggers will be available
+(details being worked out during the current LIGO shutdown), as will
+high energy photon transients, most notably gamma ray bursts.  In fact,
+cooperation between LIGO/VIRGO, the Gamma Ray Coordinates Network
+(GCN)\footnote{Described in detail at
+  \url{https://gcn.gsfc.nasa.gov/gcn_describe.html}}, and a number of
+automated telescopes via network sockets on the time scale of seconds
+enabled the discovery that ``short/hard'' gamma ray bursts are caused by
+colliding neutron stars\cite{kilonova}.
