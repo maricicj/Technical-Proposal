@@ -1,11 +1,64 @@
-\documentclass[12pt]{article}
-\usepackage{color}
-\usepackage{calc}
-\newcommand{\fixme}[1]{{\color{blue} #1}}
-\setcounter{secnumdepth}{2}
-\parindent 0.5 in
-\begin{document}
-\tableofcontents
-\input chapter-sw-overview
+\ifdefined\isfinal\documentclass[final]{dune}\else\documentclass{dune}\fi
+\pdfoutput=1            % must be in first 5 lines so arXiv finds it
+\graphicspath{ {figures/}{figures/}{generated/} }
 
+\input{../common/preamble}
+\setcounter{secnumdepth}{1}
+\renewcommand\thedoctitle{\volswcomputing} % defined in common/defs.tex
+%\def\titleextra{\includegraphics[width=0.55\textwidth]{energy_nu_no}} -- change image file
+\begin{document}
+
+%\input{common/init}
+
+%\input{common/acronyms-shared-vol1-2-4}
+%\input{common/acronyms-shared-vol1-2}
+%\input{common/acronyms-shared-vol2-4}
+%\input{common/acronyms-vol2}
+
+%\input{software-computing/chapter-sw-overview}
+%\cleardoublepage
+
+\input{chapter-sw-overview}
+\cleardoublepage
+
+\input{chapter-reco-anlsys-sw-model}
+\cleardoublepage
+
+\input{chapter-data-model}
+\cleardoublepage
+
+\input{chapter-data-volume}
+\cleardoublepage
+
+\input{chapter-data-move-store}
+\cleardoublepage
+
+\input{chapter-anlsys-and-frameworks}
+\cleardoublepage
+
+%\input{chapter-anlsys-and-frameworks}
+%\cleardoublepage
+
+\input{chapter-db-and-addl-sources}
+\cleardoublepage
+
+\input{chapter-platforms}
+\cleardoublepage
+
+\input{chapter-code-mgmt}
+\cleardoublepage
+
+\input{chapter-supp-infrastructure}
+\cleardoublepage
+
+\input{chapter-accts-training}
+\cleardoublepage
+
+\input{chapter-resource-est}
+\cleardoublepage
+
+\input{chapter-future}
+\cleardoublepage
+
+\input{common/final}
 \end{document}
