@@ -276,3 +276,5 @@
 %for \lesssim symbol
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+\usepackage{cleveref} %To use vref suggested by A Habig Feb 2018
