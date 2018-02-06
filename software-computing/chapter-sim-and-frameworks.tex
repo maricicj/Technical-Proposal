@@ -64,6 +64,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fast Monte Carlo}
 
+A Fast Monte Carlo (FMC) program was developed by the LBNE collaboration and was used to
+compute oscillation sensitivities~\cite{cdr-vol-2}.  The FMC simulated neutrino interactions
+on argon using the LBNF flux spectrum and the GENIE~\cite{GENIE} generator.  The detector
+responses to the final-state particles produced by GENIE are approximated with efficiency
+fractions as functions of particle energy, energy resolution smearing fractions, and
+correct and incorrect particle identification rates.  The events were divided into
+$\nu_\mu$CC-like, $\nu_e$-CC-like, and NC-like, for the near and far detectors, and the
+inputs provided to a parameter fit, such as CAFANA, GLoBES, or LOAF.  The details of the
+detector response and analysis requirements can be found in~\cite{cdr-vol-2}.  The CPU time needed
+for the FMC project is 1 to 4~M hours per year, with $<1$~TB of storage required, when
+it is fully used.  The emphasis on full simulation and reconstruction results however has
+displaced the FMC in 2016 and 2017. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Geant4}
 
