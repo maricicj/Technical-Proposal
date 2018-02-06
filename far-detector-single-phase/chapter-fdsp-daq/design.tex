@@ -152,9 +152,17 @@ This section describes the strategy for using the trigger/dataflow infrastructur
 %
 
 \subsection{Timing \& Synchronization (David Cussans \& DP Expert?)}
-\label{sec:fdsp-daq-hlt}
+\label{sec:fdsp-daq-timing}
 
-Describe the generation of timing/synchronisation signals and and distribution to the detectors.
+%Describe the generation of timing/synchronisation signals and and distribution to the detectors.
+
+The DUNE Single Phase detectors use a development of the protoDUNE timing system. Synchronization messages are transmitted over a serial data stream with the clock embedded in the data. The format is described in DUNE DocDB-1651. Figure \ref{fig:daq-readout-sp-timing} shows the overall arrangement of components within the Single Phase Timing System(SPTS).
+
+\begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
+  {Illustration of the components in the Single Phase Timing System. \fixme{Replace this protoDUNE SP timing system diagram with a DUNE diagram.}}
+\includegraphics[width=0.8\textwidth]{daq-timing-block-diagram.pdf}
+\end{dunefigure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
