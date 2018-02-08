@@ -1,116 +1,69 @@
 digraph top {
-        graph[compound=true,ordering=out,fontcolor=white,splines=false,layout=dot,rankdir=LR,style=filled,color=cornflowerblue,fontsize=20];
-        node[shape=box,style="rounded,filled",color=darkgoldenrod4,fontsize=16];
-        subgraph cluster_sp{
-                label="Single-Phase Module -- 150 APAs";
-                subgraph cluster_ce {
-                        label="Cold Electronics";
-                        graph[color=deepskyblue4];
-                        node[color=deepskyblue];
-                        apa1[label="APA 001"]
-                        apa2[label="APA 002"]
-                        apa3[label="APA 003"]
-                        apa4[label="APA 004"]
-                        apaI[label="...APA  i..."]
-                        apaN[label="APA 150"]
+        graph[compound=true,ordering=out,splines=false,layout=dot,rankdir=LR,fontsize=20];
+        node[shape=box,style="rounded",fontsize=16];
+
+        subgraph cluster_dets{
+                subgraph cluster_det1{
+                        label="Detector Module #N";
+                        elec1[label="Electronics"];
                 }
-                subgraph cluster_daqfe {
-                        label="DAQ Front Ends";
-                        graph[color=darkgoldenrod4]
-                        node[color=darkgoldenrod1]
-                        fe1[label="DAQ FE 001"];
-                        fe2[label="DAQ FE 002"];
-                        fe3[label="DAQ FE 003"];
-                        fe4[label="DAQ FE 004"];
-                        feI[label="...DAQ FE i..."];
-                        feN[label="DAQ FE 150"];
+        }
+        subgraph cluster_daqs{
+                label="DUNE FD DAQ";
+
+                subgraph cluster_daq1 {
+                        label="DAQ Module #N";
+                        subgraph cluster_fero1 {
+                                label="Front-End\nReadout";
+                                fero1[label="Electronics\nReadout HW"];
+                        }
+                        subgraph cluster_fecomp1 {
+                                label="Front-End Computing";
+                                receive1[label="Data\nReceiver"];
+                                buffer1[label="RAM\nBuffer"];
+                                selector1[label="Data\nSelector"];
+                        }
+                        subgraph cluster_becomp1 {
+                                label="Back-End Computing";
+                                mtl1[label="Module Trigger\nLogic"];
+                                eb1[label="Event\nBuilder Farm"];
+                                disk1[label="Output\nDisk Buffer"];
+                        }
+                        
                 }
-                apaN->feN;
-                apaI->feI;
-                apa4->fe4;
-                apa3->fe3;
-                apa2->fe2;
-                apa1->fe1[label="82 Gbps"];
-
+                gtl[label="Global Trigger Logic"];
+                
         }
 
-        subgraph cluster_m1{
-                label="Single-Phase Module";
-                c1[label="Detector\nModule\nElectronics",color=deepskyblue4]
-                d1[label="DAQ\nModule\nFront End\n"];
-        }
-        subgraph cluster_m2{
-                label="Dual-Phase Module";
-                c2[label="Detector\nModule\nElectronics",color=deepskyblue4]
-                d2[label="DAQ\nModule\nFront End"];
-        }
-        subgraph cluster_m3{
-                label="Module #3";
-                c3[label="Detector\nModule\nElectronics",color=deepskyblue4]
-                d3[label="DAQ\nModule\nFront End"];
-        }
-        subgraph cluster_m4{
-                label="Module #4";
-                c4[label="Detector\nModule\nElectronics",color=deepskyblue4]
-                d4[label="DAQ\nModule\nFront End"];
-        }
-        subgraph cluster_g{
-                graph[color=darkgoldenrod4,fontcolor=black,style=filled];
-                node[color=darkgoldenrod1];
-                label="Global FD DAQ\nComponents\n";
-                t[label="DAQ Global\nTrigger Logic"];
-                j1[style=invis];
-                a[label="DAQ Global\nData Egress System"];
-                j2[style=invis];
-                m[label="DAQ Monitoring,\nTiming and Control"];
-        }
-        node[shape=box,style="rounded,filled"];
-        o[label="DUNE Offline\nbuffer disk",color=firebrick1];
-        f[label="FNAL Beam\nInformation",color=darkgoldenrod1]
-        s[label="SNEWS\n(network packet)",style=rounded,color=black]
-        sc[label="Slow Control",color=darkorchid]
-
-        edge[penwidth=4];
+        // full raw data
+        edge[penwidth=6];
+        elec1->fero1;
         
-        c1->d1;
-        d1->a:w[label="data flow"];
-        c2->d2;
-        d2->a:w;
-        c3->d3->a:w;
-        c4->d4->a:w;
-        a->o;
+        fero1->receive1;
 
-        edge[dir=both,penwidth=1,style=dashed];
-        d1->t:w
-        d2->t:w
-        d3->t:w
-        d4->t:w[label="trigger flow"];
-        t->s;
+        receive1->buffer1[label="\nData\n"];
+
+        // L0 trigger primitives
+        edge[penwidth=1,style=dotted]
+        fero1->receive1;
+        receive1->mtl1[label="L0 triggers\nprimitives"];
+        // L1 trigger commands
+        edge[penwidth=1,style=dashed]
+        mtl1->eb1[label="\ntrigger commands\n\n"];
+        eb1->selector1;
+        selector1->buffer1;
+
+        // Selected readout
+        edge[penwidth=2,style=solid]
+        buffer1->selector1->eb1->disk1;
+
+        // global trigger primitives
+        edge[penwidth=1,style=dotted]
+        mtl1->gtl;
         
-        edge[dir=both,penwidth=1,style=dotted];
-        d1->m:w;
-        d2->m:w;
-        d3->m:w;
-        d4->m:w;
-        m->sc;
-
-        edge[dir=normal];
+        // global trigger commands
+        edge[penwidth=1,style=dashed]
+        gtl->mtl1;
         
-        d1->c1;
-        d2->c2;
-        d3->c3;
-        d4->c4;
-        
-
-        edge[dir=back];
-        t->f;
-        
-
-        //label="High Level DUNE Far Detector DAQ Context";
-        label="";
-
-        edge[penwidth=4,color=gray,dir=back,style=normal];
-        feN->c1[ltail=cluster_sp, lhead=cluster_m1,label="       "];
-
         
 }
