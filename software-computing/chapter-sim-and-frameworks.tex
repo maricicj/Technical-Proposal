@@ -17,52 +17,83 @@
 \subsection{Muon Monitors}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Neutrino Interaction simulations}
+\section{Event Geneartors}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{GENIE $\nu$ interaction generator}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NEUT $\nu$ interaction generator}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NuWro $\nu$ interaction generator}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NUANCE $\nu$ interaction generator}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{GIBUU $\nu$ interaction generator}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{MARLEY $\nu$ interaction generator}
+The event generators provided with LArSoft create MCParticle and MCTruth data products in
+the {\it{art}} event store.  Any number of event generators, including multiple instances of the
+same generator, may be run for a given event.  This feature is useful in order to overlay cosmic
+rays and radiological decays on neutrino scattering events for example.  In addition to the
+generators listed below that are integrated into the LArSoft software environment, a text-file generator
+can read files with particle types and four-vectors of their momenta and energies to provide access
+to additional generators without investing in software integration.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Nucleon Decay and Exotic Particle Simulation}
+\subsection{Neutrino Interaction simulations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{GENIE}
+\subsubsection{GENIE $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{MadGraph/MadEvent}
-
-\section{Cosmic-Ray Generators}
+\subsubsection{NEUT $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{CRY}
+\subsubsection{NuWro $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{CORSIKA}
+\subsubsection{NUANCE $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{MUSUN/MUSIC}
+\subsubsection{GIBUU $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Radiological Generator}
+\subsubsection{MARLEY $\nu$ interaction generator}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Nucleon Decay and Exotic Particle Simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{GENIE}  % Hector Mendez will supply something here.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{MadGraph/MadEvent}
+
+\subsection{Cosmic-Ray Generators}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{CRY}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{CORSIKA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{MUSUN/MUSIC}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Radiological Generator}
+
+The radiological generator is a LArSoft module that produces MCParticle objects corresponding
+to the decay products of radionuclides.  The spectra of alpha, beta, and gamma particles emitted
+by decaying radionuclides are user-specifialbe in root files.  The radiological generator generates
+decays within a rectangular prism in space and in a specified range of time.  For a particular
+nuclide, volumes in the geometry whose materials match a regular expression are selected as locations
+for possible decays.  This mechanism is chosen over the more complex alternatie of specifying radionuclide
+concentrations in the geometry specification because GEANT4 and GENIE will attempt to simulate interactions
+of neutrinos and other particles on extremely rare nuclides, for which cross-section data may not exist.
+The CPU time required to run the radiological generator is negligible, but its output can dominate
+the CPU and storage of the fully simulated samples, as is the case for the far detector data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Detector geometry and modeling systems}
 
+LArSoft reads in GDML files that describe the geometries of the far detector modules.  Two versions of these
+files are required -- one with the readout wires described, and one without.  The total mass in the readout
+wires is very small, but their presence would increase the memory and CPU requirements of the simulation
+if they are present in any more than a parameterized manner.  These GDML files are constructed with Perl scripts.
+A more sophisticated tool called {\tt{ggd}}~\cite{ggd} is designed to create GDML files from a higher-level
+Python description of the detector.
+
+Within LArSoft, two ``parallel-world'' representations of the geometry are created.  One is for particle interactions
+modeled by GEANT4, and the other is intended for GEANT4's simulation of photon propagation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fast Monte Carlo}
@@ -106,7 +137,19 @@ tick on each wire as well.
 In the LArSoft interface,  it is possible to specify a magnetic field that will cause charged-particle
 trajectories to deflect.
 
-The GEANT4 step, along with the LArSoft-supplied drift modeling, is the second-quickest simulation step,
+For photon propagation modeling, a library-based method is used to speed up the sampling of tens of thousands of
+scintillation photons per MeV of deposited energy.  The photon library is a list of detection probabilities
+indexed by the voxel in space corresponding to the origin of the photons and the photon detector channel.
+The source voxel sizes are cubes ??~cm on a side.  These detection probabilites are computed with a fully-simulated
+run using GEANT4 to propagate photons isotropically-distributed in their production angle through the liquid argon,
+taking into account the reflectivity of the field cage walls and the cathode and Rayleigh scattering in the liquid.
+The detection probability further includes light attenuation along the length of each photon detector's bar.  An
+overall quantum efficiency scaling factor is applied before the photon library lookup is performed, reducing the
+number of lookups needed to complete the calculation.  The photon lookup library is typically a 300~MB rootfile.
+Cherenkov radiation is currently not simulated or propagated by LArSoft; it may be added in a future version.
+
+The GEANT4 step, along with the LArSoft-supplied drift modeling and lookup-library-based photon propagation, 
+is the second-quickest simulation step,
 after the generation stage, with ??~sec/event for far detector neutrino interactions, and ??~sec/event for
 ProtoDUNE events with cosmic rays.  GEANT4 however requires several GB of auxiliary data files in order
 to parameterize the interactions of particles with matter.  The GEANT4 collaboration actively compares
@@ -150,6 +193,8 @@ Additional steps, such as modeling of stuck bits or groups of bits are configura
 Modeling dead channels or groups of channels is frequently performed as an early step
 in the reconstruction job so that Monte Carlo samples can be reused with varying fractions and placement
 of dead channels.
+
+Similar processing steps are applied to the simulation of the photon detector waveforms.
 
 The output of the electronics simulation is digitized waveforms.  Zero suppression is optionally
 applied.  The simulated data are compressed either with ROOT's built-in compression, or a fixed-dictionary
