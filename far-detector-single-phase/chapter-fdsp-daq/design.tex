@@ -26,10 +26,25 @@ Figure~\ref{fig:daq-readout-buffering-baseline} illustrates the local
 readout and buffering data flow in the context of a single APA.  
 
 \begin{dunefigure}[Baseline Readout and Buffering]{fig:daq-readout-buffering-baseline}
-  {Illustration of data flow from Cold Electronics WIBs through RCE,
-    FELIX, RAM buffer for one APA.  The buffer in each APA DAQ Front
-    End system will then be polled by the Single-Phase Event Builder
-    process which services all 150 APAs.  \fixme{Note, this assumes trigger primitives are sent along with data which still a point of discussion.  When decided, this diagram may need changes.}}
+  {Illustration of data flow for two out of 150 APAs in the
+    Single-Phase module. 
+    It shows the Cold Electronics WIB-RCE connections which send one
+    half of one APA face to each RCE. 
+    The data and L0 trigger primitives the RCEs are received by a
+    single FELIX host. 
+    The data is buffered into RAM and the trigger primitives are sent
+    to the Module Trigger Logic unit (MTL) and sent to the Global
+    Trigger Logic unit (not shown). 
+    Nominal (non-dump) trigger commands are delivered to the Event
+    Builder which polls the selector on the appropriate FELIX host for
+    the requested data.
+    The MTL sends special SNB-dump trigger commands directly to the
+    Front-End Readout hardware so that it may initiate a full-stream
+    dump to local storage. 
+    This dump is then sent out over Ethernet to a special SNB Event
+    builder. 
+    Both types of event builders finally save triggered data to file
+    on the offline buffer disk.}
 % This PDF is made from the .dot of the same name.
 \includegraphics[width=0.8\textwidth]{daq-readout-buffering-baseline.pdf}%
 \end{dunefigure}
@@ -119,7 +134,7 @@ respond to this scenario include....\fixme{Ideas?}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Dataflow, Trigger and Event Builder (Giles Barr \& Josh Klein \& Giovanna Miotto \& Brett Viren)}
+\subsection{Dataflow, Trigger and Event Builder (Giles Barr \& Josh Klein \& Giovanna Miotto \& Kurt Biery \& Brett Viren)}
 \label{sec:fdsp-daq-hlt}
 
 \metainfo{Describe the dataflow {\it infrastructure}. This should cover transport of data and trigger information, infrastructure for generating local and global trigger commands (but not their algorithms, that's next), as well as what happens to the data once a trigger is generated (ie. event building).
@@ -151,7 +166,7 @@ This section describes the strategy for using the trigger/dataflow infrastructur
 % Data selection after event building.
 %
 
-\subsection{Timing \& Synchronization (David Cussans \& DP Expert?)}
+\subsection{Timing \& Synchronization (David Cussans \& Kostas Manolopoulos)}
 \label{sec:fdsp-daq-timing}
 
 %Describe the generation of timing/synchronisation signals and and distribution to the detectors.
@@ -160,7 +175,7 @@ The DUNE Single Phase detectors use a development of the protoDUNE timing system
 
 \begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
   {Illustration of the components in the Single Phase Timing System. \fixme{Replace this protoDUNE SP timing system diagram with a DUNE diagram.}}
-\includegraphics[width=0.8\textwidth]{daq-timing-block-diagram.pdf}
+\includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
 \end{dunefigure}
 
 
