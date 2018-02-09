@@ -17,7 +17,7 @@ which is divided in functional boxes, each of which are described in
 turn in the sections below.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Local Readout \& Buffering (Giles Barr \& Brett Viren)}
+\subsection{Local Readout \& Buffering (Giles Barr \& Giovanna Miotto \& Brett Viren)}
 \label{sec:fdsp-daq-ltr}
 
 \metainfo{Describe how the data is received from the detector electronics, and buffered while awaiting a trigger decision, together with any processing that affects stored data.  The starting point is data incoming from the WIBs and the end point is corresponding data sitting in memory ready for event building. }
@@ -26,17 +26,32 @@ Figure~\ref{fig:daq-readout-buffering-baseline} illustrates the local
 readout and buffering data flow in the context of a single APA.  
 
 \begin{dunefigure}[Baseline Readout and Buffering]{fig:daq-readout-buffering-baseline}
-  {Illustration of data flow from Cold Electronics WIBs through RCE,
-    FELIX, RAM buffer for one APA.  The buffer in each APA DAQ Front
-    End system will then be polled by the Single-Phase Event Builder
-    process which services all 150 APAs.  \fixme{Note, this assumes trigger primitives are sent along with data which still a point of discussion.  When decided, this diagram may need changes.}}
+  {Illustration of data flow for two out of 150 APAs in the
+    Single-Phase module. 
+    It shows the Cold Electronics WIB-RCE connections which send one
+    half of one APA face to each RCE. 
+    The data and L0 trigger primitives the RCEs are received by a
+    single FELIX host. 
+    The data is buffered into RAM and the trigger primitives are sent
+    to the Module Trigger Logic unit (MTL) and sent to the Global
+    Trigger Logic unit (not shown). 
+    Nominal (non-dump) trigger commands are delivered to the Event
+    Builder which polls the selector on the appropriate FELIX host for
+    the requested data.
+    The MTL sends special SNB-dump trigger commands directly to the
+    Front-End Readout hardware so that it may initiate a full-stream
+    dump to local storage. 
+    This dump is then sent out over Ethernet to a special SNB Event
+    builder. 
+    Both types of event builders finally save triggered data to file
+    on the offline buffer disk.}
 % This PDF is made from the .dot of the same name.
 \includegraphics[width=0.8\textwidth]{daq-readout-buffering-baseline.pdf}%
 \end{dunefigure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Local Trigger Primitive Generation (Josh Klein \& Brett Viren)}
+\subsection{Local Trigger Primitive Generation (Josh Klein \& J.J. Russel \& Brett Viren \& DP Expert?)}
 \label{sec:fdsp-daq-ltr}
 
 \fixme{Below are from slides bv may show at the Jan WS.  Content copied here and now as a starting point.}
@@ -119,10 +134,10 @@ respond to this scenario include....\fixme{Ideas?}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Dataflow (Giles Barr \& Josh Klein \& Brett Viren)}
+\subsection{Dataflow, Trigger and Event Builder (Giles Barr \& Josh Klein \& Giovanna Miotto \& Kurt Biery \& Brett Viren)}
 \label{sec:fdsp-daq-hlt}
 
-\metainfo{Describe the dataflow {\it infrastructure}. This should cover buffer and transport of data and trigger information, infrastructure for generating local and global trigger commands (but not their algorithms, that's next), as well as what happens to the data once a trigger is generated (ie. event building).
+\metainfo{Describe the dataflow {\it infrastructure}. This should cover transport of data and trigger information, infrastructure for generating local and global trigger commands (but not their algorithms, that's next), as well as what happens to the data once a trigger is generated (ie. event building).
 Figure~\ref{fig:daq-readout-buffering-baseline} may be referenced}
 
 
@@ -151,20 +166,84 @@ This section describes the strategy for using the trigger/dataflow infrastructur
 % Data selection after event building.
 %
 
-\subsection{Timing \& Synchronization}
-\label{sec:fdsp-daq-hlt}
+\subsection{Timing \& Synchronization (David Cussans \& Kostas Manolopoulos)}
+\label{sec:fdsp-daq-timing}
 
-Describe the generation of timing/synchronisation signals and and distribution to the detectors.
+%Describe the generation of timing/synchronisation signals and and distribution to the detectors.
 
+The DUNE Single Phase detectors use a development of the protoDUNE
+timing system. Synchronization messages are transmitted over a serial
+data stream with the clock embedded in the data. The format is
+described in DUNE DocDB-1651. Figure \ref{fig:daq-readout-timing}
+shows the overall arrangement of components within the Single Phase
+Timing System(SPTS). A stable master clock, disciplined with a 10MHz
+reference is used in the SPTS. A one-pulse-per-second (1PPS) signal is
+also received by the system and is time-stamped onto a counter clocked
+by the SPTS master clock, however the periodic synchronization
+messages distributed to the Single Phase detectors are an exact number
+of clock cycles apart even if there is jitter in the 1PPS signal.
+
+The GPS signal is encoded onto optical fibre and transmitted to the
+CUC, where it is converted back to an RF signal on coaxial cable and
+used as the input to a GPS displined oscillator. The oscillator module
+also houses a IEEE 1588 (PTP) Grand Master and an NTP server. The PTP
+Grand Master provides a timing signal for the Dual Phase White Rabbit
+timing network. The NTP server provides an absolute time for the 1PPS
+signal. The SPTS relates its time counter onto GPS time by
+timestamping the 1PPS signal onto the SPTS time counter and reading
+the time in software from the NTP server.
+
+The White Rabbit synchronization signals from the Dual Phase are
+time-stamped onto the SPTS clock domain and the SPTS synchronization
+signals are time stamped onto the Dual Phase clock domain. This allows
+the timing in the Single Phase and Dual Phase detectors to be
+aligned. A similar scheme is used to relate the Single Phase protoDUNE
+Single Phase timing domain to be related to the beam instrumentation
+White Rabbit time domain.
+
+In order to provide redundancy, and also the ability to easily detect
+issues with the timing path, two independent GPS systems are used. One
+with an antenna at the head of the Yates shaft, the other with an
+antenna at teh head of the Ross shaft. The two independent timing
+paths are brought together in the same rack in the CUC. Using 1:2
+fibre splitters one SPTS unit can be left as a hot-spare while the
+other is active. This also allows testing of new firmware and software
+during comissioning without the risk of loosing the SPTS if a bug is
+introduced.
+
+
+\begin{dunefigure}[Arrangement of Components in DUNE Timing System]{fig:daq-readout-timing}
+  {Illustration of the components in the DUNE Timing System.}
+\includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
+\end{dunefigure}
+
+All the custom electronic components for the SPTS are contained in two
+Micro-TCA shelves. At any one time one is active and the other is a
+hot-spare. The 10MHz reference clock and the 1PPS signal are received
+by a single width AMC at the centre of the Micro-TCA shelf. This
+master timing AMC produces the SPTS signals and encodes them onto a
+serial data stream. This serial datastream is distributed over a
+standard star-point backplane to the fanout AMCs which each drive the
+signal onto up to 13 SFP cages. The SFP cages are either occupied by
+1000Base-BX SFPs, each of which connects to a fibre running to an APA,
+or to a Direct Attach cable which connects to systems elsewhere in the
+CUC, i.e. the RCE crates and the data selection system. This arrangement is shown in figure \ref{fig:daq-readout-sp-timing}
+
+
+\begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
+  {Illustration of the components in the Single Phase Timing System.}
+  \fixme{Add a diagram of the SPTS electronics}
+  % \includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
+\end{dunefigure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Computing \& Network Infrastructure (Kurt Biery?)}
+\subsection{Computing \& Network Infrastructure (Kurt Biery \& Babak Abi)}
 \label{sec:fdsp-daq-infra}
 
 Describes the infrastructure that will support the software components described above.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Run Control \& Monitoring}
+\subsection{Run Control \& Monitoring (Giovanna Miotto \& Jingbo Wang}
 \label{sec:fdsp-daq-tcm}
 
 Describe how the system is controlled and monitored.

@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Data Acquisition System (DAQ) Overview (Georgia Karagiorgi)}
+\section{Data Acquisition System (DAQ) Overview (Georgia Karagiorgi \& David Newbold)}
 \label{sec:fdsp-daq-ov}
 
 \metainfo{2 Pages - largely generic but some highlighting of SP-specifics.}
@@ -18,7 +18,7 @@ exchange of trigger and monitoring messages.
 
 
 \begin{dunefigure}[DAQ Overview]{fig:daq-overview}
-  {An overview of high-level DAQ components and their connections for the full Far Detector with details showing the multiplicity of front ends for the Single-Phase \SI{10}{\kton} module.}
+  {A generalized overview of high-level far detector DAQ components showing one out of the four detector modules.  The electronics digitizes the detector signals and send the data to the DAQ Front-End Readout Hardware.  This component forms L0 Trigger Primitives and sends them and the data to a Front-End Computing Data Receiver.  The receiver sends the data to a RAM of sufficient size to buffer it longer than typical worse case trigger latency.  The L0 Trigger Primitives are forward to the Module Trigger Logic (MTL) unit which services the entire detector module.  The MTL forwards to the Global Trigger Logic unit which services the entire DUNE Far Detector.  Trigger commands are then sent back down and to the Event Builder Farm which, based on the trigger command information, queries the appropriate Front-End Computing units which return the requested data.  The Event Builder then aggregates the data and writes it to the Output Disk Buffer.  Each \SI{10}{\kton} module has specific differing details which are described below.}
 % This PDF is made from the .dot of the same name.
 \includegraphics[width=0.8\textwidth]{daq-overview.pdf}%
 \end{dunefigure}
