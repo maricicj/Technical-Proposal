@@ -1,89 +1,163 @@
 digraph top {
-        graph[color=cornflowerblue,compound=true,ordering=out,fontcolor=white,splines=false,layout=dot,rankdir=LR,style=filled,fontsize=20];
-        node[shape=box,style="rounded,filled",color=darkgoldenrod1,fontsize=16];
-        subgraph cluster_sp{
-                label="Single-Phase Module -- 1 APA";
-                subgraph cluster_wibs {
-                        label="Cold Electronics";
-                        graph[color=deepskyblue4];
-                        node[shape=record,color=deepskyblue];
-                        wib1[label="{WIB1\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
-                        wib2[label="{WIB2\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
-                        wib3[label="{WIB3\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
-                        wib4[label="{WIB4\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
-                        wib5[label="{WIB5\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+        graph[compound=true,ordering=out,splines=false,layout=dot,rankdir=LR,fontsize=20];
+        node[shape=box,style="rounded",fontsize=16];
+        label="Single-Phase Module -- two APAs";
+        
+        subgraph cluster_wibs {
+                label="Cold Electronics";
+                subgraph cluster_apa2 {
+                        label="APA 2";
+                        node[shape=record];
+                        wib21[label="{WIB1\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib22[label="{WIB2\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib23[label="{WIB3\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib24[label="{WIB4\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib25[label="{WIB5\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
                 }
-                subgraph cluster_daqsp{
-                        label="Single-Phase DAQ"
-                        graph[color=darkgoldenrod4];
-                        node[color=darkgoldenrod1];
-                        subgraph cluster_daqfe{
-                                label="DAQ Front End for One APA";
-                                graph[color=darkgoldenrod3]
-                                node[color=darkgoldenrod1]
-                                subgraph cluster_rces {
-                                        label="ACTA COB";
-                                        graph[color=darkgoldenrod2]
-                                        rce1[label="RCE1"];
-                                        rce2[label="RCE2"];
-                                        rce3[label="RCE3"];
-                                        rce4[label="RCE4"];
-                                }
-                                subgraph cluster_felixpc {
-                                        label="FELIX Host Computer";
-                                        graph[color=darkgoldenrod2]
-                                        felix[label="FELIX\nPCIe board"];
-                                        ring[shape=circle,label="10s RAM\nRing\nBuffer"];
-                                }
-                        }
-                        subgraph cluster_daqblob {
-                                graph[color=darkgoldenrod3];
-                                label="Module-level\nDAQ Components";
-                                eb[label="Event Builder"];
-                                mtl[label="Module\nTrigger Logic"];
-                        }
-                        
+                subgraph cluster_apa1 {
+                        label="APA 1";
+                        node[shape=record];
+                        wib11[label="{WIB1\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib12[label="{WIB2\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib13[label="{WIB3\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib14[label="{WIB4\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
+                        wib15[label="{WIB5\nconnectors|{<c1>[1]|<c2>[2]|<c3>[3]|<c4>[4]}}"];
                 }
         }
-        wib1:c1->rce1:w;
-        wib1:c2->rce2:w;
-        wib1:c3->rce3:w;
-        wib1:c4->rce4:w;
+        subgraph cluster_sp{
+                label="Single-Phase Module DAQ";
+                
+                subgraph cluster_daqsp{
+                        label="Single-Phase Module DAQ Components for two APAs"
+                        subgraph cluster_ferohw{
+                                label="Front-End Readout\nfor two APAs";
+                                subgraph cluster_rces2 {
+                                        label="ACTA COB 2";
+                                        node[shape=record];
+                                        rce21[label="{{RCE1|FPGA|SSD}}"];
+                                        rce22[label="{{RCE2|FPGA|SSD}}"];
+                                        rce23[label="{{RCE3|FPGA|SSD}}"];
+                                        rce24[label="{{RCE4|FPGA|SSD}}"];
+                                }
+                                subgraph cluster_rces1 {
+                                        label="ACTA COB 1";
+                                        node[shape=record];
+                                        rce11[label="{{RCE1|FPGA|SSD}}"];
+                                        rce12[label="{{RCE2|FPGA|SSD}}"];
+                                        rce13[label="{{RCE3|FPGA|SSD}}"];
+                                        rce14[label="{{RCE4|FPGA|SSD}}"];
+                                }
+                        }
+                        subgraph cluster_fecomp{
+                                label="Front-End Computing for two APAs";
+                                subgraph cluster_felixpc {
+                                        label="FELIX Host Computer";
+                                        felix[label="FELIX\nPCIe board"];
+                                        ring[shape=circle,label="RAM\nBuffer"];
+                                        selector[label="Data Selector"];
+                                        
+                                }
+                        }
+                }
+                subgraph cluster_daqblob {
+                        label="Single-Phase Module Back-end Computing";
+                        labelloc=top;
+                        
+                        eb[label="Event Builder"];
+                        mtl[label="Module\nTrigger Logic"];
+                        disk[label="Offline Disk Buffer"];
+                        snbeb[label="SNB dump Event Builder"];
+                }
+        }
+        wib11:c1->rce11:w;
+        wib11:c2->rce12:w;
+        wib11:c3->rce13:w;
+        wib11:c4->rce14:w;
 
-        wib2:c1->rce1:w;
-        wib2:c2->rce2:w;
-        wib2:c3->rce3:w;
-        wib2:c4->rce4:w;
+        wib12:c1->rce11:w;
+        wib12:c2->rce12:w;
+        wib12:c3->rce13:w;
+        wib12:c4->rce14:w;
 
-        wib3:c1->rce1:w;
-        wib3:c2->rce2:w[label="4x 1 Gbps fibers"];
-        wib3:c3->rce3:w;
-        wib3:c4->rce4:w;
+        wib13:c1->rce11:w;
+        wib13:c2->rce12:w;
+        wib13:c3->rce13:w;
+        wib13:c4->rce14:w;
 
-        wib4:c1->rce1:w;
-        wib4:c2->rce2:w;
-        wib4:c3->rce3:w;
-        wib4:c4->rce4:w;
+        wib14:c1->rce11:w;
+        wib14:c2->rce12:w;
+        wib14:c3->rce13:w;
+        wib14:c4->rce14:w;
 
-        wib5:c1->rce1:w;
-        wib5:c2->rce2:w;
-        wib5:c3->rce3:w;
-        wib5:c4->rce4:w;
+        wib15:c1->rce11:w;
+        wib15:c2->rce12:w;
+        wib15:c3->rce13:w;
+        wib15:c4->rce14:w;
+        
+        wib21:c1->rce21:w;
+        wib21:c2->rce22:w;
+        wib21:c3->rce23:w;
+        wib21:c4->rce24:w;
+
+        wib22:c1->rce21:w;
+        wib22:c2->rce22:w;
+        wib22:c3->rce23:w;
+        wib22:c4->rce24:w;
+
+        wib23:c1->rce21:w;
+        wib23:c2->rce22:w;
+        wib23:c3->rce23:w;
+        wib23:c4->rce24:w;
+
+        wib24:c1->rce21:w;
+        wib24:c2->rce22:w;
+        wib24:c3->rce23:w;
+        wib24:c4->rce24:w;
+
+        wib25:c1->rce21:w;
+        wib25:c2->rce22:w;
+        wib25:c3->rce23:w;
+        wib25:c4->rce24:w;
         
         edge[penwidth=4];
 
-        rce1:e->felix[label="Data and Trigger Primitives\n2x 10 Gbps fibers / link"];
-        rce2:e->felix;
-        rce3:e->felix;
-        rce4:e->felix[label=""];
+        //[label="Data and Trigger Primitives\n2x 10 Gbps fibers / link"];
+        rce11:e->felix;
+        rce12:e->felix;
+        rce13:e->felix;
+        rce14:e->felix;
+
+        rce21:e->felix;
+        rce22:e->felix;
+        rce23:e->felix;
+        rce24:e->felix;
         
         edge[penwidth=16,dir=none];
-        felix->ring[label="10 GB/s DMA\n\n"];
+        felix->ring;
 
         edge[penwidth=2,dir=forward];
-        ring->eb[label="select\ntriggered"];
+        ring->selector;
+        selector->eb:e;
+        eb->disk;
+
+        rce11->snbeb:w[constraint=false,ltail=cluster_rces1];
+        rce24->snbeb:w[constraint=false,ltail=cluster_rces2];
+        snbeb->disk;
         
-        edge[penwidth=1,style=dashed,constraint=false];
-        felix->mtl;
-        mtl->eb;
+        
+        edge[penwidth=1,style=dashed];
+        eb->selector;
+        selector->ring;
+        
+
+        edge[penwidth=1,style=dotted];
+        felix->mtl[label="L0 trigger\n primitives"];
+        
+        mtl->eb[label="Nominal trigger commands"];
+
+
+        // Send trigger back to each rce
+        edge[penwidth=1,style=dashed];
+        mtl->rce11[lhead=cluster_rces1,label="SNB-dump trigger commands"];
+        mtl->rce24[lhead=cluster_rces2];
 }
