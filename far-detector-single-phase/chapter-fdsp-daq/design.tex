@@ -148,7 +148,7 @@ Figure~\ref{fig:daq-readout-buffering-baseline} may be referenced}
 %This section describes the strategy for using the trigger/dataflow infrastructure, with example algorithms.
 
 	Data Selection will follow a hierarchical design, beginning with local,
-APA Level triggers, Module (10 ktonne) Level triggers, and Global
+APA Level trigger candidates, Module (10 ktonne) Level triggers, and Global
 (Detector-wide) triggers. A high-level trigger (HLT) may also be active within
 the Module Level trigger.  The hierarchical approach is both natural from a
 design standpoint, as well as allowing for vertical slice testing and
@@ -161,13 +161,13 @@ threshold-crossing pulse, its integral charge, and time over threshold.  A
 collection wire with a non-null trigger primitive is said to be ``hit.''  These
 trigger primitives are then passed, along with the full data stream, to the
 FELIX boards and their hosts, each of which handles channels from a small
-number of APAs (likely two).  An APA Level trigger decision is passed upward to
+number of APAs (likely two).  An APA Level trigger candidate is passed upward to
 a Module Level trigger, which arbirtrates between various trigger types,
-determining whether a given APA Level trigger is a valid Module Trigger and
-whether there are other triggers that have a higher priority in any given slice
-of time.  At this level, a more sophisticated high-level trigger (HLT) may also
-be employed, which will allow a reduction in trigger rate from various
-backrounds, including instrumental backgrounds, if needed. 
+determining whether a given APA Level trigger candidate is a valid Module
+Trigger and whether there are other triggers that have a higher priority in any
+given slice of time.  At this level, a more sophisticated high-level trigger
+(HLT) may also be employed, which will allow a reduction in trigger rate from
+various backrounds, including instrumental backgrounds, if needed. 
 
 	A valid Module Level single-interaction trigger sends trigger commands
 back to the FELIX hosts telling them which slice of time should be saved under
@@ -181,7 +181,7 @@ without any need to fine-tune APA-level triggering, and will not depend on
 the noise environment across the APAs. In addition, the 5.4~ms readout window
 ensures that regardless of when a given even causes a trigger, the entire track
 is recorded.  We anticipate, however, that as we gain experience running DUNE
-the overall data volume will reduced either by writing out data from only a
+the overall data volume will reduced by writing out data from only a
 subset of APAs for any given track, and possibly reducing the size of the
 readout window.
 
@@ -196,20 +196,21 @@ available, such as fast analyses of calibration data.
 
        At the Module Level, a decision can also be made on whether a series of
 interactions are consistent with a supernova burst.  If the number of APA Level
-triggers exceeds a threshold for the number of such events in a given time, a
-trigger command is sent from the Module Level back to the RCEs, which store up
-to 10 seconds of unsuppressed, full waveform data.  That full waveform is then
-written out as a separate trigger stream for fast analysis by the supernova
-working group, perhaps as an automated process.  In addition, the Module Level
-passes information about APA Level triggers up to a detector-wide Global
-Trigger, which can decide whether, integrated across all modules, enough APAs
-have detected interactions to qualify for a supernova burst even if within a
-particular module the threshold is not exceeded. Trigger commands from the
-Global Trigger Level are passed downward to RCEs in the same way as any Module
-Level supernova burst trigger would be; at the Module Level, a Global Trigger
-looks like just one more ``external'' trigger input.
+low-energy trigger candidates exceeds a threshold for the number of such events
+in a given time, a trigger command is sent from the Module Level back to the
+RCEs, which store up to 10 seconds of unsuppressed, full waveform data.  That
+full waveform is then written out as a separate trigger stream for fast
+analysis by the supernova working group, perhaps as an automated process.  In
+addition, the Module Level passes information about APA Level trigger
+candidates  up to a detector-wide Global Trigger, which can decide whether,
+integrated across all modules, enough APAs have detected interactions to
+qualify for a supernova burst even if within a particular module the threshold
+is not exceeded. Trigger commands from the Global Trigger Level are passed
+downward to RCEs in the same way as any Module Level supernova burst trigger
+would be; at the Module Level, a Global Trigger looks like just one more
+``external'' trigger input.
 
-	APA-Level Trigger decisions will be made within each FELIX
+	APA Level trigger candidates will be generated within each FELIX
 host.  The trigger decision will be based on the number of adjacent wires hit
 in a given APA within a narrow time window (roughly 100$\mu$s), the total
 charge on these adjacent wires (or any wire with a non-null trigger primitive),
@@ -229,28 +230,30 @@ few collection wires, but the charge deposit can be large, and therefore the
 charge threshold will have to be well above the $\alpha$ deposits plus any
 pileup from $^{39}$Ar and noise.
 
-	At the APA Level, two kinds of local trigger decisions can be made. One
-is a ``high-energy'' trigger, that indicates that within a given APA a
-candidate event with energy more than 10 MeV has been found. The thresholds in
-hit wires, total charge, and time-over-threshold, will be optimized for at
-least 50\% efficiency at this threshold, with efficiency increasing to 100\%
-via a turn-on curve that ensures at least 90\% efficiency at 20 MeV.  
-A second APA-level trigger will be optimized for low-energy events, between 
-5~MeV and 10 MeV. These low-energy APA triggers will not by themselves generate
-valid  Module Level triggers, but rather be used at the Module Level to
-determine whether a burst of events across many APAs is consistent with a
-supernova.
+	At the APA Level, two kinds of local trigger candidates can be
+generated. One is a ``high-energy'' trigger, that indicates that within a given
+APA a candidate event with energy more than 10 MeV has been found. The
+thresholds in hit wires, total charge, and time-over-threshold, will be
+optimized for at least 50\% efficiency at this threshold, with efficiency
+increasing to 100\% via a turn-on curve that ensures at least 90\% efficiency
+at 20 MeV.  A second APA Level trigger candiate will be generated for
+low-energy events, between 5~MeV and 10 MeV. These low-energy APA trigger
+candidates will not by themselves generate valid  Module Level triggers, but
+rather be used at the Module Level to determine whether a burst of events
+across many APAs is consistent with a supernova.
 
-	The Module Level takes as input both APA Level triggers (both
-low-energy and high-energy), as well as external trigger sources, such as the
-Global (detector-wide) trigger, external triggers such as SNEWS, and
-information about the time of a Fermilab Beam spill.  The Module Level will
+	The Module Level takes as input both APA Level trigger candidates (both
+low-energy and high-energy), as well as external trigger candidate sources,
+such as the Global (detector-wide) trigger, external triggers such as SNEWS,
+and information about the time of a Fermilab Beam spill.  The Module Level will
 also generate internal triggers, such as random triggers and calibration
-triggers (for example, telling a laser system to fire at a prescribed time). 
+triggers (for example, telling a laser system to fire at a prescribed time).
 In addition, at the Module Level prescales of all trigger types that normally
 would not generate a Module Level will be made. For example, a single
 low-energy trigger does not cause a Module Level trigger on its own, but at
 some large prescale fraction it could be accepted.
+
+
 
 	The Module Level is responsible also for checking candidate triggers
 against the current Run Control trigger mask: in some runs, for example, we
@@ -291,15 +294,19 @@ distance twice as far as for a single 10 ktonne module.
 	The Module Level is also responsible for creating a trigger header that
 includes a global timestamp for the trigger, and information on what type of
 trigger was created. A log of all APA Level trigger candidates will also be
-kept, whether or not they are part of a Module Trigger. The Module Level also
-generates the commands that either tell the FELIX hosts to write out a 5.4~ms
-slice of their buffer (providing the start and end times to the FELIX hosts)
-as well as the commands that tell the RCEs to dump their 10 s unsuppressed
-``supernova'' buffer.  If a supernova burst trigger is created at the Global
-trigger level, a trigger command is passed back down to the Module Level, which
-then passes that on to the RCEs for readout of the long (10 s) unsuppressed
-buffer, the same way it would if a supernova burst is detected at the Module
-Level. 
+kept, whether or not they are part of a Module Trigger.  A
+
+s described above, for any high-energy APA Level trigger candidate, a Module
+Level trigger command is sent  to all FELIX hosts instructing them to save a
+5.4~ms readout window will written for all wires across all APAs 
+(providing the start and end times to the FELIX hosts).  Thus, a DUNE ``event''
+is 5.4~ms of data from all wires in response to a Module Level trigger.  The
+Module Level trigger is also responsible for sending the trigger commands that
+tell the RCEs to dump their 10 s unsuppressed ``supernova'' buffer.  If a
+supernova burst trigger is created at the Global trigger level, a trigger
+command is passed back down to the Module Level, which then passes that on to
+the RCEs for readout of the long (10 s) unsuppressed buffer, the same way it
+would if a supernova burst is detected at the Module Level. 
 
 	
 
