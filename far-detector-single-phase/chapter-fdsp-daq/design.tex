@@ -328,14 +328,70 @@ Level.
 
 %Describe the generation of timing/synchronisation signals and and distribution to the detectors.
 
-The DUNE Single Phase detectors use a development of the protoDUNE timing system. Synchronization messages are transmitted over a serial data stream with the clock embedded in the data. The format is described in DUNE DocDB-1651. Figure \ref{fig:daq-readout-sp-timing} shows the overall arrangement of components within the Single Phase Timing System(SPTS).
+The DUNE Single Phase detectors use a development of the protoDUNE
+timing system. Synchronization messages are transmitted over a serial
+data stream with the clock embedded in the data. The format is
+described in DUNE DocDB-1651. Figure \ref{fig:daq-readout-timing}
+shows the overall arrangement of components within the Single Phase
+Timing System(SPTS). A stable master clock, disciplined with a 10MHz
+reference is used in the SPTS. A one-pulse-per-second (1PPS) signal is
+also received by the system and is time-stamped onto a counter clocked
+by the SPTS master clock, however the periodic synchronization
+messages distributed to the Single Phase detectors are an exact number
+of clock cycles apart even if there is jitter in the 1PPS signal.
 
-\begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
-  {Illustration of the components in the Single Phase Timing System. \fixme{Replace this protoDUNE SP timing system diagram with a DUNE diagram.}}
+The GPS signal is encoded onto optical fibre and transmitted to the
+CUC, where it is converted back to an RF signal on coaxial cable and
+used as the input to a GPS displined oscillator. The oscillator module
+also houses a IEEE 1588 (PTP) Grand Master and an NTP server. The PTP
+Grand Master provides a timing signal for the Dual Phase White Rabbit
+timing network. The NTP server provides an absolute time for the 1PPS
+signal. The SPTS relates its time counter onto GPS time by
+timestamping the 1PPS signal onto the SPTS time counter and reading
+the time in software from the NTP server.
+
+The White Rabbit synchronization signals from the Dual Phase are
+time-stamped onto the SPTS clock domain and the SPTS synchronization
+signals are time stamped onto the Dual Phase clock domain. This allows
+the timing in the Single Phase and Dual Phase detectors to be
+aligned. A similar scheme is used to relate the Single Phase protoDUNE
+Single Phase timing domain to be related to the beam instrumentation
+White Rabbit time domain.
+
+In order to provide redundancy, and also the ability to easily detect
+issues with the timing path, two independent GPS systems are used. One
+with an antenna at the head of the Yates shaft, the other with an
+antenna at teh head of the Ross shaft. The two independent timing
+paths are brought together in the same rack in the CUC. Using 1:2
+fibre splitters one SPTS unit can be left as a hot-spare while the
+other is active. This also allows testing of new firmware and software
+during comissioning without the risk of loosing the SPTS if a bug is
+introduced.
+
+
+\begin{dunefigure}[Arrangement of Components in DUNE Timing System]{fig:daq-readout-timing}
+  {Illustration of the components in the DUNE Timing System.}
 \includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
 \end{dunefigure}
 
+All the custom electronic components for the SPTS are contained in two
+Micro-TCA shelves. At any one time one is active and the other is a
+hot-spare. The 10MHz reference clock and the 1PPS signal are received
+by a single width AMC at the centre of the Micro-TCA shelf. This
+master timing AMC produces the SPTS signals and encodes them onto a
+serial data stream. This serial datastream is distributed over a
+standard star-point backplane to the fanout AMCs which each drive the
+signal onto up to 13 SFP cages. The SFP cages are either occupied by
+1000Base-BX SFPs, each of which connects to a fibre running to an APA,
+or to a Direct Attach cable which connects to systems elsewhere in the
+CUC, i.e. the RCE crates and the data selection system. This arrangement is shown in figure \ref{fig:daq-readout-sp-timing}
 
+
+\begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
+  {Illustration of the components in the Single Phase Timing System.}
+  \fixme{Add a diagram of the SPTS electronics}
+  % \includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
+\end{dunefigure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Computing \& Network Infrastructure (Kurt Biery \& Babak Abi)}
