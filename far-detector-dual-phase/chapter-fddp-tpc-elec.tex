@@ -298,7 +298,7 @@ For normal operation, in continuous sampling mode, the time samples will be down
 [Main characteristics of ADC AD9249.]
 {lr} {tab:dpele-adc}
 {Main characteristics of the ADC AD9249 using for the Light Read Out}
-%Name & Number  \\ \toprowrule
+Item &   \\ \toprowrule
 Time resolution & \SI{25}{ns} \\ \colhline
 Time precision & $<$\SI{1}{ns} \\ \colhline %not sure... must be
 Amplitude resolution (LSB) & \SI{2.44}{uA}/\SI{0.122}{mV} \\ \colhline
@@ -315,7 +315,7 @@ Integral Non-Linearity & Typical $\pm$\num{0.9}  LSB\\
 
 The CATIROC is a 16-channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to 20 kHz/channel). Charge measurements can be made over the range of 160 fC to 70 pC(corresponding to approximately to a range of 1 - 400 photoelectrons with a PMT gain of $10^{6}$). Timing measurements per channel can be made to an accuracy of 200ps.
 
-Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to 100ns) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at 160 MHz.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime \SI{5}{mus} arises.
+Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to 100ns) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at 160 MHz.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime of \SI{5}{mus} arises.
 
 The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (10-bit) threshold commmon to the 16 channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a 26-bit counter at 40 MHz.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
 
