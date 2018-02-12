@@ -24,8 +24,9 @@ The digitization cards, Advanced Mezzanine Cards or AMCs, are housed in commerci
 
 The detection of the direct scintillation light is the main purpose of the LRO electronics in order to provide the absolute interaction time of the events.
  The system will also be capable to detect the so-called proportional scintillation light produced by the electrons extracted and amplified in the gaseous phase. The actual photon detectors are assumed to be TPB-coated \num{8} inch photomultiplier tubes (Hamamatsu R5912-02-mod) located under the cathode. The number of photomultipliers assumed in the DUNE CDR was 180. This number of channels is likely to be increased by a factor 4 in order to have a similar or better surface coverage as in ProtoDUNE-DP. %objective? spe - 1000s?
-
+%16 channel or 32 channel here?
 The system will group up to 16 PMTs (32) to be read by a single AMC card in uTCA standard which architecture is derived from an adaptation of the charge readout cards. The different cards are inserted in uTCA crates and the events are time stamped using the White Rabbit system of the charge readout by including in each uTCA crate a White Rabbit slave node card.
+%when to explain what info is being derived from LRO?
 
 A small-scale version of the TPC CRO electronics system has been used in a small dual-phase LArTPC prototype at CERN with an active volume (CRP area) of $3\times 1 \times 1$ \si{\meter\cubed} ($3\times1$ \si{\meter\squared} operating in the Summer-Fall 2016. 
 \fixme{Summarize main points of the electronics operation in 311 here.}
@@ -41,9 +42,12 @@ A small-scale version of the TPC CRO electronics system has been used in a small
 \subsection{Design Considerations}
 \label{sec:fddp-tpc-elec-des-consid}
 
-The design of the electronics for the charge readout covers the analog front-end cards containing pre-amplifier ASICs operating at cryogenic temperatures and digitization cards with the relevant system for their synchronization working in the warm environment outside of the cryostat. The principle requirements for the system is to read and digitize signals from a total of \num{153600} channels (per one DP detector module) and be capable of continuously streaming the collected and losslessly compressed data to DAQ without any zero suppression. Given the amplification of the charge in CRP, the electronics needs to be sensitive to the signals over a large dynamic range (up-to \num{40} times the MIP-level signals for a nominal CRP gain of \num{20}) to avoid saturation of the analog inputs by large localized energy disposition generated in hadronic shower events. The charge amplification provided by the CRP loosens requirements on the intrinsic noise of the FE analog electronics. For the CRP nominal gain of \num{20}, the signal-to-noise ratio for a MIP signal (\SI{30}{fC}) should be at around \num{100}, which would not pose any problem for the detection/reconstruction. The magnitude of noise, however, plays a role in the quality of the lossless compression on the raw data performed by the digital electronics. A compression factor of \num{10} can be achieved with the noise levels below \num{1} ADC RMS.  
+The design of the electronics for the charge readout covers the analog front-end cards containing pre-amplifier ASICs operating at cryogenic temperatures and digitization cards with the relevant system for their synchronization working in the warm environment outside of the cryostat. The principle requirements for the system is to read and digitize signals from a total of \num{153600} channels (per one DP detector module) and be capable of continuously streaming the collected and losslessly compressed data to DAQ without any zero suppression. Given the amplification of the charge in CRP, the electronics needs to be sensitive to the signals over a large dynamic range (up-to \num{40} times the MIP-level signals for a nominal CRP gain of \num{20}) to avoid saturation of the analog inputs by large localized energy disposition generated in hadronic shower events. The charge amplification provided by the CRP loosens requirements on the intrinsic noise of the FE analog electronics. For the CRP nominal gain of \num{20}, the signal-to-noise ratio for a MIP signal (\SI{30}{fC}) should be at around \num{100}, which would not pose any problem for the detection/reconstruction. The magnitude of noise, however, plays a role in the quality of the lossless compression on the raw data performed by the digital electronics. A compression factor of \num{10} can be achieved with the noise levels below \num{1} ADC RMS.  %be careful of RMS<1...
 
-\fixme{The design of the electronics for the light readout covers ... The electronics must be able to read signals from \num{720} channels (per one DP detector module) and stream data continuously to the DAQ back-end. ...}
+%\fixme{The design of the electronics for the light readout covers ... The electronics must be able to read signals from \num{720} channels (per one DP detector module) and stream data continuously to the DAQ back-end. ...}
+The primary objective of the Light Read Out system is to detect signals, from a minimum of one photoelectron on one PMT, giving a precise timestamp that can be used in conjunction with the Charge signals to determine the drift (z) co-ordinate of the event.  Precise measurements of signal charge will allow the continual monitoring of the PMT gain at the single photoelectron level, and the determination of the number of photons in each scintillation event.  In addition, an ADC will continuously stream data, downsampled to \SI{400}{ns} as for the Charge signals,  which, amongst other items, will allow measurements of the scintillation time-profile. %S/N on single photoelectron -CatiROC 100% efficient at 1/3 pe?
+%For specific calibrations a finer sample of \SI{25}{ns} can be streamed.
+
 
 The cryogenic analog electronics for charge readout is housed in SFT chimneys. Their design must enable access to the FE card for possible maintenance/replacement without any risk of contaminating the pure liquid argon in the main cryostat volume. The chimneys must possess a cooling system that would permit to control the temperature around the FE cards around \SI{110}{\kelvin} for their optimal noise. In addition, the cooling system is to compensate for the heat input from the chimney into the cryostat volume.
 
@@ -217,11 +221,22 @@ The digital electronics is based on uTCA standard which offers industrial soluti
 Each AMC plugged into the uTCA is connected to the crate MCH board through the backplane serial links. The MCH provides the switch functionality that enables AMCs to communicate with each other or external systems through the MCH uplink interface. In the DP electronics system design, MCH also manages the WR clock distribution. 
 
 \begin{dunefigure}[Pictures of an instrumented uTCA crate from LArProto detector]{fig:dpele-311-utca-image}
-{Pictures of an instrumented uTCA crate from LArProto detector. The crate contains five AMC cards, correspondingly to the number of readout channels per the SFT chimney. The images below show the crate after the  cables are connected to the warm flange of the SFT chimney.}
+{Pictures of an instrumented uTCA crate from LArProto detector. The crate contains five AMC cards, correspondingly to the number of readout channels per the SFT chimney. The images below show the crate after the  cables are connected to the warm flange of the SFT chimney.}
 \includegraphics[width=0.6\textwidth]{dpele-311-utca-image}
 \end{dunefigure}
 
-In the current design, as used for ProtoDUNE-DP, the MCH operates with a \SI{10}{Gbit/s} uplink. Given that a uTCA crate hosts \num{10} AMCs for charge readout, the required bandwidth to stream the data to DAQ is about \SI{1.8}{Gbit/s}. This assumes that the data exiting AMCs are losslessly compressed with the compression factor of \num{10}. The bandwidth required per crate link for streaming the light readout data is \SI{4.7}{Gbit/s}. The \SI{10}{Gbit/s} MCH is therefore sufficient to support these data rates. However, the technology is moving towards supporting the \num{40}{Gbit/s} rates. In addition, the channel density per AMC could also be increased for the reason of cost optimizations. For these reasons a move to a \num{40}{Gbit/s} MCH could be foreseen in the design. This would also imply that the optical links connecting the DAQ system to uTCA MCH should be operable at \num{40}{Gbit/s}.  
+In the current design, as used for ProtoDUNE-DP, the MCH operates with a \SI{10}{Gbit/s} uplink. Given that a uTCA crate hosts \num{10} AMCs for charge readout, the required bandwidth to stream the data to DAQ is about \SI{1.8}{Gbit/s}. This assumes that the data exiting AMCs are losslessly compressed with the compression factor of \num{10}. The bandwidth required per crate link for streaming the light readout data is \SI{4.7}{Gbit/s}. The \SI{10}{Gbit/s} MCH is therefore sufficient to support these data rates. However, the technology is moving towards supporting the \SI{40}{Gbit/s} rates. In addition, the channel density per AMC could also be increased for the reason of cost optimizations. For these reasons a move to a \SI{40}{Gbit/s} MCH could be foreseen in the design. This would also imply that the optical links connecting the DAQ system to uTCA MCH should be operable at \SI{40}{Gbit/s}. A summary of the required and supported bandwidths per uTCA crate for continous data streaming is provided in Table~\ref{tab:dp-utcabandwidth}
+
+\begin{dunetable}
+[Bandwidth requirements per uTCA crate]
+{lr}{tab:dp-utcabandwidth}
+{Bandwidth requirements per uTCA crate for continuous data streaming. A compression factor of 10 for the charger readout data is assumed }   
+Parameter & Value  \\ \toprowrule
+  Charge readout data rate  &  \SI{1.8}{Gbit/s}            \\ \colhline
+  Light readout data rate  &  \SI{4.7}{Gbit/s}            \\ \colhline
+  Current MCH bandwidth & \SI{10}{Gbit/s} \\ \colhline
+  Upgraded MCH bandwidth & \SI{40}{Gbit/s} \\ \colhline
+\end{dunetable}
 
 Figure~\ref{fig:dpele-311-utca-image} shows pictures of one of the instrumented uTCA crates used for the charge readout of LArProto at CERN. In this detector each SFT chimney reads \num{320} channels thus requiring only five AMCs per the uTCA crate. The two optical fiber links, one (\SI{10}{Gbit/s}) for data and the other (\SI{1}{Gbit/s}) for clock/trigger timing distribution, are visible in the images.       
 
@@ -253,6 +268,83 @@ The architecture of the WR network layout for one DP detector module is illustra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronics for Light Readout}
 \label{sec:fddp-tpc-elec-design-lro}
+
+%
+The Light Read Out card is a 16-channel AMC; containing one 16-channel 14-bit 65 MHz ADC (AD9249) and one CatiROC ASIC \cite{catiroc}. A block diagram of the prototype board used for protoDUNE Dual-Phase is shown in Figure \ref{dpele-lro-scheme}. In this prototype, a mezzanine board was developed containing the ASIC and ADC, which sits on a commercial (COTS) mother board (Bittware S4 AMC) containing a high specification FPGA (ALTERA Stratix IV GC). Figure \ref{dpele-lro-proto} shows the mezzanine and motherboard of the prototype.   For DUNE, one mother board will be produced, merging the mezzannine layout with the mother board developed for the Charge Read out (AMC) and using the ALTERA Cyclone V FPGA. 
+
+Each channel follows two separate paths; the first, through an anti-aliasing low pass filter to be digitized by a 14-bit 65 MHz ADC (AD9249), and the second routed directly to the CatiROC ASIC, for precise charge and timing measurements. Both paths will be streamed continuously and independently.
+
+A proposed upgrade is a 32-channel card, diminishing the number of cards required and increasing the channel density to 352 channels per uTCA crate.
+
+\begin{dunefigure}[Block diagram of LRO]{fig:dpele-lro-scheme}
+{Block diagram of LRO prototype.}
+\includegraphics[width=0.7\textwidth]{dpele-lro-scheme}
+\end{dunefigure}
+
+\begin{dunefigure}[Prototype LRO card]{fig:dpele-lro-proto}
+{The LRO prototype.}
+\includegraphics[width=0.7\textwidth]{dpele-lro-proto}
+\end{dunefigure}
+
+\subsubsection{Waveform} %ADC
+%details on CatiROC
+The main characteristics of the ADC are shown in Table \ref{tab:dpele-adc}.
+
+For normal operation, in continuous sampling mode, the time samples will be down-sampled by the FPGA to a course \SI{400}{ns} sampling to match that of the Charge Read Out and limit the quantity of data streamed. Before this downsampling, there is the possibility of online pulse processing within the FPGA, to make continuous measurements such as rise and fall times. Event at the course sampling of \SI{400}{ns} studies of the liquid argon scintillation time-profile are possible (with the long fall timeconstant of $\sim$\SI{1500}{ns}) and also matching of the electroluminescence signal (S2) to that of the charge signal.  Low light-level signals, such as the single or few photoelectron signals, will show no time structure, but will consist of 1 or 2 samples several LSB above the baseline.
+
+%RMS and PMT gain?
+
+\begin{dunetable}
+[Main characteristics of ADC AD9249.]
+{lr} {tab:dpele-adc}
+{Main characteristics of the ADC AD9249 using for the Light Read Out}
+%Name & Number  \\ \toprowrule
+Time resolution & \SI{25}{ns} \\ \colhline
+Time precision & $<$\SI{1}{ns} \\ \colhline %not sure... must be
+Amplitude resolution (LSB) & \SI{2.44}{uA}/\SI{0.122}{mV} \\ \colhline
+Dynamic range & 14-bit/ \SI{40}{mA}/\SI{2}{V} \\ \colhline
+Differential Non-Linearity & Typical $\pm$\num{0.6} LSB\\
+& with Min. \num{-0.9} and Max. \num{+1.6} LSB  \\ \colhline
+Integral Non-Linearity & Typical $\pm$\num{0.9}  LSB\\
+& with Min. \num{-3} and Max. \num{3} LSB  \\ \colhline
+%MEMORY??
+\end{dunetable}
+%noise llevel??
+
+\subsubsection{Analog Measurements of Charge and Time}%ASIC?
+
+The CATIROC is a 16-channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to 20 kHz/channel). Charge measurements can be made over the range of 160 fC to 70 pC(corresponding to approximately to a range of 1 - 400 photoelectrons with a PMT gain of $10^{6}$). Timing measurements per channel can be made to an accuracy of 200ps.
+
+Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to 100ns) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at 160 MHz.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime \SI{5}{mus} arises.
+
+The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (10-bit) threshold commmon to the 16 channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a 26-bit counter at 40 MHz.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
+
+%Measurements performed in \cite{Blin2017} ..% SNR of 13 trigger efficiency etc...
+
+%cite: @ARTICLE{2017JInst..12C3041B,
+%   author = {{Blin}, S. and {Callier}, S. and {Conforti Di Lorenzo}, S. and 
+%	{Dulucq}, F. and {De La Taille}, C. and {Martin-Chassard}, G. and 
+%	{Seguin-Moreau}, N.},
+%    title = "{Performance of CATIROC: ASIC for smart readout of large photomultiplier arrays}",
+%  journal = {Journal of Instrumentation},
+%     year = 2017,
+%    month = mar,
+%   volume = 12,
+%    pages = {C03041},
+%      doi = {10.1088/1748-0221/12/03/C03041},
+%   adsurl = {http://adsabs.harvard.edu/abs/2017JInst..12C3041B},
+%  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+%}
+
+%total number of bits per channel, 50-bits from CatiROC?
+%COPY CAYETANO TABLE
+%SELMA'S SPE FROM JUNO?? or my spe??
+\begin{dunefigure}[CatiROC ASIC]{fig:dpele-lro-catiroc}
+{Functional diagram of CatiROC ASIC.}
+\includegraphics[width=0.7\textwidth]{dpele-lro-catiroc}
+\end{dunefigure}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

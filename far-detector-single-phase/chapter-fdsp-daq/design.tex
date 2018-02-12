@@ -327,18 +327,182 @@ presumably the offline will not want a single 10TB long file.
 \subsection{Data Selection Algorithms (Josh Klein \& Brett Viren)}
 \label{sec:fdsp-daq-sel}
 
-This section describes the strategy for using the trigger/dataflow infrastructure, with example algorithms.
+%This section describes the strategy for using the trigger/dataflow infrastructure, with example algorithms.
 
-\metainfo{Describe Module Trigger Logic and Global Trigger Logic.
-  Describe creation of Trigger Command Messages (TCM) from TPMs.
-  Included external sources of TPMs such as SNEWS, Fermilab Beam,
-  testing triggers, periodic triggers, calibration triggers.}
+	Data Selection will follow a hierarchical design, beginning with local,
+APA Level trigger candidates, Module (10 ktonne) Level triggers, and Global
+(Detector-wide) triggers. A high-level trigger (HLT) may also be active within
+the Module Level trigger.  The hierarchical approach is both natural from a
+design standpoint, as well as allowing for vertical slice testing and
+partitioning during commissioning of the system.
 
-\metainfo{Here should go the assumptions that went into the thinking
-  for Josh's event category data volumes.  It can include discussion
-  of tighter selection criteria for ``cosmics'' such as Phil's
-  distribution of number of APAs hit by cosmics and arguments for
-  something less than 2+ drift time readouts.}
+	As discussed above, trigger primitives will be generated in the RCEs
+from the data stream for each collection wires.  The trigger primitives will be
+summary information for each collection wire, such as the time of any
+threshold-crossing pulse, its integral charge, and time over threshold.  A
+collection wire with a non-null trigger primitive is said to be ``hit.''  These
+trigger primitives are then passed, along with the full data stream, to the
+FELIX boards and their hosts, each of which handles channels from a small
+number of APAs (likely two).  An APA Level trigger candidate is passed upward to
+a Module Level trigger, which arbirtrates between various trigger types,
+determining whether a given APA Level trigger candidate is a valid Module
+Trigger and whether there are other triggers that have a higher priority in any
+given slice of time.  At this level, a more sophisticated high-level trigger
+(HLT) may also be employed, which will allow a reduction in trigger rate from
+various backrounds, including instrumental backgrounds, if needed. 
+
+	A valid Module Level single-interaction trigger sends trigger commands
+back to the FELIX hosts telling them which slice of time should be saved under
+the particular trigger header.  At the start of DUNE data taking, it is
+anticipated that for any given single-interaction trigger (a cosmic ray track,
+for example) waveforms for all wires will be recorded for a full 5.4~ms
+``readout window.'' Such an approach is clearly very conservative, but it
+ensures that associated low-energy physics (such as neutron captures from
+neutrons produced by neutrino interactions or cosmic rays) will be recorded
+without any need to fine-tune APA-level triggering, and will not depend on
+the noise environment across the APAs. In addition, the 5.4~ms readout window
+ensures that regardless of when a given even causes a trigger, the entire track
+is recorded.  We anticipate, however, that as we gain experience running DUNE
+the overall data volume will reduced by writing out data from only a
+subset of APAs for any given track, and possibly reducing the size of the
+readout window.
+
+	Other trigger streams---calibrations, random triggers, and prescales of
+various trigger thresholds, will also be generated at the Module Level, and
+filtering and compression can be applied based upon the trigger stream. For
+example, a large fraction of random triggers may have their waveforms
+zero-suppressed, reducing the data volume substantially, as the dominant data
+source for these will be $^{39}$Ar events. Additional signal-processing can
+also be done on particular trigger streams if needed and if the processing is
+available, such as fast analyses of calibration data.
+
+       At the Module Level, a decision can also be made on whether a series of
+interactions are consistent with a supernova burst.  If the number of APA Level
+low-energy trigger candidates exceeds a threshold for the number of such events
+in a given time, a trigger command is sent from the Module Level back to the
+RCEs, which store up to 10 seconds of unsuppressed, full waveform data.  That
+full waveform is then written out as a separate trigger stream for fast
+analysis by the supernova working group, perhaps as an automated process.  In
+addition, the Module Level passes information about APA Level trigger
+candidates  up to a detector-wide Global Trigger, which can decide whether,
+integrated across all modules, enough APAs have detected interactions to
+qualify for a supernova burst even if within a particular module the threshold
+is not exceeded. Trigger commands from the Global Trigger Level are passed
+downward to RCEs in the same way as any Module Level supernova burst trigger
+would be; at the Module Level, a Global Trigger looks like just one more
+``external'' trigger input.
+
+	APA Level trigger candidates will be generated within each FELIX
+host.  The trigger decision will be based on the number of adjacent wires hit
+in a given APA within a narrow time window (roughly 100$\mu$s), the total
+charge on these adjacent wires (or any wire with a non-null trigger primitive),
+and possibly the time-over-threshold for collection wires with hits. Our
+studies show that even for low-energy events (roughly 10-20 MeV) the reduction
+in radiological backgrounds is extremely high with such criteria. The
+highest-rate background, $^{39}$Ar, which has a decay rate of 10 MBq within a
+10 ktonne volume of argon, has an endpoint of 500 keV and requires significant
+pileup in both space and time to get near a 10 MeV threshold. Other important
+background sources are $^{42}$Ar, which has a 3.5 MeV endpoint and a decay rate
+of 1 kBq, and $^{222}$Rn which has a decay rate of XXXX and decays via a
+highly-quenched $\alpha$ of 5.5 MeV.  The radon decays to $^{218}$Po which
+a few minutes later leads to a quenched $\alpha$ of 6 MeV, and ultimately a
+$^{214}$Bi daughter (many minutes later) which has a $\beta$ decay with
+endpoint near 3.5 MeV.  The $\alpha$ ranges are short and will hit at most a
+few collection wires, but the charge deposit can be large, and therefore the
+charge threshold will have to be well above the $\alpha$ deposits plus any
+pileup from $^{39}$Ar and noise.
+
+	At the APA Level, two kinds of local trigger candidates can be
+generated. One is a ``high-energy'' trigger, that indicates that within a given
+APA a candidate event with energy more than 10 MeV has been found. The
+thresholds in hit wires, total charge, and time-over-threshold, will be
+optimized for at least 50\% efficiency at this threshold, with efficiency
+increasing to 100\% via a turn-on curve that ensures at least 90\% efficiency
+at 20 MeV.  A second APA Level trigger candiate will be generated for
+low-energy events, between 5~MeV and 10 MeV. These low-energy APA trigger
+candidates will not by themselves generate valid  Module Level triggers, but
+rather be used at the Module Level to determine whether a burst of events
+across many APAs is consistent with a supernova.
+
+	The Module Level takes as input both APA Level trigger candidates (both
+low-energy and high-energy), as well as external trigger candidate sources,
+such as the Global (detector-wide) trigger, external triggers such as SNEWS,
+and information about the time of a Fermilab Beam spill.  The Module Level will
+also generate internal triggers, such as random triggers and calibration
+triggers (for example, telling a laser system to fire at a prescribed time).
+In addition, at the Module Level prescales of all trigger types that normally
+would not generate a Module Level will be made. For example, a single
+low-energy trigger does not cause a Module Level trigger on its own, but at
+some large prescale fraction it could be accepted.
+
+
+
+	The Module Level is responsible also for checking candidate triggers
+against the current Run Control trigger mask: in some runs, for example, we
+may decide that only random triggers are accepted, or that certain APA trigger
+candidates should not be accepted because those APAs are noisy or misbehaving
+in some way.  In addition, the Module Level will count low-energy trigger
+candidates from the APAs and, based upon the number and distribution of those
+triggers in a long time interval (e.g., 10 seconds), decide to generate a
+supernova burst trigger command. The trigger logic for a supernova burst will
+be optimized to accept at least 90\% of all Milky Way supernovae, and our
+studies of simple low-energy trigger criteria show that we can likely do much
+better than that.  
+
+	The HLT can also be applied at this level, particularly if there are
+unexpectedly higher rates from instrumental or low-energy backgrounds, that
+require some level of reconstruction or pattern recognition.  An HLT might also
+allow for efficency triggering on lower-energy single interactions, or allow
+for better sensitivity for supernovae beyond the Milky Way, by employing a
+weighting scheme to individual APA Level trigger candidates---higher-energy
+trigger candidates receiving higher weights. Thus, for example, two APA Level
+trigger candidates consistent with 10 MeV interactions in 10 seconds might be
+enough to create a supernova burst candidate trigger, while 100 5 MeV APA Level
+trigger candiates in 10 seconds might not. Lastly, the HLT can allow for
+dynamic thresholding; for example, if a trigger appears to be a cosmic-ray
+muon, the threshold for single interactions can be lowered (and possibly
+prescaled) for a short time after that to identify spallation products. In
+addition, the HLT could allow for a dynamic threshold after a supernova burst,
+to extend sensitivity beyond the 10 s readout buffer, while not increasing the
+data volume associated with supernova burst candidates linearly. 
+
+All low-energy trigger candidates are also passed upwards to the Global trigger
+level, which can integrate the APA level trigger across all 10 ktonne modules
+and determine if enough APAs have trigger candidates that a supernova burst may
+be occuring. This approach increases the sensitivity to trigger bursts by a
+factor of four (for 40 ktonnes), thus extending the burst sensitivity to a
+distance twice as far as for a single 10 ktonne module. 
+
+	The Module Level is also responsible for creating a trigger header that
+includes a global timestamp for the trigger, and information on what type of
+trigger was created. A log of all APA Level trigger candidates will also be
+kept, whether or not they are part of a Module Trigger.  A
+
+s described above, for any high-energy APA Level trigger candidate, a Module
+Level trigger command is sent  to all FELIX hosts instructing them to save a
+5.4~ms readout window will written for all wires across all APAs 
+(providing the start and end times to the FELIX hosts).  Thus, a DUNE ``event''
+is 5.4~ms of data from all wires in response to a Module Level trigger.  The
+Module Level trigger is also responsible for sending the trigger commands that
+tell the RCEs to dump their 10 s unsuppressed ``supernova'' buffer.  If a
+supernova burst trigger is created at the Global trigger level, a trigger
+command is passed back down to the Module Level, which then passes that on to
+the RCEs for readout of the long (10 s) unsuppressed buffer, the same way it
+would if a supernova burst is detected at the Module Level. 
+
+	
+
+
+%\metainfo{Describe Module Trigger Logic and Global Trigger Logic.
+%  Describe creation of Trigger Command Messages (TCM) from TPMs.
+%  Included external sources of TPMs such as SNEWS, Fermilab Beam,
+%  testing triggers, periodic triggers, calibration triggers.}
+%
+%\metainfo{Here should go the assumptions that went into the thinking
+%  for Josh's event category data volumes.  It can include discussion
+%  of tighter selection criteria for ``cosmics'' such as Phil's
+%  distribution of number of APAs hit by cosmics and arguments for
+%  something less than 2+ drift time readouts.}
 
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,6 +516,24 @@ This section describes the strategy for using the trigger/dataflow infrastructur
 \label{sec:fdsp-daq-timing}
 
 %Describe the generation of timing/synchronisation signals and and distribution to the detectors.
+
+All components of the DUNE Single Phase detectors are synchronized to
+a common clock. In order make full use of the information from the
+photon detection system the common clock must be aligned within a
+single detector with an accuracy of O(1ns). In order to form a common
+trigger for super novae between detector modules the timing between
+detectors must be aligned with an accuracy of O(1ms). However, a
+tighter constraint is the need to calibrate the common clock to
+universal time (derived from GPS) in order to adjust the data
+selection algorithm inside an accelerator spill, which requires an
+absolute accuracy of O(1us).
+
+Single and Dual phase detector modules use a different timing system,
+driven by the different technical requirements and development history
+of the two systems. A single phase detector module has many more
+timing end-points than a dual phase module and many of the end-points
+are simpler than the end-points in the dual phase, for example a WIB
+vs. uTCA crate. Both systems have been sucessfully prototyped.
 
 The DUNE Single Phase detectors use a development of the protoDUNE
 timing system. Synchronization messages are transmitted over a serial
@@ -375,6 +557,12 @@ signal. The SPTS relates its time counter onto GPS time by
 timestamping the 1PPS signal onto the SPTS time counter and reading
 the time in software from the NTP server.
 
+The latency from the GPS antenna on the surface to the GPS receiver in
+the CUC will be measured by optical time domain reflectometry at
+installation. Given the modest absolute time accuracy required
+(sufficient to select data within an accelerator spill) dynamic
+monitoring of this delay is not required.
+
 The White Rabbit synchronization signals from the Dual Phase are
 time-stamped onto the SPTS clock domain and the SPTS synchronization
 signals are time stamped onto the Dual Phase clock domain. This allows
@@ -386,7 +574,7 @@ White Rabbit time domain.
 In order to provide redundancy, and also the ability to easily detect
 issues with the timing path, two independent GPS systems are used. One
 with an antenna at the head of the Yates shaft, the other with an
-antenna at teh head of the Ross shaft. The two independent timing
+antenna at the head of the Ross shaft. The two independent timing
 paths are brought together in the same rack in the CUC. Using 1:2
 fibre splitters one SPTS unit can be left as a hot-spare while the
 other is active. This also allows testing of new firmware and software
@@ -409,13 +597,14 @@ standard star-point backplane to the fanout AMCs which each drive the
 signal onto up to 13 SFP cages. The SFP cages are either occupied by
 1000Base-BX SFPs, each of which connects to a fibre running to an APA,
 or to a Direct Attach cable which connects to systems elsewhere in the
-CUC, i.e. the RCE crates and the data selection system. This arrangement is shown in figure \ref{fig:daq-readout-sp-timing}
+CUC, i.e. the RCE crates and the data selection system. This
+arrangement is shown in figure \ref{fig:daq-readout-sp-timing}
 
 
 \begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
   {Illustration of the components in the Single Phase Timing System.}
-  \fixme{Add a diagram of the SPTS electronics}
-  % \includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
+  %\fixme{Add a diagram of the SPTS electronics}
+  \includegraphics[width=0.8\textwidth]{DUNE_SP_Timing.pdf}
 \end{dunefigure}
 
 \subsubsection{Beam timing}
