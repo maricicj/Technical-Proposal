@@ -10,42 +10,195 @@
 \section{Beam simulation Systems}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{G4numi}
+\subsection{G4LBNF}
 
-\fixme{can't have a single subdivision of a section or subsection}
+\subsection{Beam Spectrometer Simulation}
+
+\subsection{Muon Monitors}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Neutrino Interaction simulations}
+\section{Event Geneartors}
+
+The event generators provided with LArSoft create MCParticle and MCTruth data products in
+the {\it{art}} event store.  Any number of event generators, including multiple instances of the
+same generator, may be run for a given event.  This feature is useful in order to overlay cosmic
+rays and radiological decays on neutrino scattering events for example.  In addition to the
+generators listed below that are integrated into the LArSoft software environment, a text-file generator
+can read files with particle types and four-vectors of their momenta and energies to provide access
+to additional generators without investing in software integration.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Neutrino Interaction simulations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{GENIE $\nu$ interaction generator}
+\subsubsection{GENIE $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NUET $\nu$ interaction generator}
+\subsubsection{NEUT $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NuWro $\nu$ interaction generator}
+\subsubsection{NuWro $\nu$ interaction generator}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NUANCE $\nu$ interaction generator}
+\subsubsection{NUANCE $\nu$ interaction generator}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{GIBUU $\nu$ interaction generator}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{MARLEY $\nu$ interaction generator}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Nucleon Decay and Exotic Particle Simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{GENIE}  % Hector Mendez will supply something here.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{MadGraph/MadEvent}
+
+\subsection{Cosmic-Ray Generators}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{CRY}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{CORSIKA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{MUSUN/MUSIC}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Radiological Generator}
+
+The radiological generator is a LArSoft module that produces MCParticle objects corresponding
+to the decay products of radionuclides.  The spectra of alpha, beta, and gamma particles emitted
+by decaying radionuclides are user-specifialbe in root files.  The radiological generator generates
+decays within a rectangular prism in space and in a specified range of time.  For a particular
+nuclide, volumes in the geometry whose materials match a regular expression are selected as locations
+for possible decays.  This mechanism is chosen over the more complex alternatie of specifying radionuclide
+concentrations in the geometry specification because GEANT4 and GENIE will attempt to simulate interactions
+of neutrinos and other particles on extremely rare nuclides, for which cross-section data may not exist.
+The CPU time required to run the radiological generator is negligible, but its output can dominate
+the CPU and storage of the fully simulated samples, as is the case for the far detector data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Detector geometry and modeling systems}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+LArSoft reads in GDML files that describe the geometries of the far detector modules.  Two versions of these
+files are required -- one with the readout wires described, and one without.  The total mass in the readout
+wires is very small, but their presence would increase the memory and CPU requirements of the simulation
+if they are present in any more than a parameterized manner.  These GDML files are constructed with Perl scripts.
+A more sophisticated tool called {\tt{ggd}}~\cite{ggd} is designed to create GDML files from a higher-level
+Python description of the detector.
+
+Within LArSoft, two ``parallel-world'' representations of the geometry are created.  One is for particle interactions
+modeled by GEANT4, and the other is intended for GEANT4's simulation of photon propagation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fast Monte Carlo}
 
+A Fast Monte Carlo (FMC) program was developed by the LBNE collaboration and was used to
+compute oscillation sensitivities~\cite{cdr-vol-2}.  The FMC simulated neutrino interactions
+on argon using the LBNF flux spectrum and the GENIE~\cite{GENIE} generator.  The detector
+responses to the final-state particles produced by GENIE are approximated with efficiency
+fractions as functions of particle energy, energy resolution smearing fractions, and
+correct and incorrect particle identification rates.  The events were divided into
+$\nu_\mu$CC-like, $\nu_e$-CC-like, and NC-like, for the near and far detectors, and the
+inputs provided to a parameter fit, such as CAFANA, GLoBES, or LOAF.  The details of the
+detector response and analysis requirements can be found in~\cite{cdr-vol-2}.  The CPU time needed
+for the FMC project is 1 to 4~M hours per year, with $<1$~TB of storage required, when
+it is fully used.  The emphasis on full simulation and reconstruction results however has
+displaced the FMC in 2016 and 2017. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Geant4}
+\subsection{Geant4 and Detector Response Modeling}
+
+Interactions of particles with the detector materials, both active and inactive, is simulated with 
+GEANT4~\cite{GEANT4:NIM}\cite{GEANT4}.  GEANT4 is also used as the underlying physics model for G4LBNF, the
+simulation of the baffle, target, horns, and decay pipe.  GEANT4 simulates particle trajectories in steps,
+taking into account electric and magnetic fields, as well as interaction and scattering probabilities in the
+matter at each step.  GEANT4 requires a detailed description of the geometry of the materials through which
+it simulates particle propagation.
+
+LArSoft~\cite{larsoft} provides an interface to GEANT4 that is optimized for liquid argon time projection
+chambers.  Step sizes are limited by voxelizing the active liquid argon volume into cubes 300~$\mu$m on a side.
+Ionization and scintillation are modeled with a modified Box function~\cite{box} or with NEST~\cite{nest}, using
+the energy deposition on each step provided by GEANT4.  Ionization and delta rays are part of a continuous
+spectrum -- GEANT4 tracks delta rays down to an energy of ??~KeV using the default LArSoft paramaterization.
+The GEANT4 step of a LArSoft simulation typically runs as a separate job, and the output of this job is the
+number of electrons deposited on each wire after LArSoft's custom drift and diffusion simulation, which
+takes into account recombination, electron lifetime, space charge, and detector geometry effects.  The charge
+is summed over all contributing particle steps and integrated over diffusion, and reported separately for
+each particle for each tick on each wire (a particle may have many small GEANT4 steps which contribute
+charge to a wire).  The average position of the charge creation points are recorded for each particle for each
+tick on each wire as well.  
+
+In the LArSoft interface,  it is possible to specify a magnetic field that will cause charged-particle
+trajectories to deflect.
+
+For photon propagation modeling, a library-based method is used to speed up the sampling of tens of thousands of
+scintillation photons per MeV of deposited energy.  The photon library is a list of detection probabilities
+indexed by the voxel in space corresponding to the origin of the photons and the photon detector channel.
+The source voxel sizes are cubes ??~cm on a side.  These detection probabilites are computed with a fully-simulated
+run using GEANT4 to propagate photons isotropically-distributed in their production angle through the liquid argon,
+taking into account the reflectivity of the field cage walls and the cathode and Rayleigh scattering in the liquid.
+The detection probability further includes light attenuation along the length of each photon detector's bar.  An
+overall quantum efficiency scaling factor is applied before the photon library lookup is performed, reducing the
+number of lookups needed to complete the calculation.  The photon lookup library is typically a 300~MB rootfile.
+Cherenkov radiation is currently not simulated or propagated by LArSoft; it may be added in a future version.
+
+The GEANT4 step, along with the LArSoft-supplied drift modeling and lookup-library-based photon propagation, 
+is the second-quickest simulation step,
+after the generation stage, with ??~sec/event for far detector neutrino interactions, and ??~sec/event for
+ProtoDUNE events with cosmic rays.  GEANT4 however requires several GB of auxiliary data files in order
+to parameterize the interactions of particles with matter.  The GEANT4 collaboration actively compares
+the modeling of published data distributions and tunes the simulation to improve the modeling.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{GeantV}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Detector response simulation systems}
+\section{FLUKA}
+
+FLUKA~\cite{FLUKA} is a full-featured physics and detector simulation package.  It is capable of
+performing the same role as GEANT4 in the beam simulations, as well as in the detector response modeling.
+FLUKA also has the ability to model neutrino-nucleus interactions, and thus can substitute for GENIE.
+Due to the prohibitive computational load of simulating all of the drifting electrons and propagating
+photons, the same solution of a custom LArSoft-based drift and charge deposit model would still be needed
+if FLUKA were to take on all other roles.  A project has started to interface FLUKA at several points upstream
+of the detector charge deposit modeling.  Comparing FLUKA-based calculations with those based on GEANT4 and
+GENIE provides additional abilities to model external data and detector data properly, and to estimate
+systematic uncertainties.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Electronics and DAQ Emulation}
+
+The output of the GEANT4 step, which consists of simulated charge deposits on each wire, requires
+additional processing to model the expected signals to be digitized.  The digitizers measure the
+current on each wire integrated over the sampling time, chosen to be 2~$\mu$s.  As charge drifts
+by an induction-plane wire, it induces a current that is a bipolar function of time, while the
+current in a collection-plane wire is a unipolar function of time.  The differences in the arrival
+times of charge drifting past the layers due to the finite spacing between the layers are include.
+LArSoft parameterizes the response
+of the detector as a Green's function -- the response of a packet of charge localized in space and time,
+and this funtion is convoluted with the function describing the arrival times of the charges passing by
+or collecting on the wires.  This convolution is performed in frequency space after FFT'ing the charge
+arrival function.  At this stage, the electronics response transfer function is multiplied in.  An inverse
+FFT predicts the time-domain signal.  The signal gain is a separately controllable parameter in LArSoft.
+  Noise is then added, either white noise or an exponentially falling
+spectrum, and then the result is discretized and truncated to the expected range of the 12-bit ADCs.  
+
+Additional steps, such as modeling of stuck bits or groups of bits are configurable within LArSoft.
+Modeling dead channels or groups of channels is frequently performed as an early step
+in the reconstruction job so that Monte Carlo samples can be reused with varying fractions and placement
+of dead channels.
+
+Similar processing steps are applied to the simulation of the photon detector waveforms.
+
+The output of the electronics simulation is digitized waveforms.  Zero suppression is optionally
+applied.  The simulated data are compressed either with ROOT's built-in compression, or a fixed-dictionary
+Huffman algorithm.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trigger Simulation}

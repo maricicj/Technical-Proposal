@@ -12,12 +12,50 @@
 
 % % % % Alec
 \subsubsection{Slow Controls Network Hardware}
+\label{sec:fdsp-slow-cryo-slow-network}
+The Slow Controls data originates from the sensors discussed in
+Sec.~\ref{sec:fdsp-cryo-instr} and
+Sec.~\ref{sec:fdsp-slow-cryo-slow-dsp}, then heads towards the central
+CISC database housed in the CUC DAQ room
+(Sec.~\ref{sec:fdsp-slow-cryo-slow-compute}).  It gets there over
+conventional network hardware from any sensors located in the cryogenic
+plant.  However, the readouts which are located in the racks on top the
+cryostats have to be careful about grounding and noise.  Therefore, each
+rack on the cryostat will have a small network switch which will send
+any network traffic from that rack to the CUC via a fiber transponder.
+
+Network traffic out of SURF to Fermilab will be primarily database calls
+to that central CISC DB: either from monitoring applications, or from
+database replication to the offline version of the CISC DB.  This
+traffic is of a low enough bandwidth that the proposed general purpose
+links both out of the mine and back to Fermilab can accommodate it.
 
 % % % % Alec
 \subsubsection{Slow Controls Computing Hardware}
+\label{sec:fdsp-slow-cryo-slow-compute}
+
+Up to two racks of space and appropriate power and cooling are available
+in the CUC's DAQ server room for CISC usage.  Somewhat less space than
+that is currently envisioned: Two servers (a primary server and a
+replicated backup) suitable for the needed relational database discussed
+in Sec.~\ref{sec:fdsp-slow-cryo-sw} will be there, with an additional
+two servers to perform front-end monitoring interface services: for
+example, assembling dynamic CISC monitoring web pages from the adjacent
+databases.  Any special purpose software, such as iFix or EPICS, would
+also run here: two more servers (for a total of six) will accommodate
+these programs.\fixme{I am completely making up how many special purpose
+  iFix machines there should be: need input from the cryo people}
+Replicating this setup on a per-module basis would allow for easier
+commissioning and independent operation, accommodate different module
+design (and the resulting differences in database tables), and ensure
+sufficient capacity.  Including fours sets of networking hardware, this
+would fit tightly into one rack or very comfortably into two.
 
 % % % % Alec and Sowjanya
 \subsubsection{Slow Controls Signal Processing Hardware}
+\label{sec:fdsp-slow-cryo-slow-dsp}
+\fixme{Is this the place for the laundry list of Things to Be Monitored?
+ ({\it but which are not cryo related})}
 
 
 
@@ -30,6 +68,8 @@
 % Sowjanya
 \subsection{Slow Controls Software}
 \label{sec:fdsp-slow-cryo-sw}
+\fixme{Glenn's talk from the parallel session @CERN is a great starting
+  point here}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ed T
