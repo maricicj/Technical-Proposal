@@ -221,7 +221,7 @@ The digital electronics is based on uTCA standard which offers industrial soluti
 Each AMC plugged into the uTCA is connected to the crate MCH board through the backplane serial links. The MCH provides the switch functionality that enables AMCs to communicate with each other or external systems through the MCH uplink interface. In the DP electronics system design, MCH also manages the WR clock distribution. 
 
 \begin{dunefigure}[Pictures of an instrumented uTCA crate from LArProto detector]{fig:dpele-311-utca-image}
-{Pictures of an instrumented uTCA crate from LArProto detector. The crate contains five AMC cards, correspondingly to the number of readout channels per the SFT chimney. The images below show the crate after the  cables are connected to the warm flange of the SFT chimney.}
+{Pictures of an instrumented uTCA crate from LArProto detector. The crate contains five AMC cards, correspondingly to the number of readout channels per the SFT chimney. The images below show the crate after the  cables are connected to the warm flange of the SFT chimney.}
 \includegraphics[width=0.6\textwidth]{dpele-311-utca-image}
 \end{dunefigure}
 
@@ -257,6 +257,83 @@ The architecture of the WR network layout for one DP detector module is illustra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronics for Light Readout}
 \label{sec:fddp-tpc-elec-design-lro}
+
+%
+The Light Read Out card is a 16-channel AMC; containing one 16-channel 14-bit 65 MHz ADC (AD9249) and one CatiROC ASIC \cite{catiroc}. A block diagram of the prototype board used for protoDUNE Dual-Phase is shown in Figure \ref{dpele-lro-scheme}. In this prototype, a mezzanine board was developed containing the ASIC and ADC, which sits on a commercial (COTS) mother board (Bittware S4 AMC) containing a high specification FPGA (ALTERA Stratix IV GC). Figure \ref{dpele-lro-proto} shows the mezzanine and motherboard of the prototype.   For DUNE, one mother board will be produced, merging the mezzannine layout with the mother board developed for the Charge Read out (AMC) and using the ALTERA Cyclone V FPGA. 
+
+Each channel follows two separate paths; the first, through an anti-aliasing low pass filter to be digitized by a 14-bit 65 MHz ADC (AD9249), and the second routed directly to the CatiROC ASIC, for precise charge and timing measurements. Both paths will be streamed continuously and independently.
+
+A proposed upgrade is a 32-channel card, diminishing the number of cards required and increasing the channel density to 352 channels per uTCA crate.
+
+\begin{dunefigure}[Block diagram of LRO]{fig:dpele-lro-scheme}
+{Block diagram of LRO prototype.}
+\includegraphics[width=0.7\textwidth]{dpele-lro-scheme}
+\end{dunefigure}
+
+\begin{dunefigure}[Prototype LRO card]{fig:dpele-lro-proto}
+{The LRO prototype.}
+\includegraphics[width=0.7\textwidth]{dpele-lro-proto}
+\end{dunefigure}
+
+\subsubsection{Waveform} %ADC
+%details on CatiROC
+The main characteristics of the ADC are shown in Table \ref{tab:dpele-adc}.
+
+For normal operation, in continuous sampling mode, the time samples will be down-sampled by the FPGA to a course \SI{400}{ns} sampling to match that of the Charge Read Out and limit the quantity of data streamed. Before this downsampling, there is the possibility of online pulse processing within the FPGA, to make continuous measurements such as rise and fall times. Event at the course sampling of \SI{400}{ns} studies of the liquid argon scintillation time-profile are possible (with the long fall timeconstant of $\sim$\SI{1500}{ns}) and also matching of the electroluminescence signal (S2) to that of the charge signal.  Low light-level signals, such as the single or few photoelectron signals, will show no time structure, but will consist of 1 or 2 samples several LSB above the baseline.
+
+%RMS and PMT gain?
+
+\begin{dunetable}
+[Main characteristics of ADC AD9249.]
+{lr} {tab:dpele-adc}
+{Main characteristics of the ADC AD9249 using for the Light Read Out}
+%Name & Number  \\ \toprowrule
+Time resolution & \SI{25}{ns} \\ \colhline
+Time precision & $<$\SI{1}{ns} \\ \colhline %not sure... must be
+Amplitude resolution (LSB) & \SI{2.44}{uA}/\SI{0.122}{mV} \\ \colhline
+Dynamic range & 14-bit/ \SI{40}{mA}/\SI{2}{V} \\ \colhline
+Differential Non-Linearity & Typical $\pm$\num{0.6} LSB\\
+& with Min. \num{-0.9} and Max. \num{+1.6} LSB  \\ \colhline
+Integral Non-Linearity & Typical $\pm$\num{0.9}  LSB\\
+& with Min. \num{-3} and Max. \num{3} LSB  \\ \colhline
+%MEMORY??
+\end{dunetable}
+%noise llevel??
+
+\subsubsection{Analog Measurements of Charge and Time}%ASIC?
+
+The CATIROC is a 16-channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to 20 kHz/channel). Charge measurements can be made over the range of 160 fC to 70 pC(corresponding to approximately to a range of 1 - 400 photoelectrons with a PMT gain of $10^{6}$). Timing measurements per channel can be made to an accuracy of 200ps.
+
+Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to 100ns) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at 160 MHz.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime \SI{5}{mus} arises.
+
+The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (10-bit) threshold commmon to the 16 channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a 26-bit counter at 40 MHz.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
+
+%Measurements performed in \cite{Blin2017} ..% SNR of 13 trigger efficiency etc...
+
+%cite: @ARTICLE{2017JInst..12C3041B,
+%   author = {{Blin}, S. and {Callier}, S. and {Conforti Di Lorenzo}, S. and 
+%	{Dulucq}, F. and {De La Taille}, C. and {Martin-Chassard}, G. and 
+%	{Seguin-Moreau}, N.},
+%    title = "{Performance of CATIROC: ASIC for smart readout of large photomultiplier arrays}",
+%  journal = {Journal of Instrumentation},
+%     year = 2017,
+%    month = mar,
+%   volume = 12,
+%    pages = {C03041},
+%      doi = {10.1088/1748-0221/12/03/C03041},
+%   adsurl = {http://adsabs.harvard.edu/abs/2017JInst..12C3041B},
+%  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+%}
+
+%total number of bits per channel, 50-bits from CatiROC?
+%COPY CAYETANO TABLE
+%SELMA'S SPE FROM JUNO?? or my spe??
+\begin{dunefigure}[CatiROC ASIC]{fig:dpele-lro-catiroc}
+{Functional diagram of CatiROC ASIC.}
+\includegraphics[width=0.7\textwidth]{dpele-lro-catiroc}
+\end{dunefigure}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
