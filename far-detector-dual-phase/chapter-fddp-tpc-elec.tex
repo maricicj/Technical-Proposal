@@ -84,7 +84,7 @@ Parameter & Value  \\ \toprowrule
 The scope of the TPC electronics system covers the procurement and productions, testing and validation, installation, and commissioning of all the components necessary to ensure the complete readout of the charge and light signals from a given DP detector module. The covered items are the following:
 \begin{itemize}
 \item{Cryogenic analog FE cards for charge readout}
-\item{Analog electronics for the light readout\fixme{more details/names?}}
+%\item{Analog electronics for the light readout\fixme{more details/names?}}
 \item{Digital AMC cards for charge/light readout}
 \item{The WR-MCH cards for AMC clock synchronization}
 \item{uTCA crates}
@@ -176,7 +176,9 @@ The SFT chimneys are designed to enable the access to the FE analog electronics 
 \includegraphics[width=0.8\textwidth]{dpele-sft-chimney-design}
 \end{dunefigure}
 
-The chimneys are closed at the bottom and top with vacuum tight flanges whose function is to dispatch the signal and slow control lines. The flange at the bottom, cold flange, isolates (ulta-high vacuum tightness standard) the inner volume of the detector module from the chimney volume and interconnects the signals from the CRP to the analog FE cards. The flange at the top, warm flange, seals the chimney from the outside environment. It also passes the low voltage and control lines to the FE electronics inside and brings out the differential analog signal lines from the FE amplifiers. The temperature inside the chimney could be adjusted using a heat exchanger coil cooled by liquid argon. It is located at the bottom close to the cold flange around the FE cards. The functions of this cooling system are to mitigate the heat input to the main detector volume and provide optimal (lowest noise) operating temperature for the FE electronics of around \SI{110}{K}. 
+The chimneys are closed at the bottom and top with vacuum tight flanges whose function is to dispatch the signal and slow control lines. The flange at the bottom, cold flange, isolates (ulta-high vacuum tightness standard) the inner volume of the detector module from the chimney volume and interconnects the signals from the CRP to the analog FE cards. The flange at the top, warm flange, seals the chimney from the outside environment. It also passes the low voltage and control lines to the FE electronics inside and brings out the differential analog signal lines from the FE amplifiers. 
+
+The SFT chimney volume is filled with nitrogen gas at near atmospheric pressure. The temperature inside the chimney could be adjusted using a heat exchanger coil cooled with liquid argon. It is located at the bottom close to the cold flange around the FE cards. The functions of this cooling system are to mitigate the heat input to the main detector volume and provide optimal (lowest noise) operating temperature for the FE electronics of around \SI{110}{K}. A pressure release valve, indicated in Figure~\ref{fig:dpele-sft-chimney-design}, protects the structure from an accidental overpressure in the inner volume. 
 
 The expected heat input from a given SFT chimney is about \SI{20}{\watt}. This number includes the heat through the twisted-pair cables connected to the warm flange, the SFT outer metallic tube, as well as the heat dissipation by the FE cards. A total heat input from all \num{240} SFT chimneys is at the level of \SI{5}{\kilo\watt}. 
 
@@ -187,7 +189,7 @@ The expected heat input from a given SFT chimney is about \SI{20}{\watt}. This n
 
 The analog FE cards are inserted directly onto the cold flange (see Figure~\ref{fig:dple-sft-flanges}). The other side of the flange (facing inside the cryostat) hosts the connectors for the flat cables coming from the CRP anodes.  The FE cards are mounted on \SI{2}{m} long blades made from FR4 \todo{check}, which enable the insertion/extraction of the electronics and also support the flat cables carrying signals, low voltages, and slow control to/from the warm flange interface.  The blades slide along the rails installed inside the chimney at opposite sides, which guide the FE cards to their respective connectors on the cold flange. 
 
-Prior to the commissioning of a detector module, the chimneys are evacuated and then filled with nitrogen gas. This ensures the removal of the moisture that would otherwise condense, once the detector module is filled with the liquid argon, around the FE cards damaging the electronics. To access the FE cards once the detector module is at cold, the stainless steel flange at the top of the SFT chimney (Figure~\ref{fig:dpele-sft-chimney-design}) must be removed. This procedure requires continuous flushing of nitrogen gas at slight over-pressure with respect to the atmospheric in order to prevent the humid air entering and generating condensation inside the chimney. Once a chimney is opened, the blades with the FE cards can be extracted after unplugging the flat cables (two per card) connected on the inner side of the warm flange (Figure~\ref{fig:dpele-sft-chimney-design}).
+Prior to the commissioning of a detector module, the chimneys are evacuated a dedicated KF16 \todo{check} port (see Figure~\ref{fig:dpele-sft-chimney-design}) and then filled with nitrogen gas. This ensures the removal of the moisture that would otherwise condense, once the detector module is filled with the liquid argon, around the FE cards damaging the electronics. To access the FE cards once the detector module is at cold, the stainless steel flange at the top of the SFT chimney (Figure~\ref{fig:dpele-sft-chimney-design}) must be removed. This procedure requires continuous flushing of nitrogen gas at slight over-pressure with respect to the atmospheric in order to prevent the humid air entering and generating condensation inside the chimney. Once a chimney is opened, the blades with the FE cards can be extracted after unplugging the flat cables (two per card) connected on the inner side of the warm flange (Figure~\ref{fig:dpele-sft-chimney-design}).
 
 The procedure to access the FE cards at cold was successfully tested during the operation of the LArProto detector. The temperature at the top of the chimney was very close to the room temperature allowing to manipulate the cable connections one warm flange without any cryogenic gloves. The movement of the blades on the rails and the FE card extraction / insertion did not indicate any mechanical problems that could have been caused by shrinking of various elements due to the lower temperatures.  The signals from the FE cards that underwent the extraction/insertion were also checked and no malfunctioning channels were found.
 
@@ -270,11 +272,11 @@ The architecture of the WR network layout for one DP detector module is illustra
 \label{sec:fddp-tpc-elec-design-lro}
 
 %
-The Light Read Out card is a 16-channel AMC; containing one 16-channel 14-bit 65 MHz ADC (AD9249) and one CatiROC ASIC \cite{catiroc}. A block diagram of the prototype board used for protoDUNE Dual-Phase is shown in Figure \ref{dpele-lro-scheme}. In this prototype, a mezzanine board was developed containing the ASIC and ADC, which sits on a commercial (COTS) mother board (Bittware S4 AMC) containing a high specification FPGA (ALTERA Stratix IV GC). Figure \ref{dpele-lro-proto} shows the mezzanine and motherboard of the prototype.   For DUNE, one mother board will be produced, merging the mezzannine layout with the mother board developed for the Charge Read out (AMC) and using the ALTERA Cyclone V FPGA. 
+The Light Read Out card is a 16-channel AMC; containing one \num{16} channel \num{14} bit \SI{65}{\MHz} ADC (AD9249) and one CatiROC ASIC \cite{catiroc}. A block diagram of the prototype board used for protoDUNE Dual-Phase is shown in Figure \ref{dpele-lro-scheme}. In this prototype, a mezzanine board was developed containing the ASIC and ADC, which sits on a commercial (COTS) mother board (Bittware S4 AMC) containing a high specification FPGA (ALTERA Stratix IV GC). Figure \ref{dpele-lro-proto} shows the mezzanine and motherboard of the prototype.   For DUNE, one mother board will be produced, merging the mezzannine layout with the mother board developed for the Charge Read out (AMC) and using the ALTERA Cyclone V FPGA. 
 
-Each channel follows two separate paths; the first, through an anti-aliasing low pass filter to be digitized by a 14-bit 65 MHz ADC (AD9249), and the second routed directly to the CatiROC ASIC, for precise charge and timing measurements. Both paths will be streamed continuously and independently.
+Each channel follows two separate paths; the first, through an anti-aliasing low pass filter to be digitized by a \num{14} bit \SI{65}{\MHz} ADC (AD9249), and the second routed directly to the CatiROC ASIC, for precise charge and timing measurements. Both paths will be streamed continuously and independently.
 
-A proposed upgrade is a 32-channel card, diminishing the number of cards required and increasing the channel density to 352 channels per uTCA crate.
+A proposed upgrade is a \num{32} channel card, diminishing the number of cards required and increasing the channel density to 352 channels per uTCA crate.
 
 \begin{dunefigure}[Block diagram of LRO]{fig:dpele-lro-scheme}
 {Block diagram of LRO prototype.}
@@ -297,12 +299,12 @@ For normal operation, in continuous sampling mode, the time samples will be down
 \begin{dunetable}
 [Main characteristics of ADC AD9249.]
 {lr} {tab:dpele-adc}
-{Main characteristics of the ADC AD9249 using for the Light Read Out}
-%Name & Number  \\ \toprowrule
+{Main characteristics of the ADC AD9249 used for the Light Read Out}
+Item &   \\ \toprowrule
 Time resolution & \SI{25}{ns} \\ \colhline
 Time precision & $<$\SI{1}{ns} \\ \colhline %not sure... must be
 Amplitude resolution (LSB) & \SI{2.44}{uA}/\SI{0.122}{mV} \\ \colhline
-Dynamic range & 14-bit/ \SI{40}{mA}/\SI{2}{V} \\ \colhline
+Dynamic range & \num{14} bit/ \SI{40}{mA}/\SI{2}{V} \\ \colhline
 Differential Non-Linearity & Typical $\pm$\num{0.6} LSB\\
 & with Min. \num{-0.9} and Max. \num{+1.6} LSB  \\ \colhline
 Integral Non-Linearity & Typical $\pm$\num{0.9}  LSB\\
@@ -313,29 +315,13 @@ Integral Non-Linearity & Typical $\pm$\num{0.9}  LSB\\
 
 \subsubsection{Analog Measurements of Charge and Time}%ASIC?
 
-The CATIROC is a 16-channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to 20 kHz/channel). Charge measurements can be made over the range of 160 fC to 70 pC(corresponding to approximately to a range of 1 - 400 photoelectrons with a PMT gain of $10^{6}$). Timing measurements per channel can be made to an accuracy of 200ps.
+The CATIROC is a \num{16} channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals \cite{Blin:2017}. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to \SI{20} {kHz/channel}). Charge measurements can be made over the range of \SI{160}{fC} to \SI{70}{pC} (corresponding to approximately to a range of \num{1} - \num{400} photoelectrons with a PMT gain of \num{10E6}). Timing measurements per channel can be made to an accuracy of \SI{200}{ps}.
 
-Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to 100ns) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at 160 MHz.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime \SI{5}{mus} arises.
+Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to \SI{100}{ns}) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at \SI{160}{MHz}.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime of \SI{5}{mus} arises.
 
-The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (10-bit) threshold commmon to the 16 channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a 26-bit counter at 40 MHz.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
+The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (\num{10} bit) threshold commmon to the \num{16} channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a \num{26} bit counter at \SI{40}{MHz}.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
 
 %Measurements performed in \cite{Blin2017} ..% SNR of 13 trigger efficiency etc...
-
-%cite: @ARTICLE{2017JInst..12C3041B,
-%   author = {{Blin}, S. and {Callier}, S. and {Conforti Di Lorenzo}, S. and 
-%	{Dulucq}, F. and {De La Taille}, C. and {Martin-Chassard}, G. and 
-%	{Seguin-Moreau}, N.},
-%    title = "{Performance of CATIROC: ASIC for smart readout of large photomultiplier arrays}",
-%  journal = {Journal of Instrumentation},
-%     year = 2017,
-%    month = mar,
-%   volume = 12,
-%    pages = {C03041},
-%      doi = {10.1088/1748-0221/12/03/C03041},
-%   adsurl = {http://adsabs.harvard.edu/abs/2017JInst..12C3041B},
-%  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-%}
-
 %total number of bits per channel, 50-bits from CatiROC?
 %COPY CAYETANO TABLE
 %SELMA'S SPE FROM JUNO?? or my spe??
@@ -344,7 +330,30 @@ The fast channel is used to auto-trigger the ASIC and make the fine-timing measu
 \includegraphics[width=0.7\textwidth]{dpele-lro-catiroc}
 \end{dunefigure}
 
-
+\begin{dunetable}
+[Main characteristics of CATIROC.]
+{lr} {tab:dpele-catiroc}
+{Main characteristics of CATIROC used for the Light Read Out}
+Item &   \\ \toprowrule
+Number of Channels & \num{16}\\ \colhline
+Signal Polarity & negative \\ \colhline
+Timing & Time stamp: 26 bit counter at \SI{40}{MHz} \\
+       & Fine time: resolution $<$\SI{200}{ps}\\ \colhline
+Charge Dynamic Range & \SI{160}{fc} to \SI{100}{pc}\\ \colhline
+Trigger & auto-trigger \\
+        & Noise= \SI{5}{fC} Minimum threshold = \SI{25}{fC} (5$\sigma$)\\ \colhline
+Digital & 10-bit Wilkinson ADC at 160 MHz \\ %TWO READOUT AT 80MHZ??
+        & Read-out frame of 50 bits \\ \colhline
+Outputs & \num{16} trigger outputs \\
+        & NOR16 \\
+        & \num{16} slow shaper outputs \\
+        & Charge measurement over \num{10} bits \\
+        & Time measurements over \num{10} bits \\ \colhline
+Main Internal &  Variable preamplifier gain \\
+Programmable  &  Variable shaping and gain \\
+Features & Common trigger threshold \\
+         & Common gain threshold \\ \colhline
+\end{dunetable}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -387,42 +396,62 @@ The fast channel is used to auto-trigger the ASIC and make the fine-timing measu
 \label{sec:fddp-tpc-elec-qa}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Interfaces}
 \label{sec:fddp-tpc-elec-intfc}
 
-The overall DP TPC electronics system has interfaces to several other systems. These are the cryostat and cryogencis, slow control, DAQ, and photon detection systems \fixme{cite docs}.
-
-Briefly describe each ?
-
-
+The DP TPC electronics system has interfaces to several other systems. The system must read the charge and light signals from the detector module and thus needs to interface to CRP and the photo-detection systems.  The digitized data must in turn be transmitted to DAQ via the optical links in each uTCA crate. The SFT chimney need to be integrated in the cryostat structure and connected to the cryogenic system. The management of the low-voltage power supplies for the FE analog electronics as well as the monitoring of various sensors in the SFT chimneys have to be part of the slow control. 
+\fixme{cite all interface docs?}. 
 %\fixme{Include an image of each interface in appropriate section.}
 
 %\fixme{Add in appropriate subsections for the pieces that TPC Electronics interfaces with. These initial ones may not be right.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cryostat and Cryogenics}
-\label{sec:fddp-tpc-elec-intfc-cryo}
+\subsection{CRP and Photon Detection System}
+\label{sec:fddp-tpc-elec-intfc-crppmt}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Slow Control System}
-\label{sec:fddp-tpc-elec-intfc-sc}
+The cold flange of the SFT chimneys forms interface between the CRP and the TPC electronics systems. On the side facing the crystostat the flange hosts \num{20} \num{64} pin KEL connectors (XX\todo{part number}) for plugging the flat cables from the CRP. These are 68 channel twisted pair flat cables each carrying signals from \num{32} anode strips and are part of the CRP system. Each analog FE card reads \num{64} anode strips implying receiving signals from two KEL connectors. The order in which the cables are connected into cold flange determines the mapping of the electronic channels to the physical location of the strips on the CRP. This is covered in the greater details in Section~\ref{sec:fddp-tpc-elec-install-sft}. 
+\fixme{Perhaps an image of the cold flange showing the connectors?}
+
+\fixme{Interfaces to light readout}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DAQ System}
 \label{sec:fddp-tpc-elec-intfc-daq}
 
+The hardware interface between DP-Electronics and DAQ has two components. The first interface are the \SI{10}{Gbit/s} optical fibers for data transfer between the uTCA crates and the network interface of the DAQ system. The second one is a \SI{1}{Gbit/s} optical fiber that connects the DAQ White Rabbit Grand Master switch to the DP electronics timing system.   
+
+In the baseline design a given DP detector module would have \num{245} \SI{10}{Gbit/s} optical links for streaming the digitized data to DAQ from the charge readout (\num{240} links) and light light readout (\num{5} links) electronics housed in uTCA crates on top of the cryostat structure.  In the current specifications, the fibers are multimode OM3 fibers\footnote{http://shop.fiber24.net/index.php/en/FO-Patch-Cable-OM3-Multi-mode-50-125-m-Duplex-LC-PC-LC-PC/c-OM3-DUPLEX-1TO1/a-FOPC-F2-O3-DX-LCU-LCU} with LC-LC connectors suitable for the transmission over distances of up to \SI{300}{\metre}.  They are provided by the DAQ consortium. On the side of the uTCA crate, the fibers are connected to an optical transceiver in the MCH\footnote{http://www.nateurope.com/products/NAT-MCH.html} (two SFP+ (XAUI) links).  On the DAQ, they go to the Level 1 (LV1) machines of the trigger farm, or switches, depending on the network topology adopted in the DAQ system design.
+
+The \SI{1}{Gbit/s} link going from the White Rabbit Grand Master to the DP-electronics time distribution network serves to provide the synchronization to the reference clock common for the entire FD. The Grand Master, possibly installed on the surface with the GPSDO (GPS-Disciplined Oscillator) clock unit that receives the GPS signals, distributes the timing information underground over tens of kilometer distance. It automatically compensates for the propagation delays to achieve sub-ns accuracy in the synchronization of the connected slave nodes. The clock information is distributed to the WR-MCH slave module in each uTCA crate via a set of White Rabbit switches. These switches and the interconnecting \SI{1}{Gbit/s} fibers form the timing sub-system of the DP electronics system and are included in the design of the latter.    
+
+The design of the TPC electronics assumes that the data are streamed continuously via the \SI{10}{Gbit/s} links to the DAQ system, where they are buffered until a trigger decision could be made. The triggers are to be issued by processing the buffered data in some suitable sliding time window on the trigger farm machines. The depth of the window may go up to \SI{10}{s} as needed for the definition of the Supernova triggered events. The triggers determine if the data contained in the buffers are to be written on disk. 
+
+The software interface between DAQ and the electronics systems includes the tools dealing with the data transmission and buffering: data formatting in UDP packets, compression/decompression, and exchange of the control packets.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Photon Detection System}
-\label{sec:fddp-tpc-elec-intfc-pmt}
+\subsection{Cryostat and Cryogenics}
+\label{sec:fddp-tpc-elec-intfc-cryo}
 
-%JD suggestions, include also CRP ?? or not???
-%\subsection{CRP}
-%\label{sec:fddp-tpc-elec-intfc-crp}
+The interface point between the cryostat and the DP electronics system is the cryostat penetrations where the SFT chimneys are to be installed. Each penetration should accommodate the chimney whose external diameter is \SI{245}{\mm}. Each chimney has a CF-273 flange welded to its outer structure (see Figure~\ref{fig:dpele-sft-chimney-crosspipe}). After the chimney is inserted, this flange is in contact with the corresponding flange structure on the cryostat to which it is eventually fastened. In order to avoid any leaks at this interface a CF-273 copper gasket should be used to ensure the vacuum tightness.  
+
+\begin{dunefigure}[Details of SFT chimney interface to the cryostat structure]{fig:dpele-sft-chimney-crosspipe}
+{Details of SFT chimney interface to the cryostat structure}
+%\includegraphics[width=0.7\textwidth]{dpele-sft-chimney-crosspipe}
+\end{dunefigure}
+
+Each chimney contains a heat exchanger coil cooled with a liquid argon. There are two \todo{give type and diameter} connections (inlet and outlet) which need to be branched to the respective system for LAr delivery and re-circulation. In addition, there is a connection for nitrogen gas line \todo{give type and diameter}. It is needed for filling the chimney with nitrogen after it is closed following the installation of the FE electronics. The nitrogen line is also required for flushing the chimney in the case of an access to the FE cards after the detector module is cooled for the operation. 
+
+\fixme{say something about clearance need for uTCA crates?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{?}
-%\label{sec:fddp-tpc-elec-intfc-?}
+\subsection{Slow Control System}
+\label{sec:fddp-tpc-elec-intfc-sc}
 
+The integration with the slow control of the low voltage power supply system for the FE cards is required to enable the remote management and monitoring (current consumption by ASICs, set voltage, etc.).
+In addition, the SFT chimneys contains several sensors that need to be monitored. These include a pressure transducer that measures the pressure inside the chimney and at least two temperature probes (PT1000) that monitor the gas temperature inside near the cold flange at the bottom and close to the warm flange at the top.  
+
+\fixme{other items?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Installation, Integration and Commissioning}
@@ -515,16 +544,4 @@ The detailed description of the WBS including the assignments of the responsible
 \subsection{High-level Cost and Schedule}
 \label{sec:fddp-tpc-elec-org-cs}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+The detailed cost model has been developed based on the scaling of the costs for the electronics system of ProtoDUNE-DP. It is documented in DUNE-doc-XXXX in addendum.  
