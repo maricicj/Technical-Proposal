@@ -84,7 +84,7 @@ Parameter & Value  \\ \toprowrule
 The scope of the TPC electronics system covers the procurement and productions, testing and validation, installation, and commissioning of all the components necessary to ensure the complete readout of the charge and light signals from a given DP detector module. The covered items are the following:
 \begin{itemize}
 \item{Cryogenic analog FE cards for charge readout}
-\item{Analog electronics for the light readout\fixme{more details/names?}}
+%\item{Analog electronics for the light readout\fixme{more details/names?}}
 \item{Digital AMC cards for charge/light readout}
 \item{The WR-MCH cards for AMC clock synchronization}
 \item{uTCA crates}
@@ -297,7 +297,7 @@ For normal operation, in continuous sampling mode, the time samples will be down
 \begin{dunetable}
 [Main characteristics of ADC AD9249.]
 {lr} {tab:dpele-adc}
-{Main characteristics of the ADC AD9249 using for the Light Read Out}
+{Main characteristics of the ADC AD9249 used for the Light Read Out}
 Item &   \\ \toprowrule
 Time resolution & \SI{25}{ns} \\ \colhline
 Time precision & $<$\SI{1}{ns} \\ \colhline %not sure... must be
@@ -313,29 +313,13 @@ Integral Non-Linearity & Typical $\pm$\num{0.9}  LSB\\
 
 \subsubsection{Analog Measurements of Charge and Time}%ASIC?
 
-The CATIROC is a 16-channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to 20 kHz/channel). Charge measurements can be made over the range of 160 fC to 70 pC(corresponding to approximately to a range of 1 - 400 photoelectrons with a PMT gain of $10^{6}$). Timing measurements per channel can be made to an accuracy of 200ps.
+The CATIROC is a 16-channel ASIC dedicated to measurement of charge, and precision timing of negative-going PMT signals \cite{Blin:2017}. It auto-triggers on the single photoelectron, and can sustain a high dark rate (up to \SI{20} {kHz/channel}). Charge measurements can be made over the range of \SI{160}{fC} to \SI{70}{pC} (corresponding to approximately to a range of \num{1} - \num{400} photoelectrons with a PMT gain of \num{10E6}). Timing measurements per channel can be made to an accuracy of \SI{200}{ps}.
 
-Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to 100ns) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at 160 MHz.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime of \SI{5}{mus} arises.
+Figure  \ref{dpele-lro-catiroc} shows the schematic of the ASIC. The slow channel, from which precision charge and timing measurements are made, is formed by two variable gain (8-bit) amplifiers followed by two variable slow shapers; one High Gain for small signals, and one Low Gain for larger signals, and two Track-and-Hold stages. The slow shaper has a tunable shaping time (up to \SI{100}{ns}) and a variable gain.  If the High Gain is saturated, corresponding to passing a a pre-determined threshold common to all 16 channels, the Lower Gain value is chosen. The chosen charge value is converted by an internal 10-bit Wilkinson ADC operating at \SI{160}{MHz}.  This slow channel operates in a ping-pong mode, with two capacitors to store the slow shaper signals, giving an effective buffer of 2 events. If both capacitors are full, a deadtime of \SI{5}{mus} arises.
 
-The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (10-bit) threshold commmon to the 16 channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a 26-bit counter at 40 MHz.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
+The fast channel is used to auto-trigger the ASIC and make the fine-timing measurement. It comprises a high gain preamplifier, fast shaper (shaping time \SI{5}{ns}) and discriminator which a (10-bit) threshold commmon to the \num{16} channels. The output of the discriminator is used for the two Time to Digital Convertors which form the fine-timing. A course timestamp is also obtained by a 26-bit counter at \SI{40}{MHz}.  Only channels that resulted in triggers are digitized, their information is transferred to the internal memory ready for read-out by the external FPGA.
 
 %Measurements performed in \cite{Blin2017} ..% SNR of 13 trigger efficiency etc...
-
-%cite: @ARTICLE{2017JInst..12C3041B,
-%   author = {{Blin}, S. and {Callier}, S. and {Conforti Di Lorenzo}, S. and 
-%	{Dulucq}, F. and {De La Taille}, C. and {Martin-Chassard}, G. and 
-%	{Seguin-Moreau}, N.},
-%    title = "{Performance of CATIROC: ASIC for smart readout of large photomultiplier arrays}",
-%  journal = {Journal of Instrumentation},
-%     year = 2017,
-%    month = mar,
-%   volume = 12,
-%    pages = {C03041},
-%      doi = {10.1088/1748-0221/12/03/C03041},
-%   adsurl = {http://adsabs.harvard.edu/abs/2017JInst..12C3041B},
-%  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-%}
-
 %total number of bits per channel, 50-bits from CatiROC?
 %COPY CAYETANO TABLE
 %SELMA'S SPE FROM JUNO?? or my spe??
@@ -344,7 +328,30 @@ The fast channel is used to auto-trigger the ASIC and make the fine-timing measu
 \includegraphics[width=0.7\textwidth]{dpele-lro-catiroc}
 \end{dunefigure}
 
-
+\begin{dunetable}
+[Main characteristics of CATIROC.]
+{lr} {tab:dpele-catiroc}
+{Main characteristics of CATIROC used for the Light Read Out}
+Item &   \\ \toprowrule
+Number of Channels & \num{16}\\ \colhline
+Signal Polarity & negative \\ \colhline
+Timing & Time stamp: 26 bit counter at \SI{40}{MHz} \\
+       & Fine time: resolution $<$\SI{200}{ps}\\ \colhline
+Charge Dynamic Range & \SI{160}{fc} to \SI{100}{pc}\\ \colhline
+Trigger & auto-trigger \\
+        & Noise= \SI{5}{fC} Minimum threshold = \SI{25}{fC} (5$\sigma$)\\ \colhline
+Digital & 10-bit Wilkinson ADC at 160 MHz \\ %TWO READOUT AT 80MHZ??
+        & Read-out frame of 50 bits \\ \colhline
+Outputs & \num{16} trigger outputs \\
+        & NOR16 \\
+        & \num{16} slow shaper outputs \\
+        & Charge measurement over \num{10} bits \\
+        & Time measurements over \num{10} bits \\ \colhline
+Main Internal &  Variable preamplifier gain \\
+Programmable  &  Variable shaping and gain \\
+Features & Common trigger threshold \\
+         & Common gain threshold \\ \colhline
+\end{dunetable}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
