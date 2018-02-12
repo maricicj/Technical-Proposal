@@ -10,11 +10,106 @@
 \subsection{Overview (Giles Barr)}
 \label{sec:fdsp-daq-ltr}
 
-Here we describe the overall readout and data acquistion
-strategy. This will include the high-level data flow diagram,
-(Figure~\ref{fig:daq-readout-buffering-baseline} may be sufficient)
-which is divided in functional boxes, each of which are described in
-turn in the sections below.
+%Here we describe the overall readout and data acquistion
+%strategy. This will include the high-level data flow diagram,
+%(Figure~\ref{fig:daq-readout-buffering-baseline} may be sufficient)
+%which is divided in functional boxes, each of which are described in
+%turn in the sections below.
+
+The DAQ Design has been driven by finding a cost effective solution
+that satisfies the requirements. Seveal design choices have
+nevertheless been made.  From a hardware perspecive, the DAQ design
+follows a standard HEP experiment design, with customised hardware at
+the upstream, feeding and funnelling (merging) and moving the data
+into comupters.  Once the data and triggering information are in
+computers, a considerable degree of flexibility is available and the
+processing proceeds with a pipelined sequence of software operations,
+involving both parallel processing on multi-core computers and
+switched networks. The flexibility allows the procurement of computers
+and networking to be done late in the delivery cycle of the DUNE
+detectors, to benefit from increased capability of commercial devices
+and falling prices.
+
+Since DUNE will operate over a number of decades, the DAQ has been
+designed with upgradability in mind.  With the fall in cost of serial
+links, a guiding principle is to include enough output bandwidth to
+allow all the data to be passed downstream of the custom hardware.
+This allows the possibility for a future very-fast farm of comuting
+elements to accomodate new ideas in how to collect the DUNE data.  The
+high output bandwidth also gives a risk mitigation path in case the
+noise levels in a part of the detector are higher than specified and
+higher than tolerable by the baseline trigger decision mechanism; it
+will allow aditional data processing to be added (at additional cost).
+
+The data collection will incorporate the data from single-phase and
+dual-phase TPCs and also single and dual-phase versions of the
+photon-detector readout system.  These are viewed as essentially four
+types of sub-detectors within the DAQ and will follow the same overall
+data collection scheme as shown in figure 1.  The readout is arranged
+in a hierarchical manner to allow localised trigger decisions to be
+made at the APA level, and then the cavern level before being combined
+over the full four caverns.  ch initial trigger decisions.  The
+control of the detector elements will allow a fault in one part to not
+halt data taking in another part, certainly at the per-cavern level,
+but maybe also at more local levels.  This will prevent a supernova
+burst following a failure in some part of a cavern from being missed.
+
+[The folowing text will need considerable revision to make sure it
+  corresponds with whatever ends up as figure 1, but the text here
+  gives an idea that the overview will be a very quick visit of
+  everything, and all the detail is in the later sections.  Terms in
+  {\bf boldface} are temporary madeup things and must be replaced by the
+  officially decided names].
+
+It is helpful, on first looking at the DUNE DAQ dataflow scheme, to
+consider how the main data is collected first and then to look at how
+the triggering and synchronisation functions are included; we take
+this approach in this overview.  The main data are initially merged
+within one APA and placed in a {\bf primary buffer} to allow
+triggering decisions to be made.  When a {\bf trigger decision} is
+made, all the data in a time window and in a designated region of
+interest (ROI) around the {\bf trigger} is extracted from the buffer
+and sent for event building, {\bf a second buffer area} and possible
+transfer to permanent storage at Fermilab.  This covers trigger
+decisions for beam, calibation, atmospheric neutrino, cosmic ray
+events, individual supernova neutrinos and also candidates for
+searches such as proton decays, or low energy events such as solar and
+diffuse supernova neutrinos.  Additionally, when a supernova burst is
+detected internally within DUNE, a further {\bf SSD buffer} will be
+used to store all the data for all APAs for a long period.  The {\bf
+  primary buffer} must be long enough for trigger decision latency
+(including the time for enough supernova events in a burst to arrive
+and appear over the background). Further details of the buffering
+scheme is described in section 7.2.2.
+
+(Triggering Overview) In parallel with the data buffering scheme
+described above, summaries of detected hits {\bf trigger primitives}
+are assembled at the APA level to detect clusters of hits and apply
+algorithms to distingush them from background (either radioactive
+decays or detector noise). This is described in detail in section
+7.2.3.  Whether this process is more suitable for FPGAs or computers
+is under study, as it depends on the interfaces, both can be
+accomodated in the architecture, and both have been costed (neither
+yet!).  To retain the APA-level modulariy, the trigger primitives are
+collected and processed in the same APA node that buffers the data.
+The trigger primitives are then sent to the cavern level and then the
+detector-level triggers to allow both multi-APA triggers to be formed
+and also allow the supernova burst detection decisions to be made to
+initate data transfer to SSDs.  This is described in detail in section
+7.2.5.  When a trigger decision is formed, instructions are sent to
+the {\bf primary buffers} to retrieve the full data, build them into
+events and store the results in the {\bf secondary buffers}.  The
+events for the main physics analyses will be retained for offline
+study at this point in the DAQ.  A software trigger algorithm could be
+run at this point to eliminate obvious noise-source events (such as
+pickup on a row of wires), especially if numerous.  A further feature,
+useful for certain supernova studies will be to let a sample of
+below-threshold events through to the secondary buffers where they are
+retained for a few hours.  If a SNEWS external warning of supernova is
+subsequently received, these events can be kept permanently if
+desired, to allow lower thresholds during a SNEWS period than normal.
+
+(Synchronisation Overview) Unknown until the interface with elecronics is known
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Local Readout \& Buffering (Giles Barr \& Giovanna Miotto \& Brett Viren)}
@@ -140,6 +235,93 @@ respond to this scenario include....\fixme{Ideas?}.
 \metainfo{Describe the dataflow {\it infrastructure}. This should cover transport of data and trigger information, infrastructure for generating local and global trigger commands (but not their algorithms, that's next), as well as what happens to the data once a trigger is generated (ie. event building).
 Figure~\ref{fig:daq-readout-buffering-baseline} may be referenced}
 
+The data volume that is flowing around the DUNE DAQ is considerable,
+over 10TB/s conntinuoiusly.  However, the control of it is simplified
+by making the modularity of the {\bf primary buffer} at the APA level.
+The majority of the data corresponds to the untriggered parts and
+never leaves the nodes that house the primary buffers.  The parts that
+do exit in one of three circumstances, (a) as selectd {\bf event} data
+(b) as trigger primitives, to be considered on the cavern-wide
+decision step or (c) as previously triggered supernova burst data
+being 'trickled out' from the SSD storage.  All thee of these
+transfers lives entirely in the software domain of a commodity
+computer farm and so a variety of techniques can be considered for
+each; in this description, we consider each of them as a data-pull
+protocol, similar to that in use at ProtoDUNE.
+
+artDAQ is a modern, general-purpose framework, that has been used in
+DUNE prototype tests and elsewhere [refs].  It is optimised further
+than other frameworks to expliot the paralelism that is possible with
+modern multi-core machines.  It is the principle architecture that
+will be used in DUNE. The authors of artDAQ have accomodated
+DUNE-specific feature-addition requests, an a number of libraries have
+been used by linking into the 'boardreader' parts of artDAQ (the parts
+that handle the incloming data from the data sources), and it is
+likely that future DUNE extensions will be by one of these two routes.
+
+(Section on FELIX data ingress, error handling, synchronisation,
+ring-buffer expiry).  As noted above, one of the complex data flow
+control tasks is managing the data asit enters the {\bf primary
+  buffers} on the {\bf per-APA nodes}.  Data throughput on these nodes
+is governed by the use of the PCIe and memory busses, and so the
+softwre will be written to mimumize data-copies on the input side of
+the {\bf primary buffer}.  During normal operation, there must be
+sufficient 'headroom' to allow an additional write of data to SSDs
+during the supernova burst.  The current model for dataflow control is
+tht each APA will operate autonomously, data being written directly
+from hardware into physical memory and not moved.  The softare will
+keep track of the free and in-use memory (one way is with a ring for
+each data source) and will maintain an index of the data.  One
+strategy that decentralises the error handling is for the writing to
+the {\bf primary buffer} to not cause error handling events, but for
+it to flag areas of the data for which problems exist only if/when it
+is to be read again.  Similarly to avoid memory alloction error
+handling, the incoming data can overwrite the older data and read
+requests for data that has been overwritten will report the error.  It
+is planned to prototype the data transfers for the TDR.
+
+(Section on (a) event building) Requsts for event building
+(i.e. reading data for succesful triggers from the {\bf primary
+  buffers} will be donw using mostly standard features that are now in
+artDAQ.  An event-builder node is allocated for each trigger to be
+read.  This event builder then requests portions of data from the {\bf
+  primary buffers} for the data from that event (this read must be
+initiated by the request, a difference with the current ProtoDUNE).
+If the data is missing (either due to errors when it was first
+received, or because the request arrived so late, that the data were
+overwritten), the request proceeds, but with flags set in the event
+header which are displayed on the operators console.
+
+(Section on (b) trigger farming) The {\bf per-APA-node} will receive,
+or generate the trigger primitives that summarise the hits from each
+APA, organised in blocks of time.  In some circumstances, this is
+sufficient to declare a trigger, in others, the hit pattern must be
+combined between APAs to make the trigger decision.  The list of
+APA-level decisions and the trigger primitives are assembled into a
+block for each time block.  Our default scheme for the dataflow is to
+use a similar method to PotoDUNE, however several others are under
+study.  In the ProtoDUNE method, a trigger farm node is assigned to
+each time block and requests the trigger data block for it.  When it
+receives the data from all the APAs, it builds an event (using artDAQ
+funcions), and then processes it, to assign the trigger decisions.
+One alternative (to avoid the possibility that too many small blocks
+of data must arrive in one place at a time) is to split the cavern
+into regions, and have an intermediate layer of data collecton.
+Another solution is to use data-push, since, it is likely that a
+single node with a lot of cores can deal with all the trigger
+processing.
+
+(Section on (c) SNB trickling) Because of the ling-term storage
+capabilities of the SSD drives, there is no hurry to colect the data
+from them for a supernova.  This task can therefore be done in the
+background (indeed, it should be halted during a subsequent SNB
+trigger, to avoid increasing the data transfers in the per-APA node).
+It is anticipated that a spernova collecor node will use data-pull
+requests to slowly collect the data from each node and merge it in
+some way for offline analysis.  Probably there will be one data file
+per APA node which will be collected together in a directory;
+presumably the offline will not want a single 10TB long file.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data Selection Algorithms (Josh Klein \& Brett Viren)}
@@ -235,6 +417,63 @@ CUC, i.e. the RCE crates and the data selection system. This arrangement is show
   \fixme{Add a diagram of the SPTS electronics}
   % \includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
 \end{dunefigure}
+
+\subsubsection{Beam timing}
+
+The neutrino beam is produced at the Fermilab accelerator complex in
+spills of 10$\mu$s duration.  A spill location system (SLS) at the far
+detector site will locate the time periods in the data when beam could
+be present, based on network packets received from Fermilab containing
+preductions of the GPS-time of the spills. data, as it traverses the
+DAQ system, where beam intractions may be present.  Experience from
+MINOS and NOvA shows that this can provide beam triggering with high
+reliability, although the system outlined here contains an extra layer
+of reduncancy in this process.  Several stages of narrowing down the
+window in which the beam arrives will be done, aiming for an accuracy
+of better than 10\% of a drift time, or 0.5\/ms at the time the data
+are selected from the DAQ buffers.  Ultimately, an offline database
+will match the actual time of the spill with the data, thus removing
+any reliance on real-time network transfer for this crucial stage of
+the oscillation measurements, the network transfer of spill-timing
+information is simply to ensure a correctly located and sufficiently
+wide window of data is considered as beam data. This system is not
+required, and is not designed to provide signals accurate enough to
+measure neutrino time-of-flight.
+
+The precision to which the spill time can be predicted at Fermilab
+improves as the acceleration process of the protons producing the
+spill in question advances.  The spills currently occur at intervals
+of 1.3\/s; the system will be designed to work with any interval, and
+to be adaptable in case the sequence described here changes.  For
+redundancy, three packets will be sent to the far detector for each
+spill.  The first is approximately 1.6\/s before the spill-time, which
+is at the point where a 15\/Hz booster cycle is selected; from this
+point on, there will be a fixed number of booster cycles until the
+neutrinos and the time is subject to a few ms of jitter.  The second
+is about 0.7\/s before the spill, at the point where the main injector
+acceleration is no longer coupled to the booster timing; this is
+governed by a crystal oscillator and so has a few $\mu$s of jitter.
+The third will be at the `\$74' which is just before the kicker fires
+to direct the protons at the LBNF target; this doesn't improve the
+timing at the far detector much, but serves as a cross check for
+missing packets.  This system is enhanced compared to that of
+MINOS/NOvA, which only use the third of the above timing signals.  The
+reason for the larger uncertainty in the time interval from 1.6\/s to
+0.7\/s is that the booster cycle time is synchronised to the
+electricity supply company's 60\/Hz which has a variation of about
+1\%.
+
+Arrival-time monitoring information from a year of MINOS data-taking
+was analysed, and it was found that 97\% of packets arrived within
+100\/ms of being sent and 99.88\% within 300\/ms.
+
+The spill location system will therefore have estimators of the
+GPS-times of future spills, and recent spills contained in the ring
+buffers. These estimators will improve in precision as more packets
+arrive.  The DAQ will use data in a wider window than usual, if, at
+the time the trigger decision has to be made, the precision is less
+accurate due to missing or late packets.  From the MINOS monitoting
+analysis, this will be very rare.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Computing \& Network Infrastructure (Kurt Biery \& Babak Abi)}
