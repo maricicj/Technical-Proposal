@@ -225,7 +225,18 @@ Each AMC plugged into the uTCA is connected to the crate MCH board through the b
 \includegraphics[width=0.6\textwidth]{dpele-311-utca-image}
 \end{dunefigure}
 
-In the current design, as used for ProtoDUNE-DP, the MCH operates with a \SI{10}{Gbit/s} uplink. Given that a uTCA crate hosts \num{10} AMCs for charge readout, the required bandwidth to stream the data to DAQ is about \SI{1.8}{Gbit/s}. This assumes that the data exiting AMCs are losslessly compressed with the compression factor of \num{10}. The bandwidth required per crate link for streaming the light readout data is \SI{4.7}{Gbit/s}. The \SI{10}{Gbit/s} MCH is therefore sufficient to support these data rates. However, the technology is moving towards supporting the \num{40}{Gbit/s} rates. In addition, the channel density per AMC could also be increased for the reason of cost optimizations. For these reasons a move to a \num{40}{Gbit/s} MCH could be foreseen in the design. This would also imply that the optical links connecting the DAQ system to uTCA MCH should be operable at \num{40}{Gbit/s}.  
+In the current design, as used for ProtoDUNE-DP, the MCH operates with a \SI{10}{Gbit/s} uplink. Given that a uTCA crate hosts \num{10} AMCs for charge readout, the required bandwidth to stream the data to DAQ is about \SI{1.8}{Gbit/s}. This assumes that the data exiting AMCs are losslessly compressed with the compression factor of \num{10}. The bandwidth required per crate link for streaming the light readout data is \SI{4.7}{Gbit/s}. The \SI{10}{Gbit/s} MCH is therefore sufficient to support these data rates. However, the technology is moving towards supporting the \SI{40}{Gbit/s} rates. In addition, the channel density per AMC could also be increased for the reason of cost optimizations. For these reasons a move to a \SI{40}{Gbit/s} MCH could be foreseen in the design. This would also imply that the optical links connecting the DAQ system to uTCA MCH should be operable at \SI{40}{Gbit/s}. A summary of the required and supported bandwidths per uTCA crate for continous data streaming is provided in Table~\ref{tab:dp-utcabandwidth}
+
+\begin{dunetable}
+[Bandwidth requirements per uTCA crate]
+{lr}{tab:dp-utcabandwidth}
+{Bandwidth requirements per uTCA crate for continuous data streaming. A compression factor of 10 for the charger readout data is assumed }   
+Parameter & Value  \\ \toprowrule
+  Charge readout data rate  &  \SI{1.8}{Gbit/s}            \\ \colhline
+  Light readout data rate  &  \SI{4.7}{Gbit/s}            \\ \colhline
+  Current MCH bandwidth & \SI{10}{Gbit/s} \\ \colhline
+  Upgraded MCH bandwidth & \SI{40}{Gbit/s} \\ \colhline
+\end{dunetable}
 
 Figure~\ref{fig:dpele-311-utca-image} shows pictures of one of the instrumented uTCA crates used for the charge readout of LArProto at CERN. In this detector each SFT chimney reads \num{320} channels thus requiring only five AMCs per the uTCA crate. The two optical fiber links, one (\SI{10}{Gbit/s}) for data and the other (\SI{1}{Gbit/s}) for clock/trigger timing distribution, are visible in the images.       
 
