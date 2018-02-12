@@ -6,33 +6,30 @@
 %\fixme{Have something general here about the purpose of the entire
 %  system. At the end the idea is to build a 3D temperature map.}
 
-As mentioned above a detailed 3D temperature map is important to monitor the correct functioning of the cryogenic system and the LAr uniformity.
-Given the complexity and size of purity monitors, those can only be installed on the cryostat sides. Temperature sensors .
+As mentioned above, a detailed 3D temperature map is important to monitor the correct functioning of the cryogenic system and the LAr uniformity. 
+Given the complexity and size of purity monitors, those can only be installed on the cryostat sides to provide a local measurement of
+the LAr purity. While direct measurement of the LAr purity is very complicated, 3D temparature measurements can be used to infer ....
+Specially important is the vertical coordinate since this will be closely related to the LAr uniformity. 
 
-3D temparature measurements can be used to infer 
+A system to measure the vertical temperature gradient (the so-called T-gradient monitor),
+with $<$0.005 K resolution sensors located every 10-50 cm, and covering the entire height of the cryostat. This will be
+complemented by other temperature sensors of the same precision distributed at the top and bottom of the cryostat,
+which are the most delicate regions.  
+
 
 The system consists in three different types of devices: vertical arrays of sensors in a well defined mechanical structure and individual sensors at top and bottom forming a
-coarser 2D grid.
+coarser 2D grid. Since temperature variations are expected to be very small ($~0.02 K$),
+to properly measure the 3D temperature map, sensors must be cross-calibrated to better than 0.005 K. 
 
 
-
-With this in mind,
-the IFIC group is designing a system to measure the vertical temperature gradient (the so-called T-gradient monitor, see Fig.~\ref{fig:tgradientmonitor}),
-with $<$0.005 K resolution sensors located every 10 cm, and covering the entire height of the cryostat. This will be
-complemented by other temperature sensors of the same precision distributed at the top and bottom of the cryostat,
-which are the most delicate regions.
-To properly measure the 3D temperature map, sensors must be cross-calibrated to better than 0.005 K. 
-An ambitious calibration campaign has started at IFIC, see Fig.~\ref{fig:tcalibration}, which will be later complemented 
-by an in-situ calibration at CERN, using IFIC’s calibration system and the final readout provided by the CERN Neutrino Platform. 
-
-
+The baseline sensor model is the Lakeshore PT102, which has demonstrated excelent performance in ProtoDUNE-SP. Those sensors have  ...
+For the readout cables: four wires cables, AWG28, teflon insulated, shielded, outer teflon jacket. 3.7 mm diameter, and 28 g/m.  
 
 % % % %
 \subsubsection{Static T-Gradient monitors}
 
 Several vertical arrays of high precision temperature sensors cross-calibrated in the laboratory will be installed behind the APAs.
 Since the electric potential in this area is zero no electric field shielding is required, simplifying enormously the mechanical design.
-The baseline sensor model is the Lakeshore PT102, which has demonstrated excelent performance in ProtoDUNE-SP. Those sensors have  ...
 
 Sensors are cross-calibrated in the lab using a well controlled environment and a high precission readout system (see Sec.~\ref{sec:fdsp-slow-cryo-therm-readout}).
 Four sensors are placed as close as possible in a small cylyndrical aluminum capsule. The capsule is introduced in a polystire box with 15 cm thick walls
@@ -62,23 +59,14 @@ Teflon pieces will be used to route cables from the DSS/cryogenic ports.
 \label{sec:fdsp-slow-cryo-therm-readout}
 
 A high precision and very stable system is required to achieved the design precission of $< 5 mk$.
-
-
-The proposed readout system for the temperature gradient monitors is based on a variant of an existing mass PT100 temperature readout system developed at CERN for one of the LHC experiments. 
-The goal of this system is to achieve the same precision as a reference system (Lakeshore 218) that the collaboration had evaluated as being appropriate,
+The proposed readout system for the temperature sensors is based on a variant of an existing mass PT100 temperature readout system developed at CERN for one of the LHC experiments.
+The goal of this system is to improve the precision as a reference system (Lakeshore 218) that the collaboration had evaluated as being appropriate,
 but with reduced cost and space utilization.
 The system consists of three parts:
 \begin{itemize}
-\item An accurate current source for PT100 excitation, implemented by a compact electronic circuit using high a precision voltage reference from Texas Instruments. 
+\item An accurate current source for the excitation of the temperature sensors, implemented by a compact electronic circuit using high a precision voltage reference from Texas Instruments. 
 \item A multiplexing circuit based on an ADG707 Analog Device multiplexer electronic device;
 \item A hig resolution and accuracy voltage signal readout module based on National Instruments NI9238, which has 24 bits resolution over 1 Volt range.
   This module is inserted in a National Instruments Ethernet DAQ backplane, which will distribute the temperature values to the main Slow Control Software
   through the standard protocol, OPC UA. The Ethernet DAQ will include also the multiplexing logic.
 \end{itemize}
-  The first setup, consisting of the current circuit and the National Instruments NI9238 module with a capacity of 4 temperature sensor readout,
-  has been produced at CERN and sent to the University of Hawaii, in order to compare the performance of the system in reference to a Lakeshore 218 device.
-  The multiplexing circuit is not included in this system.        
-  A second identical setup is being built at CERN with the purpose of calibrating the PT100s at IFIC (Valencia). In parallel, CERN has been developing the multiplexer stage,
-  which will be installed in the NP04 cold box test stand and connected to the slow control system.
-  The evaluation of the system is still on-going: in the unlikely event that the results are not satisfactory in terms of precision, stability and reproducibility,
-  an alternative readout based on Lakeshore 218 devices will be utilized. Otherwise, CERN will produce the readout system for both temperature gradient monitors of NP04.
