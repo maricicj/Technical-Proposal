@@ -35,16 +35,21 @@ links both out of the mine and back to Fermilab can accommodate it.
 \label{sec:fdsp-slow-cryo-slow-compute}
 
 Up to two racks of space and appropriate power and cooling are available
-in the CUC's DAQ server room for CISC usage.  Less space than that is
-currently envisioned: Two servers (a primary server and a replicated
-backup) suitable for the needed relational database discussed in
-Sec.~\ref{sec:fdsp-slow-cryo-sw} will be there, with an additional two
-servers to perform front-end monitoring interface services: for example,
-assembling dynamic CISC monitoring web pages from the adjacent
+in the CUC's DAQ server room for CISC usage.  Somewhat less space than
+that is currently envisioned: Two servers (a primary server and a
+replicated backup) suitable for the needed relational database discussed
+in Sec.~\ref{sec:fdsp-slow-cryo-sw} will be there, with an additional
+two servers to perform front-end monitoring interface services: for
+example, assembling dynamic CISC monitoring web pages from the adjacent
 databases.  Any special purpose software, such as iFix or EPICS, would
-also run here: two more servers (for a total of six) will accomodate
+also run here: two more servers (for a total of six) will accommodate
 these programs.\fixme{I am completely making up how many special purpose
   iFix machines there should be: need input from the cryo people}
+Replicating this setup on a per-module basis would allow for easier
+commissioning and independent operation, accommodate different module
+design (and the resulting differences in database tables), and ensure
+sufficient capacity.  Including fours sets of networking hardware, this
+would fit tightly into one rack or very comfortably into two.
 
 % % % % Alec and Sowjanya
 \subsubsection{Slow Controls Signal Processing Hardware}
