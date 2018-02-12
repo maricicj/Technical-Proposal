@@ -335,6 +335,24 @@ would if a supernova burst is detected at the Module Level.
 
 %Describe the generation of timing/synchronisation signals and and distribution to the detectors.
 
+All components of the DUNE Single Phase detectors are synchronized to
+a common clock. In order make full use of the information from the
+photon detection system the common clock must be aligned within a
+single detector with an accuracy of O(1ns). In order to form a common
+trigger for super novae between detector modules the timing between
+detectors must be aligned with an accuracy of O(1ms). However, a
+tighter constraint is the need to calibrate the common clock to
+universal time (derived from GPS) in order to adjust the data
+selection algorithm inside an accelerator spill, which requires an
+absolute accuracy of O(1us).
+
+Single and Dual phase detector modules use a different timing system,
+driven by the different technical requirements and development history
+of the two systems. A single phase detector module has many more
+timing end-points than a dual phase module and many of the end-points
+are simpler than the end-points in the dual phase, for example a WIB
+vs. uTCA crate. Both systems have been sucessfully prototyped.
+
 The DUNE Single Phase detectors use a development of the protoDUNE
 timing system. Synchronization messages are transmitted over a serial
 data stream with the clock embedded in the data. The format is
@@ -357,6 +375,12 @@ signal. The SPTS relates its time counter onto GPS time by
 timestamping the 1PPS signal onto the SPTS time counter and reading
 the time in software from the NTP server.
 
+The latency from the GPS antenna on the surface to the GPS receiver in
+the CUC will be measured by optical time domain reflectometry at
+installation. Given the modest absolute time accuracy required
+(sufficient to select data within an accelerator spill) dynamic
+monitoring of this delay is not required.
+
 The White Rabbit synchronization signals from the Dual Phase are
 time-stamped onto the SPTS clock domain and the SPTS synchronization
 signals are time stamped onto the Dual Phase clock domain. This allows
@@ -368,7 +392,7 @@ White Rabbit time domain.
 In order to provide redundancy, and also the ability to easily detect
 issues with the timing path, two independent GPS systems are used. One
 with an antenna at the head of the Yates shaft, the other with an
-antenna at teh head of the Ross shaft. The two independent timing
+antenna at the head of the Ross shaft. The two independent timing
 paths are brought together in the same rack in the CUC. Using 1:2
 fibre splitters one SPTS unit can be left as a hot-spare while the
 other is active. This also allows testing of new firmware and software
@@ -391,13 +415,14 @@ standard star-point backplane to the fanout AMCs which each drive the
 signal onto up to 13 SFP cages. The SFP cages are either occupied by
 1000Base-BX SFPs, each of which connects to a fibre running to an APA,
 or to a Direct Attach cable which connects to systems elsewhere in the
-CUC, i.e. the RCE crates and the data selection system. This arrangement is shown in figure \ref{fig:daq-readout-sp-timing}
+CUC, i.e. the RCE crates and the data selection system. This
+arrangement is shown in figure \ref{fig:daq-readout-sp-timing}
 
 
 \begin{dunefigure}[Arrangement of components in Single Phase Timing System]{fig:daq-readout-sp-timing}
   {Illustration of the components in the Single Phase Timing System.}
-  \fixme{Add a diagram of the SPTS electronics}
-  % \includegraphics[width=0.8\textwidth]{DUNE_Timing_overall.pdf}
+  %\fixme{Add a diagram of the SPTS electronics}
+  \includegraphics[width=0.8\textwidth]{DUNE_SP_Timing.pdf}
 \end{dunefigure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
