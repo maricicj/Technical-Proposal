@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{PD Design}
 \label{sec:fdsp-pd-design}
-\fixme{(Length: TDR=50 pages, TP=20 pages)}
-\fixme{\color{blue} Content: Conveners}
+\metainfo{(Length: TDR=50 pages, TP=20 pages)}
+\metainfo{\color{blue} Content: Conveners}
 
 \fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
 
@@ -10,7 +10,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Photon Collector}
 \label{sec:fdsp-pd-pc}
-\fixme{\color{blue} Content: Cavanna/Whittington/Machado}
+\metainfo{\color{blue} Content: Cavanna/Whittington/Machado}
 
 At the time of the Technical Proposal there are three photon collector options  under consideration, 
 in the following we summarize the design and development status for each. 
@@ -18,11 +18,11 @@ in the following we summarize the design and development status for each.
 
 \subsubsection{Dip-Coated Light Guides (4 pages)}
 \label{ssec:fdsp-pd-pc-bar1}
-\fixme{\color{blue} Content: Toups (tbc)}
+\metainfo{\color{blue} Content: Toups}
 
 \subsubsection{Double-Shift Light Guides (4 pages)}
 \label{ssec:fdsp-pd-pc-bar2}
-\fixme{\color{blue} Content: Whittington}
+\metainfo{\color{blue} Content: Whittington}
 The double-shift light guide photon collector design aims to maximize the active VUV-sensitive 
 area of the photon detection system module while minimizing the necessary photocathode (SiPM) 
 coverage. 
@@ -45,12 +45,17 @@ re-emission of these green photons leads to a significant fraction becoming trap
 total internal reflection within the light guide. Trapped photons are transported to 
 the end of the light guide where they are detected by an array of SiPMs.
 
-\begin{figure}[ht]
-  \begin{center}
+%\begin{figure}[ht]
+%  \begin{center}
+%  \includegraphics[width=0.9\columnwidth]{pds-DoubleShiftLG-Cartoon.pdf}
+%  \caption{Cartoon schematic of the operation of a double-shift light guide.}\label{fig:DoubleShiftLG-Cartoon}
+ % \end{center}
+%\end{figure}
+
+\begin{dunefigure}[Cartoon schematic of the operation of a double-shift light guide.]{fig:DoubleShiftLG-Cartoon}
+{Cartoon schematic of the operation of a double-shift light guide.}
   \includegraphics[width=0.9\columnwidth]{pds-DoubleShiftLG-Cartoon.pdf}
-  \caption{Cartoon schematic of the operation of a double-shift light guide.}\label{fig:DoubleShiftLG-Cartoon}
-  \end{center}
-\end{figure}
+\end{dunefigure}
 
 \paragraph*{Wavelength-Shifting Plates}
 
@@ -129,14 +134,30 @@ detection system performance.
 
 \subsubsection{ARAPUCA (4 pages)}
 \label{ssec:fdsp-pd-pc-arapuca}
-\fixme{\color{blue} Content: Cavanna (?)}
+\metainfo{\color{blue} Content: Cavanna (?)}
 
 \subsubsection{Hybrid or New Options (2 pages)}
 \label{ssec:fdsp-pd-pc-new}
 
 \subsection{New Techniques to Supplement or Enhance Light Yield}
 \label{sec:fdsp-pd-enh}
-\fixme{\color{blue} Content: Cavanna/Whittington/Machado}
+\metainfo{\color{blue} Content: Cavanna/Whittington/Machado}
+
+\subsubsection{Light Concentrators}
+\label{sec:fdsp-pd-assy-lc}
+\metainfo{\color{blue} Content:  (1 page) - Cavanna}
+	
+In the current baseline layout, the photosensitive area of the PD system is limited to about 12.5\% of the area of the anode plane - delimiting one side of the LArTPC volume. 
+Only a small fraction of the VUV direct light emitted in ionization events is thus intercepted by the photosensitive area, and this fraction also quickly reduces at increasing distance of the event from the anode plane. \\
+Methods to increase the amount of light collected by the PDS are being considered, for example by covering the opposite cathode plane with wls-coated reflector foils so that a good fraction of the VUV light is shifted into the Visible, reflected back toward the Anode plane and eventually intercepted by the PDS, if sensitive to this wavelength.
+
+Further increase in light collection, both for the VUV and the reflected Vis component, can be achieved by implementing large area reflective surfaces at the anode plane (e.g. in the large open areas between PD bars inside the APA frames) acting as light concentrators toward the smaller photosensitive surfaces.  
+This conceptual solution is suggested from the widely diffused implementation of Winston Cones for enhancing light collection in large volume liquid detectors. 
+The PD bar geometry of the photosensitive area inside the thin APA frames and the related mechanical constraints impose rather severe limitations on the design - cone depth and entrance$/$exit apertures ratio - of the light concentrating surfaces. The installation of the reflective surfaces inside the APA frame would necessarily be made before wire winding. 
+Ongoing studies are expected to demonstrate the feasibility of the solution and move the conceptual scheme into a technical design. MC simulations will determine the efficiency of the light concentrator. 
+
+
+
 
 \subsubsection{Hybrid and New Options}
 
@@ -146,14 +167,11 @@ In a sense X-ARAPUCA is a hybrid solution between the ARAPUCA and the wavelength
 where photons trapped in the ARAPUCA box are shifted and transported to the readout via total internal reflection in a light guide placed inside the box.
 This solution minimizes the number of reflections on the internal surfaces of the box and thus the probability of photon loss. Simulations suggest that
  this modification will lead to a rather significant increase of the collection efficiency.
- \begin{figure}[htbp]
-\begin{center}
-    \includegraphics[height=.5\textheight]{pds-X-Arapuca-exploded-view.pdf}
- \vspace{-2.5cm}
-\caption{X-ARAPUCA design (exploded view).}
-\label{fig:exploded}
-\end{center}
-\end{figure}
+ \begin{dunefigure}[X-ARAPUCA design (exploded view).]{fig:exploded}
+{X-ARAPUCA design (exploded view).}
+ % \vspace{-2.5cm}
+   \includegraphics[height=.5\textheight]{pds-X-Arapuca-exploded-view.pdf}
+\end{dunefigure}
 
  In a standard ARAPUCA the photon trapping effect is obtained by means of a dichroic filter and a two-steps wavelength shifting process, the first from VUV to UV outside the acceptance window of the box and the second inside from UV to blue, across the filter cutoff. Double shifted photons are eventually collected by an array of photosensors (SiPM) distributed on the backplane of the box, opposite to the the acceptance window. In the X-ARAPUCA design, Fig.\ref{fig:exploded}, the inner shifter coating/lining over the reflective walls of the box is replaced by a thin wavelength-shifting light guide slab inside the box, of the same dimensions of the acceptance filter window and parallel to it. The SiPM arrays are installed vertically on the sides of the box, in optical contact to the light guide thin ends. 
  In this way a fraction of the photons will be converted inside the slab and guided to the read-out, other photons,  e.g. those at small angle of incidence below the critical angle of the light guide slab, after conversion at the slab surface will be remain trapped in the box and eventually collected as for the standard ARAPUCA.
@@ -183,9 +201,9 @@ Some examples include:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Photon Sensors}
 \label{sec:fdsp-pd-ps}
-\fixme{\color{blue} Content: (2 pages) - Wilson/Zutshi}
+\metainfo{\color{blue} Content: (2 pages) - Zutshi}
 The SP DUNE Photon Detector System will use Silicon Photomultipliers, mated to
-the bar or ARRAPUCA photon collector options, to detect
+the bar or ARAPUCA photon collector options, to detect
 scintillation light generated in the LAr. Robust photon detection efficiency, low operating
 voltages, small size and ruggedness make their usage entirely plausible in the single
 phase design where the photon detectors are to be accommodated inside the APA 
@@ -200,7 +218,7 @@ signals inside the LAr volume.
 The optimal SiPM may depend on the photon collector option. Since all photon collector
 options being currently considered involve shifting the 128 nm LAr scintillation to 
 varying degrees, the final fine-tuned choice may have to be made after the collector
-downselect. It should however be kept in mind that the size of these effects, while not 
+down-select. It should however be kept in mind that the size of these effects, while not 
 anything to sniff at, will not exceed 15-20 $\%$.
 
 The Silicon Photomultiplier packaging should allow for tileable arrays to be constructed to
@@ -225,9 +243,9 @@ catalog devices from most vendors do not satisfy as they are only certified for 
 down to -40C. Thus it is of paramount importance for the DUNE PD Consortium to work 
 with vendors in designing, fabricating and certifying SiPM packaging that is robust and
 reliable from the point-of-view of long-term operation in a cryogenic environment. Already 
-there is interest from atleast two vendors (Hamamatsu and FBK) to engage with the
+there is interest from at least two vendors (Hamamatsu and FBK) to engage with the
 Consortium in this fashion with the goal of having the vendor warrantying the product
-for our application. Contact with other vendors and experiments (e.g. Darkside) is
+for our application. Contact with other vendors and experiments (e.g. DarkSide) is
 being pursued.   
 
 In parallel, comparative performance evaluation of promising SiPM candidates from
@@ -267,18 +285,15 @@ delineated in detail.
 %elements operating in parallel is not functioning.
 
 
-\fixme{rjw: Include comment whether there are differences between the photon collector options}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronics}
 \label{sec:fdsp-pd-pde}
-\fixme{\color{blue} Content: (3 pages) - Moreno/Franchi/Djuric}
+\metainfo{\color{blue} Content: (3 pages) - Moreno/Franchi/Djuric}
 
 \fixme{rjw: Include comment whether there are differences between the photon collector options}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Quality Assurance}
 \label{sec:fdsp-pd-qa}
-\fixme{\color{blue} Content: (1 page) - Warner}
+\metainfo{\color{blue} Content: (1 page) - Warner}
 
