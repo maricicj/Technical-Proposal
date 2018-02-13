@@ -18,7 +18,7 @@ as well as technologies used to build, distribute, and maintain and archive the 
 
 Commonality is sought among the several detector simulation and reconstruction efforts in order to maximize the
 value of the several detectors planned for DUNE.  Liquid-argon time projection chambers (LArTPCs) are used in the 35-ton
-prototype, the 3x1x1 dual-phaase protype, the single-phase and dual-phase ProtoDUNE detectors, 
+prototype, the 3x1x1 dual-phase prototype, the single-phase and dual-phase ProtoDUNE detectors, 
 one component of the near detector (a pixel-based
 LArTPC), and the single-phase and dual-phase far detector (FD) modules.  Several other LArTPC's have operated or will
 in the near future:  ICARUS, ArgoNeuT, LArIAT, MicroBooNE, SBND, and MiniCaptain, as well as some smaller prototypes,
@@ -36,7 +36,7 @@ sensitivity projections.  It is also used to predict systematic uncertainties.  
 are estimated using the PPFX~\cite{ppfx} package, and focusing uncertainties are estimated by adjusting 
 beamline component locations, horn current fields, and beam size, position, and angle offsets.  Additional
 uncertainties, such as the thickness of the cooling water layer are included.  These predictions are provided
-in TTree objects for simulated neutrinos and their projenitors for the flux predictions, as well as aggregate
+in TTree objects for simulated neutrinos and their progenitors for the flux predictions, as well as aggregate
 prediction histograms and covariance matrices which provide a convenient interface for those not requiring the
 full information in the TTrees.  Separate flux predictions and uncertainties are provided for the near and far
 sites, due to geometrical effects.
@@ -63,7 +63,7 @@ LArSoft is a software toolkit based on the {\it art} event-processing framework.
 shared by many collaborations that use LARTPC detectors.  It speeds the development of simulation and reconstruction
 software through this sharing, and also reduces the maintenance cost as software that is tested on one
 experiment can be re-used on another, reducing the need for debugging and tuning, though some detector-specific
-tuning remains in many cases.  LArSoft also provides defintions of commonly used data products, such as raw digits,
+tuning remains in many cases.  LArSoft also provides definitions of commonly used data products, such as raw digits,
 deconvoluted waveforms, hits, clusters, tracks, showers, vertices, and identified particles.
 
 LArSoft is divided into several repositories, each of which contains the source code to build multiple shared
@@ -116,8 +116,8 @@ digits, hits, clusters, tracks and particles, and associations between them.  It
 for purposes of reconstruction algorithm development and tuning, though production of large data sets may
 drop the input data in the output files in order to reduce the storage requirements.  A ntuple format has bee
 defined, called AnaTree, which provides convenient access to pertinent reconstructed information without
-having to read the much larger {\art}-formatted files.  The {\tt gallery} package~\cite{gallery} also provides
-a simpler interface to reading {\art}-formatted files from ROOT or Python scripts, or user-compiled standalone
+having to read the much larger {\it art}-formatted files.  The {\tt gallery} package~\cite{gallery} also provides
+a simpler interface to reading {\it art}-formatted files from ROOT or Python scripts, or user-compiled standalone
 programs.
 
 \subsection{LArSoft-Like Software Packages}
@@ -158,7 +158,7 @@ specify the authors of the code.  The repositories are publicly visible without 
 modify software in a repository, however, permission must be granted by the DUNE software management team
 to each developer.
 
-In addition to {\tt dunetpc} which contains LArSoft-releatd code, there are {\tt duneutil} for utility scripts
+In addition to {\tt dunetpc} which contains LArSoft-related code, there are {\tt duneutil} for utility scripts
 and XML files used in production, and dune-raw-data (and lbne-raw-data) which contain DAQ interface software.
 
 \subsection{Build Environment}
@@ -179,8 +179,8 @@ needed to factorize code that has grown in size provides pressure in the other d
 
 \subsection{Software Environment Setup}
 
-Code that uses UPS to set up depends on the environment variable LD_LIBRARY_PATH (on MacOS, the corresponding
-variable is called DYLD_LIBRARY_PATH), which is a search path to find shared-object libraries.  This
+Code that uses UPS to set up depends on the environment variable LD\_LIBRARY\_PATH (on MacOS, the corresponding
+variable is called DYLD\_LIBRARY\_PATH), which is a search path to find shared-object libraries.  This
 variable is used by the image activator to load the desired pre-built code.  In the common case that a user
 would like his or her own version of a shared library, the local version is in a directory earlier in the
 search path than the publicly installed version, allowing convenient building and testing of small components
@@ -189,7 +189,7 @@ is built into a single UPS product), it also sets up corresponding dependent pro
 GEANT4, GENIE, and ROOT are most often set up in this manner.  Users logging in without setting up the DUNE
 environment have a ``clean'' system with just operating-system and user-defined variables, which can be very
 valuable when debugging a complicated situation that depends on a user's setup.
-A UPS product's setup table file also specifies additions to the search paths PATH, FW_SEARCH_PATH, and FHICL_FILE_PATH,
+A UPS product's setup table file also specifies additions to the search paths PATH, FW\_SEARCH\_PATH, and FHICL\_FILE\_PATH,
 which are used to search for command-line executables, framework data files, and job configuration files.  Any
 other variables required by the software are also set up at this stage.
 
@@ -197,6 +197,18 @@ The UPS model assumes that all versions of software that are needed by any user 
 in directories that can be searched for the appropriate version.  Centrally-managed systems with large
 shared disks for storing software had been in use but more modern distributed tools scale better for DUNE's
 requirements.
+
+The dependence of code on (DY)LD\_LIBRARY\_PATH causes an issue with MacOS.  The System Integrity Protection (SIP)
+feature introduced with MacOS version 10.11 prevents its use by subprocesses when it is defined in a process.
+The reasoning is that a malicious library can be placed earlier in a search path than a desired one and
+cause a security breach.  While SIP can be disabled in MacOS versions 10.11 through 10.13, the LArSoft and
+{\it art} development teams are not confident that this will persist indefinitely.  Furthermore, if Linux
+distributions follow suit, then the use of library paths may become obsolete.
+
+A future development in the bulid and setup systems is to use SpackDEV~\cite{SpackDEV}, which builds code in
+a way that preserves the locations of the dependent libraries; these locations are stored in the calling
+libraries' .so files at link time so that the operating system can insist that only the library that was used
+at link time is the one used at run time.
 
 \subsection{Code Distribution}
 
@@ -231,7 +243,7 @@ are made.  Each week, there is a release, and additional ones are made, as neede
 Because UPS sets up LArSoft when {\tt dunetpc} is set up, and only the matching version can be set up,
 each week there is a release of {\tt dunetpc}, with a version number matching the LArSoft release.  Version
 numbers contain three digits: major, minor, and patch numbers.  DUNE-specific code does not have to wait
-for the weekly LArSoft release to make a DUNE release.  Adding additional identifying characters to a realase
+for the weekly LArSoft release to make a DUNE release.  Adding additional identifying characters to a release
 tag allows for multiple {\tt dunetpc} releases for each LArSoft release.
 
 Frequently, changes in LArSoft require corresponding changes to {\tt dunetpc}, such as changing the directories
@@ -241,7 +253,27 @@ feature branches of changes that are required by their tool, and these feature b
 DUNE software managers before tagging and building the weekly release.
 
 Official releases are built on the Jenkins~\cite{jenkins} build system at Fermilab, which automates the
-build process on all supported platforms and versoins (such as debug or optimized builds).
+build process on all supported platforms and versions (such as debug or optimized builds).
 
-\section{Analysis Frameworks}
+\subsection{The {\it art} Framework}
+
+DUNE's near and far detector simulation and reconstruction software, as well as that used for the ProtoDUNE
+detectors, is built on LArSoft which is built on the {\it art} framework~\cite{art}.  The {\it art} framework
+provides the event loop, i/o features missing in ROOT such as parameterizable output file naming, configuration
+using the Fermi Hierarchical Configuration Language (FHiCL), provenance storage by saving all configuration
+information in the output file, message handling, and resource consumption (memory, CPU, i/o) accounting.  It
+is supported by the {\it art} development team at Fermilab.  It provides the basis for both analysis programs
+and for {\it artdaq}.  Extensive documentation and tutorials are provided~\cite{artdoc}\cite{arttutorial}.
+The {\it art} deveopers hold weekly stakeholders' meetings at which experiment concerns and requests are aired.
+
 \subsection{NTuple Analysis (CAFAna)}
+
+The process of extracting oscillation parameters from DUNE's results requires a sophisticate fit to the near
+and far detector data samples, using muon, electron, and possibly neutral-current candidate events.  This fit
+must include the effects of detector acceptance and resolution, and also include systematic uncertainties on these.
+The oscillation parameters affect predictions as functions of the true values $L/E$, while DUNE can only
+measure an approximate energy on each event, so the full transfer function of true to measured energy must be
+incorporated in the fits.  CAFAna~\cite{CAFAna} is a tool developed for use on NOvA, which takes as input
+Monte Carlo and data NTuples and forms histograms in as many categories as the experiment defines, and performs
+these fits.  It has been ported to DUNE to read similarly constructed NTuples built from fully-simulated
+DUNE events.
