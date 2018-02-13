@@ -226,7 +226,7 @@ Each AMC plugged into the uTCA is connected to the crate MCH board through the b
 \includegraphics[width=0.6\textwidth]{dpele-311-utca-image}
 \end{dunefigure}
 
-In the current design, as used for ProtoDUNE-DP, the MCH operates with a \SI{10}{Gbit/s} uplink. Given that a uTCA crate hosts \num{10} AMCs for charge readout, the required bandwidth to stream the data to DAQ is about \SI{1.8}{Gbit/s}. This assumes that the data exiting AMCs are losslessly compressed with the compression factor of \num{10}. The bandwidth required per crate link for streaming the light readout data is \SI{4.7}{Gbit/s}. The \SI{10}{Gbit/s} MCH is therefore sufficient to support these data rates. However, the technology is moving towards supporting the \SI{40}{Gbit/s} rates. In addition, the channel density per AMC could also be increased for the reason of cost optimizations. For these reasons a move to a \SI{40}{Gbit/s} MCH could be foreseen in the design. This would also imply that the optical links connecting the DAQ system to uTCA MCH should be operable at \SI{40}{Gbit/s}. A summary of the required and supported bandwidths per uTCA crate for continous data streaming is provided in Table~\ref{tab:dp-utcabandwidth}
+In the current design, as used for ProtoDUNE-DP, the MCH operates with a \SI{10}{Gbit/s} uplink. Given that a uTCA crate hosts \num{10} AMCs for charge readout, the required bandwidth to stream the data to DAQ is about \SI{1.8}{Gbit/s}. This assumes that the data exiting AMCs are losslessly compressed with the compression factor of \num{10}. The bandwidth required per crate link for streaming the light readout data is \SI{4.7}{Gbit/s}. The \SI{10}{Gbit/s} MCH is therefore sufficient to support these data rates. However, the technology is moving towards supporting the \SI{40}{Gbit/s} rates. In addition, the channel density per AMC could also be increased for the reason of cost optimizations. For these reasons a move to a \SI{40}{Gbit/s} MCH could be foreseen in the design. This would also imply that the optical links connecting the DAQ system to uTCA MCH should be operable at \SI{40}{Gbit/s}. A summary of the required and supported bandwidths per uTCA crate for continous data streaming is provided in Table~\ref{tab:dp-utcabandwidth}.
 
 \begin{dunetable}
 [Bandwidth requirements per uTCA crate]
@@ -417,7 +417,7 @@ The cold flange of the SFT chimneys forms interface between the CRP and the TPC 
 \subsection{DAQ System}
 \label{sec:fddp-tpc-elec-intfc-daq}
 
-The hardware interface between DP-Electronics and DAQ has two components. The first interface are the \SI{10}{Gbit/s} optical fibers for data transfer between the uTCA crates and the network interface of the DAQ system. The second one is a \SI{1}{Gbit/s} optical fiber that connects the DAQ White Rabbit Grand Master switch to the DP electronics timing system.   
+The hardware interface between DP-Electronics and DAQ has two components. The first interface is the \SI{10}{Gbit/s} optical fibers for data transfer between the uTCA crates and the network interface of the DAQ system. The second one is a \SI{1}{Gbit/s} optical fiber that connects the DAQ White Rabbit Grand Master switch to the DP electronics timing system.   
 
 In the baseline design a given DP detector module would have \num{245} \SI{10}{Gbit/s} optical links for streaming the digitized data to DAQ from the charge readout (\num{240} links) and light light readout (\num{5} links) electronics housed in uTCA crates on top of the cryostat structure.  In the current specifications, the fibers are multimode OM3 fibers\footnote{http://shop.fiber24.net/index.php/en/FO-Patch-Cable-OM3-Multi-mode-50-125-m-Duplex-LC-PC-LC-PC/c-OM3-DUPLEX-1TO1/a-FOPC-F2-O3-DX-LCU-LCU} with LC-LC connectors suitable for the transmission over distances of up to \SI{300}{\metre}.  They are provided by the DAQ consortium. On the side of the uTCA crate, the fibers are connected to an optical transceiver in the MCH\footnote{http://www.nateurope.com/products/NAT-MCH.html} (two SFP+ (XAUI) links).  On the DAQ, they go to the Level 1 (LV1) machines of the trigger farm, or switches, depending on the network topology adopted in the DAQ system design.
 
@@ -431,14 +431,14 @@ The software interface between DAQ and the electronics systems includes the tool
 \subsection{Cryostat and Cryogenics}
 \label{sec:fddp-tpc-elec-intfc-cryo}
 
-The interface point between the cryostat and the DP electronics system is the cryostat penetrations where the SFT chimneys are to be installed. Each penetration should accommodate the chimney whose external diameter is \SI{245}{\mm}. Each chimney has a CF-273 flange welded to its outer structure (see Figure~\ref{fig:dpele-sft-chimney-crosspipe}). After the chimney is inserted, this flange is in contact with the corresponding flange structure on the cryostat to which it is eventually fastened. In order to avoid any leaks at this interface a CF-273 copper gasket should be used to ensure the vacuum tightness.  
+The interface point between the cryostat and the DP electronics system is the cryostat penetrations where the SFT chimneys are to be installed. Each penetration should accommodate the chimney whose external diameter is \SI{245}{\mm}. Each chimney has a CF-273 flange welded to its outer structure (see Figure~\ref{fig:dpele-sft-chimney-crosspipe}). After the chimney is inserted, this flange is in contact with the corresponding flange structure on the cryostat to which it is eventually fastened. In order to avoid any leaks at this interface a CF-273 copper gasket is used to ensure the vacuum tightness.  
 
 \begin{dunefigure}[Details of SFT chimney interface to the cryostat structure]{fig:dpele-sft-chimney-crosspipe}
 {Details of SFT chimney interface to the cryostat structure}
 %\includegraphics[width=0.7\textwidth]{dpele-sft-chimney-crosspipe}
 \end{dunefigure}
 
-Each chimney contains a heat exchanger coil cooled with a liquid argon. There are two \todo{give type and diameter} connections (inlet and outlet) which need to be branched to the respective system for LAr delivery and re-circulation. In addition, there is a connection for nitrogen gas line \todo{give type and diameter}. It is needed for filling the chimney with nitrogen after it is closed following the installation of the FE electronics. The nitrogen line is also required for flushing the chimney in the case of an access to the FE cards after the detector module is cooled for the operation. 
+Each chimney contains a heat exchanger coil cooled with a liquid argon. There are two \todo{give type and diameter} connections (inlet and outlet) which need to be branched to the respective system for LAr delivery and re-circulation. In addition, there is a connection for nitrogen gas line \todo{give type and diameter}. It is used for filling the chimney with nitrogen gas after it is closed following the installation of the FE electronics. The nitrogen line is also required for flushing the chimney in the case of an access to the FE cards after the detector module is cooled for the operation. 
 
 \fixme{say something about clearance need for uTCA crates?}
 
@@ -446,8 +446,7 @@ Each chimney contains a heat exchanger coil cooled with a liquid argon. There ar
 \subsection{Slow Control System}
 \label{sec:fddp-tpc-elec-intfc-sc}
 
-The integration with the slow control of the low voltage power supply system for the FE cards is required to enable the remote management and monitoring (current consumption by ASICs, set voltage, etc.).
-In addition, the SFT chimneys contains several sensors that need to be monitored. These include a pressure transducer that measures the pressure inside the chimney and at least two temperature probes (PT1000) that monitor the gas temperature inside near the cold flange at the bottom and close to the warm flange at the top.  
+The integration with the slow control of the low voltage power supply system for the FE cards is required to enable the remote management and monitoring (current consumption by ASICs, set voltage, etc.). In addition, the SFT chimneys contains several sensors that need to be monitored. These include a pressure transducer that measures the pressure inside the chimney and at least two temperature probes (PT1000) that monitor the gas temperature inside near the cold flange at the bottom and close to the warm flange at the top.  
 
 \fixme{other items?}
 
