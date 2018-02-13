@@ -7,11 +7,56 @@
 
 \fixme{Add in appropriate subsections for the pieces that this interfaces with. These initial ones may not be right, or some interfaces may be missing.}
 
+The cryogenics instrumentation and slow control systems interface with most other DUNE systems, including LBNF and the cryogenics system.
+A detailed description of all interfaces is available elsewhere (DUNE-doc-6383-v1). Here a brief summury is given. 
+There are many aspects that are common to mamy systems. Thoise are listed below: 
+
+%% \begin{itemize}
+
+%% \item Rack space distribution and interaction between slow controls (SC) modules and other modules (APAs, HV, PD, DAQ, etc)
+%% \item Rack protection system: for all racks, CISC will provide rack protection system status bit monitoring
+%% \item In the case fan packs in racks are required by power supplies, their crate or electronics (e.g. TPC electronic crates), CISC 
+%%   will provide the fan pack monitoring. Based on the choice of fan packs, this would be both software and hardware interface 
+%% \item The choice of High/Low Voltage power supplies (PS) should be a combined decision with each consortium so the
+%%   power supplies allow for robust control/monitoring and precision needed. 
+
+%% \item Choice of cable for slow controls readout from PS to SC Ethernet switches or any specialized readout cables needed will depend on the PS choice.
+%% \item Choice of cables that bring the signals to be monitored from the electronics (PD, TPC, CRP) to the SC ethernet switches
+%% \item Choice of cables from racks to heaters/RTDs on flanges (if any)
+
+
+%% \item The need of thermal interlocks for power supplies (both HV and LV) in the racks should be understood. If yes probably need some temperature sensor, cables, etc, in the racks.
+%% \item Definition of quantities to be monitored/controlled by slow controls (HV, APA, PD, Electronics, CRP, calibration, etc)
+%% \item Definition of alarms, archiving and GUIs
+%% \item SC signals into main DAQ data stream and viceversa
+%% \item electrostatic simulations to make sure instrumentation devices in the cryostat have the proper shielding 
+  
+%% \item Facility: Location of instrumentation devices, anchoring points, cryostat ports and flanges, space needed above cryostat, cable routing, rack space above cryostat, Mezzanine and CUC (Central Utility Cavern), etc 
+%% \item Installation: Installation of instrumentation devices will interfere with other devices (APA, CPA, CRP, PD, calibration, etc). This needs to be coordinated with the corresponding consortia
+%%   Some items (cables from SC switches to electronics or power supplies) will have to be installed in coordination with other consortia
+ 
+%% \item The need of thermal interlocks for power supplies needs to be understood,
+%%   as well as the necessary hardware (sensors, cables, etc.).
+%%   CISC will provide the needed interlock status bit monitoring but not the hardware interlock mechanism.
+%% \end{itemize}
+
+
+Particularely important is the interface with HV system since several aspects related with safety must be taken into account. 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Interface with External Cryogenics Systems}
 \label{sec:fdsp-slow-cryo-ext-cryo}
 
 \fixme{specify external interface of Cryo Inst. Systems with systems outside the cryostat (with LBNF), detector Interface to LBNF design teams working on the design on cryogenic systems (including cryogenic piping)}
+
+
+This includes external cryogenics piping 
+
+The external cryogenics piping is responsability of LNBF while the internal pipes are under CISC. The proper interfaces should be defined.
+
+The switchyard for the gas analyzers ... 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,6 +65,7 @@
 
 \fixme{describe interface with LBNF on environmental and building controls}
 
+Building Temperature, humidity and pressure will be monitored and integrated into the slow controls system. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Interface with High Voltage Systems}
@@ -27,9 +73,79 @@
 
 \fixme{Describe interface with HV systems, including use of cameras for HV monitoring, and also drift HV, current toroid, ground planes, and field cage pickoffs}
 
+The cryogenics instrumentation and slow control system have multiple interfaces with the HV systems. 
+
+The hardware interface between CISC and HV has multiple components: 
+\begin{itemize}
+\item Understand the location of cold cameras and lights for inspection of HV related devices, as well as the requirements
+  of cold/warm cameras: resolution, field of view, light sensitivity, low light operation, frames per second, operation in triggered mode?,  etc. 
+\item During the deployment of inspection cameras, avoid generation of bubbles when HV is on as it can lead to discharges.
+\item As in ProtoDUNE-SP, ground planes (GP) could be used as support for temperature sensors (RTDs). GP could be also used as support for cold cameras. 
+\item electrostatic simulations to make sure instrumentation devices in the cryostat have the proper shielding 
+\end{itemize}
+
+
+
+Software: CISC will provide full control and monitoring of the HV PS including alarms, archiving and GUIs for all HV devices,
+whose definition and implementation must be agreed among the two consortia. Special software may be needed to detect discharges
+using the camera system, which will be the responsibility of the HV consortium. For all instrumentation devices inside the cryostat,
+E-field simulations are needed to guaranty proper shielding is in place. Although this is a CISC responsibility, input from HV will be crucial.
+Finally, CISC should monitor the various HV interlock status bits. For all HV racks, CISC will provide full rack monitoring which will include
+rack protection system, temperatures and fans (if any).
+
+
+
+Signals: Data from cameras for inspection of HV devices and for detection of discharges may need special treatment. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Interface with DAQ/Electronics}
 \label{sec:fdsp-slow-cryo-slow-daq}
 
 \fixme{Describe interface with DAQ system, including Interface with DAQ/Electronics groups for a slow controls test facility at SURF, possibly as part of the DAQ test stand}
+
+
+
+%% Hardware: There is not a hardware interface between the systems.  However, CISC will need “N” servers in “M” racks
+%% drawing “Y” kVA of power in the DAQ server room in the CUC.  CISC will also need 2U of rack space for rack monitoring
+%% (e.g. rack protection status, rack temperatures, rack fans etc.) and any Slow Controls hardware in each of the DAQ front end racks.
+
+
+%% Software: The software interface between DAQ and CISC consists of the following components:
+
+%% Pipeline information from DAQ system (e.g. run status, CPU loads etc.) into SC archiving and
+%% status displays to integrate displays and warnings into one system for the operators and provide
+%% integrated archiving for sampled data in the archived SC database. 
+
+%% Provide DAQ server hardware monitoring to monitor the health of the servers e.g. fan speeds of the servers, system temperatures, server voltages etc.
+
+%% Provide monitoring of current loads on the power distribution units (PDUs) in the DAQ racks
+
+%% Provide rack monitoring including rack protection status, rack temperatures etc.
+
+%% Provide scripts to inject SC data (if any) into the main DAQ stream as needed. The requirements and implementation mechanism (if needed) will need to be defined.
+
+%% Signals: The format of the data, data packets, and database fields will be detailed in future Requirements and Specifications documents.
+%% L0: List of DAQ items CISC is monitoring, and CISC quantities DAQ needs to know 
+%% E.g., run status, CPU loads (DAQ->CISC)
+%% E.g., power supplies, rack status, LAr levels (CISC->DAQ)
+%% L1: CISC database format
+%% L2: DAQ/CISC status register
+
+
+%% Hardware: The hardware interface between CISC and SP-TPC-Elec has multiple components: 
+
+%% Ensure that CISC devices do not induce noise on cold electronics.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with Other Systems}
+\label{sec:fdsp-slow-cryo-slow-other}
+
+
+There are also inerfaces with the Photon Detection system.
+Purity Monitors and Light emitting system for Cameras both emit light that might damage PDs.
+Although this should be understood and quantified, CISC and SP-PD may have to Define the necessary hardware interlocks
+that avoid turning on any other light source accidentally when PDs are on.
+
