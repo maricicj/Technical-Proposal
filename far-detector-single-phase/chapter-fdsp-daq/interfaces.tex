@@ -11,7 +11,20 @@
 \subsection{TPC Electronics}
 \label{sec:fdsp-daq-intfc-elec}
 
-Summarise TPC/DAQ interface
+The interface between the Single Phase TPC detectors and the DAQ is described in Dune-DocDB-6742.
+
+Data from the cold electronics front end motherboards are 8b10 encoded
+and sent to the Warm Interface boards (WIBs) on copper cables at a bit
+rate of 1.28GBit/s. There are two options being considered for the
+WIBs. In one the data are simply converted to optical signals and
+transmitted to the DAQ in the CUC on 1.28GBit/s optical links with a
+total of 80 fibres per APA. In the second option the WIBs aggregate
+the data onto links running at ~ 10GBit/s before transmission to the
+DAQ with a total of ten fibres per APA. In both cases the data are
+received on rear transition modules connected to the COB ATCA boards
+that receive the data ( see section~{sec:fdsp-daq-ltr} ).
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{PD Electronics}
@@ -25,6 +38,9 @@ zero-suppressed. This reduces the data flow so that a bandwidth of
 the DAQ, with an order of magnitude safety factor. The link from the
 single phase cryostats to the CUC will be implemented as either eight
 1000Base-SX links  or a single 10GBase-LR link per APA.
+
+The data on the links will be encoded using UDP/IP to allow easy
+reception by the DUNE DAQ server PCs.
 
 There is a single physical pathway between the PDS and the DAQ for
 both data and information used for data selection. The first stage of
