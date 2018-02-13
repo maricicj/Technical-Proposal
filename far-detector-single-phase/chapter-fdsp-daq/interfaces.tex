@@ -17,7 +17,19 @@ Summarise TPC/DAQ interface
 \subsection{PD Electronics}
 \label{sec:fdsp-daq-intfc-photon}
 
-Summarise photon system/DAQ interface.
+The interface between the Single Phase Photon Detection System(PDS)
+and the DAQ is described in DUNE-doc-6727. The signal to noise ratio
+of the SiPM signals is high enough to allow the data to be safely
+zero-suppressed. This reduces the data flow so that a bandwidth of
+8GBit/s per APA is sufficent to transfer the zero supressed data to
+the DAQ, with an order of magnitude safety factor. The link from the
+single phase cryostats to the CUC will be implemented as either eight
+1000Base-SX links  or a single 10GBase-LR link per APA.
+
+There is a single physical pathway between the PDS and the DAQ for
+both data and information used for data selection. The first stage of
+the DAQ selects trigger primitives from this data stream and forwards
+them to the data selection system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Offline Computing (Kurt Biery)}
