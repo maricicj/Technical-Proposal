@@ -71,6 +71,11 @@ object libraries, and associated configuration and parameterized data files.  A 
 at a time and set up pre-built versions of all of the others.  A dependency diagram is shown in 
 Figure~\ref{fig:swdeptree}, headed by the DUNE-specific package {\tt dunetpc}.
 
+\begin{figure}
+\includegraphics[width=0.95\textwidth]{software-computing/figures/dtree.pdf}
+\caption{\label{fig:swdeptree} Software dependency tree for {\tt dunetpc}, showing dependent software products.}
+\end{figure}
+
 \subsubsection{Detector Simulation}
 
 The detector simulation is based on GEANT4.  Detector geometry is read in from GDML files.  A common interface to
@@ -196,7 +201,12 @@ other variables required by the software are also set up at this stage.
 The UPS model assumes that all versions of software that are needed by any user of a system are already present
 in directories that can be searched for the appropriate version.  Centrally-managed systems with large
 shared disks for storing software had been in use but more modern distributed tools scale better for DUNE's
-requirements.
+requirements.  This software environment differs from commercial distribution systems (like RPM, yum, pip,
+and others) because of the need for physics analyses to be able to reproduce their results.  If an analysis is
+in its final stages and systematic uncertainties are being evaluated, users are not able to upgrade to a new
+version of the software, even if it is better (has a better reconstruction for example).  Multiple users of a computer
+system may be in various stages of analyses and require stable versions that differ from each other.  To this end,
+every component of the software stack, including the compiler, is distributed as UPS products.
 
 The dependence of code on (DY)LD\_LIBRARY\_PATH causes an issue with MacOS.  The System Integrity Protection (SIP)
 feature introduced with MacOS version 10.11 prevents its use by subprocesses when it is defined in a process.
