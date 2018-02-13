@@ -134,7 +134,126 @@ detection system performance.
 
 \subsubsection{ARAPUCA (4 pages)}
 \label{ssec:fdsp-pd-pc-arapuca}
-\metainfo{\color{blue} Content: Cavanna (?)}
+\metainfo{\color{blue} Content: A.A.Machado (?)}
+
+\fixme{May not have figures integrated yet (or bibliography) - LMM }
+
+The ARAPUCA is a device based on a new technology that should allow to collect photons with a window of big area with detection efficiencies at the level of several percent while using a coverage with active devices at the permil level.
+The idea at the basis of the ARAPUCA is to trap photons inside a box with highly reflective internal surfaces, so that the detection efficiency of trapped photons is high even with a 
+limited active coverage of its internal surface \cite{arapuca_jinst}.\\ 
+
+Photons trapping is achieved by using a smart wave-shifting technique and the technology of the dichroic shortpass optical filters. The latter are multilayer thin films with the property of being highly transparent to photons with a wavelength below a tunable cut-off while being almost perfectly reflective to photons with wavelength above the cut-off. A dichroic shortpass filter deposited with two different wavelength shifters (one on each side) will be the core of the device. In particular, it will be the acceptance window of the ARAPUCA. The rest of the device will be a flattened box with internal surfaces covered by highly reflective acrylic foils (3M-VIKUITI ESR \cite{VIKUITI}, for example), closed on the top by the dichroic filter deposited with the two shifters. In principle the box can be filled with any kind of transparent material, since it is inessential to its operation. A fraction of the box internal surface is occupied by the active photo-sensors (Silicon Photomultipliers - SiPM) that detect trapped photons (figure \ref{arpk}).
+
+%*****************************FIGURE 1*****************************%
+\begin{figure}[ht]
+\begin{center}
+	%\includegraphics[height=5cm]{pds-arapuca}
+	\caption{Drawing of two ARAPUCAs, each one read-out by 12 SiPMs. This design has been used for the protoDUNE ARAPUCAs.} 
+    \label{arpk}
+\end{center}
+\end{figure}
+%***********************************************************************%
+
+{\bf The operating principle is straightforward.}
+
+The shifters deposited on the two faces of the dichroic filter, S$_1$ and S$_2$ respectively, must have their emission wavelengths, L$_1$ and L$_2$, such that: L$_1$ $<$ L$_{cut-off}$$ <$ L$_2$, where L$_{cut-off}$ is the cut-off wavelength of the filter, that is the limit between the region of full transparency (typically $>$ 95\%) and that of full reflectivity (typically $>$ 98\%). The side of the filter deposited with S$_2$ faces the internal part of the box.
+
+Assuming that the ARAPUCA, observes a LAr volume, scintillation VUV photons ($\lambda \sim$ 127 nm) produced by the passage of an ionizing radiation, hit the window of the device and are shifted to a wavelength of L$_1$ by the shifter deposited on the external face of the filter and enter the ARAPUCA. Once passed the filter, the photons are converted to the wavelength L$_2$ and are forced to remain trapped inside the box: its internal surface is covered with an almost perfect reflector to L$_2$ and the filter that closes the box is itself reflective to L$_2$ photons. 
+Photons are trapped inside the box. After few reflections the photons are detected by the active photo-sensor installed on the internal surface of the ARAPUCA (figure \ref{arapuca}). 
+
+The net effect of the ARAPUCA is to amplify the active area of the SiPM used to readout the trapped photons. It is easy to show that for small values of SiPM coverage of the internal surface the amplification factor is equal to
+\begin{equation}
+A=\frac{1}{2(1-R)}
+\end{equation}
+where R is the average value of the reflectivity of the internal surfaces. For an average reflectivity of 0.95 the amplification factor is equal to ten.
+
+%*****************************FIGURE 2*****************************%
+\begin{figure}[ht]
+\begin{center}
+	%\includegraphics[height=5cm]{pds-arpkscheme}
+	\caption{ARAPUCA and the schematic representation of the operating principle} 
+    \label{arapuca}
+\end{center}
+\end{figure}
+%***********************************************************************%
+
+\section{Tests of the technology}\label{testsec}
+
+\subsection{Tests performed in Brazil}
+\label{subsec:testlnls}
+Tests of the ARAPUCA in a liquid argon (LAr) environment were performed at the facilities of the Toroidal Grating Monochromator (TGM) beamline of the Brazilian Synchrotron Light Laboratory (LNLS) (Fig.\ref{LNLS_test}). 
+
+A small ARAPUCA made of PTFE with internal dimensions of 3.5x2.5x0.6 cm$^3$ was tested and a dichroic filter with dimensions of 3.5x2.5 cm$^2$ and cut-off at 400 nm was used as the window of the device.
+The filter was evaporated with p-TerPhnyl (pTP), which absorbs 127 nm photons and reemits them around 350 nm,  on the external side and TetraPhnyl-Butadiene (TPB) on the internal side, which absorbs the shifted 350 nm photons and reemits around 430 nm. Trapped light was detected by a single 0.6x0.6cm$^2$  SensL SiPMs mod C60035.
+The device was installed inside a vacuum tight stainless-steel cylinder closed by two CF100 flanges. The cylinder was deployed inside a LAr open bath, vacuum pumped down to a pressure around  10$^{-6}$ mbar and then filled with one liter of ultra pure liquid argon. 
+
+LAr scintillation light emission was produced by an alpha source installed in front of the ARAPUCA, immersed in liquid argon. Signals were read-out through an Aquiris PCI board and stored on a computer.\\
+
+%*****************************FIGURE 3*****************************%
+\begin{figure}[ht]
+\begin{center}
+	%\includegraphics[height=5cm]{pds-TGM_1} \quad
+	%\includegraphics[height=5cm]{pds-TGM_30}\quad
+	%\includegraphics[height=5cm]{pds-TGM_0}
+\caption{ARAPUCA test at LNLS} \label{LNLS_test}
+\end{center}
+\end{figure}
+%***********************************************************************%
+
+It was possible to estimate the detection efficiency of the ARAPUCA by 
+determining the number of photo-electrons detected in correspondance of the end point of the $\alpha$ spectrum 
+and comparing it with the expected number of photons impinging on the acceptance window for that 
+particular energy value ($\sim$ 4.3 MeV), which depends only on known properties of LAr and on the solid 
+anlge subtended by the the ARAPUCA window. A detection efficiency at the level of 1.8 \% 
+was found, well consistent with Monte Carlo expectations.
+
+\subsection{Tests performed at FERMILAB}
+\label{subsec:test_fnal}
+
+Three cryogenic tests have been performed at Fermilab up to now:
+\begin{itemize}
+\item the first one was performed in mid-2016 at the Proton Assembly Building (PAB) and the SCENE facility was used. The ARAPUCA prototype had dimensions of  $5.0 \times 5.0 \times 1.0$ cm$^3$ with a dichroic window of $5.0 \times 5.0$ cm$^2$ deposited with pTP and TPB, respectively on the internal and 
+external faces. The cut-off of the filter was at 400 nm. Two SensL SiPMs mod C60035 ($0.6 \times 0.6$ cm$^2$ active area each) were installed inside the box to detect trapped photons. The ARAPUCA was deployed inside a vacuum tight cryostat filled with ultrapure LAr. An $^{241}$Am alpha source was positioned in front of the window of the device at a distance of 5 cm from its center. The efficiency of the ARAPUCA was estimated taking into account that in this case the alpha particles have a  
+monochromatic energy of about 5.4 MeV. The estimated efficiency in this case was of the order of 1 \%, a factor two below what expected due to the sub-optimal quality and uniformity of the pTP and TPB films and to the lack of reflectivity of the inner PTFE surfaces;
+
+\item the second one was performed at the beginning of 2017 at the PAB, but using a different facility, 
+TallBo, which allowed to test several devices at a time. Eight different ARAPUCAs, with different 
+filters (different producers), different reflectors and different dimensions where tested. The ARAPUCAs 
+were exposed to the 127 nm scintillation light produced by alpha particles emitted by an $^{241}$Am 
+source, mounted on a holder which could be moved with an external manipulator in order to place it in 
+front of each prototype. The efficiencies of the installed ARAPUCAs ranged from 0.4 \% to 1.0 \%.
+
+\item a third test ws performed at the end of 2017 with an array of eight ARAPUCAs together with two 
+guiding bars (double-shift design) in the TallBo set-up. Data analysis is still ongoing. 
+
+\end{itemize}
+
+\section{ARAPUCA in protoDUNE}
+
+Two arrays of ARAPUCAs are going to be installed inside protoDUNE to test the devices in a real experimental environment and to directly compare their performances with those of the guiding bars. The first array has been already installed in the APA 3, while the second one will be installed in the APA number 4.
+ 
+Each ARAPUCA arrays is composed by sixteen basic cells. Each cell has the dimensions of 8 cm $\times$ 10 cm and is 
+observed by 12 SiPMs (or 6 SIPMs) installed on the bottom side of the cell (6 mm $\times$ 6 mm each) and which are passively ganged together, so that only one read-out channel is needed for each 
+ARAPUCA (16 channels per array). The ARAPUCA array has total dimensions of approximately 8 cm $\times$ 200 cm, exactly the same of a shifting/guiding bar. The first ARAPUCA array installed in protoDUNE is shown in figure (Fig.\ref{arapuca_array}).
+%*****************************FIGURE 4*****************************%
+\begin{figure}[ht]
+\begin{center}
+	%\includegraphics[height=5cm]{pds-arpkAPA3_pD.JPG} 
+\caption{ARAPUCA array in protoDUNE} 
+\label{arapuca_array}
+\end{center}
+\end{figure}
+%***********************************************************************%
+\newpage
+\section{Last Considerations}
+
+The ARAPUCA device is undergoing a strong R\&D program which aims to establish its 
+viability as the photon detection system of the single phase DUNE far detector, both 
+in terms of absolute detection efficiency and long term reliability. Since this is a 
+new technology, a strong effort needs to be put in this program in order to reach a 
+full comprehension of the optical processes which are active in the device and reach 
+the target efficiency of few per cent.
+
 
 \subsubsection{Hybrid or New Options (2 pages)}
 \label{ssec:fdsp-pd-pc-new}
@@ -288,7 +407,7 @@ delineated in detail.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electronics}
 \label{sec:fdsp-pd-pde}
-\metainfo{\color{blue} Content: (3 pages) - Moreno/Franchi/Djuric}
+\metainfo{\color{blue} Content: (3 pages) - Moreno/Franchi/Djurcic}
 
 \fixme{rjw: Include comment whether there are differences between the photon collector options}
 
