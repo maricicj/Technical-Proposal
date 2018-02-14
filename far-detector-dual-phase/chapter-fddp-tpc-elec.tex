@@ -31,7 +31,7 @@ The primary objective of the Light Read Out system is to detect signals, from a 
 
 The cryogenic analog electronics for charge readout is housed in SFT chimneys. Their design must enable access to the FE card for possible maintenance/replacement without any risk of contaminating the pure liquid argon in the main cryostat volume. The chimneys must possess a cooling system that would permit to control the temperature around the FE cards around \SI{110}{\kelvin} for their optimal noise. In addition, the cooling system is to compensate for the heat input from the chimney into the cryostat volume.
 
-The digital electronics (for both charge and light readout) is located in the warm environment on the roof of the cryostat supporting structure and is therefore easily accessible. This fact removes any constraints associated with accessibility and environmental conditions and allows for the usage of the standard components and industrial solutions in its design. Digital electronics must be continuously and automatically synchronized to better than \SI{400}{ns} to ensure the correct temporal alignment of the ADC samples from all of the readout channels. This requirement derives from the fact the sampling rate is \SI{2.5}{\MHz}. 
+The digital electronics (for both charge and light readout) is located in the warm environment on the roof of the cryostat supporting structure and is therefore easily accessible. This fact removes any constraints associated with accessibility and environmental conditions and allows for the usage of the standard components and industrial solutions in its design. Digital electronics must be continuously and automatically synchronized to better than \SI{400}{ns} to ensure the correct temporal alignment of the ADC samples from all of the readout channels. This is a minimal requirement dictated by the fact that the sampling rate is \SI{2.5}{\MHz}. 
 
 Some of the key parameters in the electronics system design are summarized in Table~\ref{tab:dp-elecphysicsparams}.
 
@@ -147,6 +147,18 @@ Each ASIC contains 16 amplifier channels with differential line buffers and has 
 
 Each cryogenic FE card, shown in Figure~\ref{fig:dpele-fe-card-image}, hosts 4 ASIC amplifier chips and a few passive discrete components. The input stage of each amplifier channel has a \SI{1}{\giga\ohm} resistor to ground followed by a \SI{2.2}{\nano\farad} decoupling capacitor. The function of the resistor is to provide the ground reference for the anode strips of CRP. Each input stage is protected against discharges coming from the detector with a TVS diode (Bourns CDSOD323-T08LC). This component was selected after studying the performance of different ESD components subjected systematically to discharges of a few kV with an energy similar to that of LEMs in CRP. The FE cards also house the blocking capacitors for filtering the low voltage power lines.
 
+\begin{dunefigure}[Noise measurements in LArProto in different conditions]{fig:dpele-311-noise}
+{Noise of measurements in LArProto in different conditions. Left: at warm with the slow control cables connected to the cryostat flanges (red points) and disconnected (black points). Right: at warm (red points) and cold (black points) with the slow control cables disconnected}
+\includegraphics[width=0.45\textwidth]{dpele-311-noise-warm}
+\includegraphics[width=0.45\textwidth]{dpele-311-noise-warm-cold}
+\end{dunefigure}
+
+While the FE amplifier ASICs are in the shielded environment provided by the chimneys (Faraday cage), interference from other equipment via a noisy ground or ground loops could significantly worsen the noise performance from the design target. Figure~\ref{fig:dpele-311-noise} shows some results of the noise measurements performed under different conditions in the LArProto detector. The channels reading \SI{3}{\meter} (\SI{1}{\metre}) long strip correspond to negative (positive) channel numbering in the plots and the 1 ADC count is equivalent to about 900 electrons. The left plot of Figure~\ref{fig:dpele-311-noise} shows the noise measurements performed at warm with and without slow control cables (CRP HV, CRP motors, level meters, temperature probes, etc.) connected. The noise is clearly affected by the grounding of the slow control: the average value of the noise RMS is around \num{1.7} ADC with slow control cables connected and decreases to about \num{1.5} ADC when those are removed. One interesting feature, particularly visible with the cables disconnected, is that the noise measured in LArProto is similar for the channels connected to the \SI{1}{\meter} and \SI{3}{\meter} long strips. Given that the longer strips have thrice the input capacitance than the shorter ones, the expected noise (see Figure~\ref{fig:dpele-fe-asic-noise}) for these should be larger by a factor of \num{2} as indicated by the dashed line in the plot. In addition, the noise on the short strips is also lower (\num{1.5} ADC) than expected for the \SI{160}{pF/m} strip input capacitance (1.7 ADC). The reason for such behaviour of the noise in the CRP of LArProto is still under investigation. However, measurements have shown that the capacitance of the CRP anode strips is not purely to ground, but rather it is driven by the inter-strip couplings, which creates a more complicated electrical network. 
+
+Figure~\ref{fig:dpele-311-noise} (right) also shows a comparison of the noise measurements in LArProto taken with the FE electronics at warm (red points) and cold (black points) at around \SI{150}{\kelvin}. The slow control cables were disconnected in both cases. However, the measurements at cold were performed with the re-circulation pump active and the cathode HV connection present. The RMS noise averaged over all channels decreases by about 25\% from roughly \SI{1.5} ADC to \SI{1.1} ADC when the FE analog cards are at cold. For comparison, the expected signal for a MIP with the CRP gain of 20 should be around \num{200} ADC. 
+
+The grounding scheme of LArProto was based on having the cryostat as the ground reference. The low voltage power supplies for the FE analog electronics and uTCA crates were powered via insulating transformers ensuring that they could see no other ground. On the other hand, the design of the slow control system did include any insulation transformers. This equipment was the grounded to the building electrical network thereby creating an interference with the ground of the cryostat. Stricter treatment of the ground connections to the detector module  and a lower SFT chimney operating temperature of around \SI{110}{\kelvin} (from \SI{150}{\kelvin}) should help to reduce further the noise levels from those observed in LArProto.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{SFT Chimneys}
@@ -223,7 +235,7 @@ Parameter & Value  \\ \toprowrule
   Upgraded MCH bandwidth & \SI{40}{Gbit/s} \\ \colhline
 \end{dunetable}
 
-Figure~\ref{fig:dpele-311-utca-image} shows pictures of one of the instrumented uTCA crates used for the charge readout of LArProto at CERN. In this detector each SFT chimney reads \num{320} channels thus requiring only five AMCs per the uTCA crate. The two optical fiber links, one (\SI{10}{Gbit/s}) for data and the other (\SI{1}{Gbit/s}) for clock/trigger timing distribution, are visible in the images.       
+As an illustration, Figure~\ref{fig:dpele-311-utca-image} shows pictures of one of the instrumented uTCA crates used for the charge readout of LArProto at CERN. In this detector each SFT chimney reads \num{320} channels thus requiring only five AMCs per the uTCA crate. The two optical fiber links, one (\SI{10}{Gbit/s}) for data and the other (\SI{1}{Gbit/s}) for clock/trigger timing distribution, are visible in the images.       
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Timing Distribution}
@@ -447,10 +459,13 @@ The installation of the TPC electronics systems proceeds in several stages. In o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Transport and Handling}
 \label{sec:fddp-tpc-elec-install-transport}
+\fixme{provide rough dimensions for boxes, chimney weights?}
+\fixme{specify that the chimneys are to be delivered for the installation underground and positioned around the cryostat on top.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Signal Feedthrough Chimneys}
+\subsection{SFT Chimneys}
 \label{sec:fddp-tpc-elec-install-sft}
+Gantry crain movavable along the length of the cryostat to allow insertaion of the chimneys. The clearance need to be 2m...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Digital uTCA crates}
@@ -467,14 +482,18 @@ The installation of the TPC electronics systems proceeds in several stages. In o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integration within DAQ}
 \label{sec:fddp-tpc-elec-install-daq}
+The integration of the hardware of the TPC electronics system with DAQ ... Connect 10 Gbit/s fibers and 1 Gbit/s fiber to the WR grand master.
+Software integration ... Provide tools to read and decode data packets
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integration with Photon Detection System}
 \label{sec:fddp-tpc-elec-install-pmt}
+Anything specific apart from making cable connections?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calibration}
 \label{sec:fddp-tpc-elec-install-calib}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quality Control}
