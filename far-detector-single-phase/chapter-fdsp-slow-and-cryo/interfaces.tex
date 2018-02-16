@@ -8,37 +8,29 @@
 \fixme{Add in appropriate subsections for the pieces that this interfaces with. These initial ones may not be right, or some interfaces may be missing.}
 
 The cryogenics instrumentation and slow control systems interface with most other DUNE systems, including LBNF and the cryogenics system.
-A detailed description of all interfaces is available elsewhere (DUNE-doc-6383-v1). Here a brief summury is given. 
-There are many aspects that are common to mamy systems. Thoise are listed below: 
+This section describes the interface between the DUNE SP Far Detector CISC System
+and several other consortia, task forces (TF) and wrorking groups (physics, software/computing). 
+A detailed description of all interfaces is available elsewhere (DUNE-doc-6383-v1). Here a brief summary is given.
+Aspects that are common to most of the systems are listed below: 
 
-%% \begin{itemize}
-
-%% \item Rack space distribution and interaction between slow controls (SC) modules and other modules (APAs, HV, PD, DAQ, etc)
-%% \item Rack protection system: for all racks, CISC will provide rack protection system status bit monitoring
-%% \item In the case fan packs in racks are required by power supplies, their crate or electronics (e.g. TPC electronic crates), CISC 
-%%   will provide the fan pack monitoring. Based on the choice of fan packs, this would be both software and hardware interface 
-%% \item The choice of High/Low Voltage power supplies (PS) should be a combined decision with each consortium so the
-%%   power supplies allow for robust control/monitoring and precision needed. 
-
-%% \item Choice of cable for slow controls readout from PS to SC Ethernet switches or any specialized readout cables needed will depend on the PS choice.
-%% \item Choice of cables that bring the signals to be monitored from the electronics (PD, TPC, CRP) to the SC ethernet switches
-%% \item Choice of cables from racks to heaters/RTDs on flanges (if any)
-
-
-%% \item The need of thermal interlocks for power supplies (both HV and LV) in the racks should be understood. If yes probably need some temperature sensor, cables, etc, in the racks.
-%% \item Definition of quantities to be monitored/controlled by slow controls (HV, APA, PD, Electronics, CRP, calibration, etc)
-%% \item Definition of alarms, archiving and GUIs
-%% \item SC signals into main DAQ data stream and viceversa
-%% \item electrostatic simulations to make sure instrumentation devices in the cryostat have the proper shielding 
-  
-%% \item Facility: Location of instrumentation devices, anchoring points, cryostat ports and flanges, space needed above cryostat, cable routing, rack space above cryostat, Mezzanine and CUC (Central Utility Cavern), etc 
-%% \item Installation: Installation of instrumentation devices will interfere with other devices (APA, CPA, CRP, PD, calibration, etc). This needs to be coordinated with the corresponding consortia
-%%   Some items (cables from SC switches to electronics or power supplies) will have to be installed in coordination with other consortia
- 
-%% \item The need of thermal interlocks for power supplies needs to be understood,
-%%   as well as the necessary hardware (sensors, cables, etc.).
-%%   CISC will provide the needed interlock status bit monitoring but not the hardware interlock mechanism.
-%% \end{itemize}
+\begin{itemize}
+\item Rack space distribution and interaction between slow controls (SC) modules and other modules (APAs, HV, PD, DAQ, etc)
+\item For all racks, CISC will provide rack protection system status bit monitoring
+\item In the case fan packs in racks are required CISC will provide the fan pack monitoring
+\item The choice of High/Low Voltage power supplies (PS) as well as the cables from any device connected to SC ethernet switches
+  ((PS, electronics, heaters, fans, ...) should be a combined decision with each consortium so that the harware choices 
+  allow for robust control/monitoring and precision needed 
+\item The need of thermal interlocks for PS needs to be understood, as well as the necessary hardware (sensors, cables, etc.).
+  CISC will provide the needed interlock status bit monitoring but not the hardware interlock mechanism.
+\item Definition of quantities to be monitored/controlled by slow controls (HV, APA, PD, Electronics, CRP, calibration, sotfware/computing,  etc)
+  and the corresponding alarms, archiving and GUIs
+\item SC signals into main DAQ data stream and viceversa
+\item Perform electrostatic simulations to make sure instrumentation devices in the cryostat have the proper shielding 
+\item Facility: Location of instrumentation devices, anchoring points, cryostat ports and flanges, space needed above cryostat, cable routing, rack space above cryostat, Mezzanine and CUC (Central Utility Cavern), etc 
+\item Installation: Installation of instrumentation devices will interfere with other devices (APA, CPA, CRP, PD, calibration, etc). This needs to be coordinated with the corresponding consortia
+  Some items (cables from SC switches to electronics or power supplies) will have to be installed in coordination with other consortia
+\item 
+\end{itemize}
 
 
 Particularely important is the interface with HV system since several aspects related with safety must be taken into account. 
@@ -73,30 +65,18 @@ Building Temperature, humidity and pressure will be monitored and integrated int
 
 \fixme{Describe interface with HV systems, including use of cameras for HV monitoring, and also drift HV, current toroid, ground planes, and field cage pickoffs}
 
-The cryogenics instrumentation and slow control system have multiple interfaces with the HV systems. 
-
-The hardware interface between CISC and HV has multiple components: 
+The hardware interface between CISC and HV has multiple components. Some of them are common to other systems and were listed above (see Sec.~\ref{sec:fdsp-slow-cryo-intfc}).
+The ones specific for the HV system are: 
 \begin{itemize}
 \item Understand the location of cold cameras and lights for inspection of HV related devices, as well as the requirements
   of cold/warm cameras: resolution, field of view, light sensitivity, low light operation, frames per second, operation in triggered mode?,  etc. 
 \item During the deployment of inspection cameras, avoid generation of bubbles when HV is on as it can lead to discharges.
 \item As in ProtoDUNE-SP, ground planes (GP) could be used as support for temperature sensors (RTDs). GP could be also used as support for cold cameras. 
-\item electrostatic simulations to make sure instrumentation devices in the cryostat have the proper shielding 
 \end{itemize}
 
-
-
-Software: CISC will provide full control and monitoring of the HV PS including alarms, archiving and GUIs for all HV devices,
-whose definition and implementation must be agreed among the two consortia. Special software may be needed to detect discharges
+Regarding the software interfaces appart of the common ones special software may be needed to detect discharges
 using the camera system, which will be the responsibility of the HV consortium. For all instrumentation devices inside the cryostat,
 E-field simulations are needed to guaranty proper shielding is in place. Although this is a CISC responsibility, input from HV will be crucial.
-Finally, CISC should monitor the various HV interlock status bits. For all HV racks, CISC will provide full rack monitoring which will include
-rack protection system, temperatures and fans (if any).
-
-
-
-Signals: Data from cameras for inspection of HV devices and for detection of discharges may need special treatment. 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Interface with DAQ/Electronics}
@@ -137,6 +117,35 @@ Signals: Data from cameras for inspection of HV devices and for detection of dis
 
 %% Ensure that CISC devices do not induce noise on cold electronics.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with Physics/calibration}
+\label{sec:fdsp-slow-cryo-slow-phys/calib}
+
+%% Hardware: CISC currently doesn’t have a direct hardware interface with physics. But, CISC indirectly interfaces to physics through Calibration hardware devices that currently fall under the scope of the calibration Task Force group. Refer to the interface document b/n CISC and Calibration group (doc-db\#6383-v1).
+
+%% Software: One specific need for physics will be to extract instrumentation or slow controls data to correlate high level quantities to low level or calibration data. This requires tools to extract data from the slow controls database, currently this aspect is considered under the scope of the Software and Computing group (see doc-db\#6383-v1). 
+
+%% Signals: Physics quantities to be monitored/controlled by slow controls (SC) must be identified and well defined b/n both groups.
+%% Also it has to be understood if any SC quantities has to be passed to the main DAQ data stream. A brief list of what CISC data will PHY need is given below:
+%% Energy scale calibration/reconstruction can use input from data from purity monitors on electron lifetime 
+%% Drift velocity and impact on Fiducial Volume: input from data from Temperature monitors 
+%% Ion Flow and any local E-field distortions impacting recombination,
+%% energy scale uncertainties and PID: purity and temperature maps from instrumentation data, fluid flow modelling and validation will provide necessary input for this 
+%% Operations and Data Quality for physics: E.g. Purity Monitor analysis for near line purity monitoring and input to data quality in terms of purity of argon 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interface with software and computing}
+\label{sec:fdsp-slow-cryo-slow-soft/comp}
+
+ Below it is assumed that the scope of SWC group includes scientific computing support to project activities.
+
+ The hardware interfaces include networking installation and maintenance, maintenance of SC servers and any additional computing hardware needed by instrumentation devices.
+ CISC will provide the needed monitoring for power distribution units (PDUs). 
+
+ The SWC group will provide: i) SC database maintenance, ii) API for accessing the SC database offline,
+ iii) UPS packages, local installation and maintenace of software needed by CISC, and iv) SWC creating and maintaining computer accounts on production clusters. 
+ On the other direction CISC will provide the required monitoring/control of SWC quantities including alarms, archiving and GUIs when applicable. 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +153,7 @@ Signals: Data from cameras for inspection of HV devices and for detection of dis
 \label{sec:fdsp-slow-cryo-slow-other}
 
 
-There are also inerfaces with the Photon Detection system.
+There are also interfaces with the Photon Detection system.
 Purity Monitors and Light emitting system for Cameras both emit light that might damage PDs.
 Although this should be understood and quantified, CISC and SP-PD may have to Define the necessary hardware interlocks
 that avoid turning on any other light source accidentally when PDs are on.
