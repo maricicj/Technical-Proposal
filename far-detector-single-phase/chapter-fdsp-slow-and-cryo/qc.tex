@@ -17,16 +17,43 @@ The purity monitor system will undergo a series of tests to ensure the performan
 \subsubsection{Static T-Gradient Thermometers}
 \label{sec:fdsp-slow-cryo-qc-thst}
 
-\subsubsection{Dynamiv T-Gradient Thermometers}
+
+Three type of tests will be carried out at the production site prior to installation. First, the mechanical rigidity of the system will be tested such that swinging is minimized (<5 cm)
+to reduce the risk of touching the APAs. This is will be done with a 15 m stainless steel string in horizontal position anchored to two points, beeing able to control and measure its tension. 
+Second, the quality of each sensor and its calibration should be understood. All sensors will be calibrated in the lab, as explained in Sec.~\ref{sec:fdsp-slow-cryo-therm}.
+The main concern is the reproducibility of the results since sensors could potentially change their resitance (and hence their temperature scale)
+when undergoing succesive inmesions in LAr. In this case the QC is given by the calibration procedure it self since five independent measurements
+will be done for each set of sensors. Sensors with reproducibility (RMS of those five measurements) beyond the requirements (2 mk for ProtoDUNE-SP) will be discarded.  
+The calibration will serve as QC of the readout system (similar to the final one) and of the PCB-sensor-connector assembly. Finally, the cable-connector assemblies will
+be tested: sensors should measure the expected values with no additional noice instroduced by the cable/connector. 
+
+If there is a LAr test facility with sufficient height or length to test a good portion of the system 
+and it is available for use, a integrated system test would be made there ensuring that the system
+operates in LAr and achieves the required performance. Ideally, the laboratory sensor calibration will be compared with the insitu calibration
+of the dynamic T-gradient monitors by operating both dynamic and static T-gradient monitors simultaneously.   
+
+The last phase of QC will take place after installation. For each of the arrays being installed
+the verticality of the system can be checked and the tension of the stainless steel strings can be adjusted to avoid lateral swinging towards the APAs. 
+Before soldering the wires to the flange, the entire readout chain will be tested with temporary SUBD-25 connectors. 
+This will allow testing the sensor-connector assembly, the cable-connector assembly and the noise level inside the cryostat.
+If any of the sensors gives problems, it will be replaced. If problem persists the cable will be check and/or replaced.
+
+
+\subsubsection{Dynamic T-Gradient Thermometers}
 \label{sec:fdsp-slow-cryo-qc-thdy}
 
-\subsection{Individual sensors}
+\subsubsection{Individual sensors}
 \label{sec:fdsp-slow-cryo-qc-is}
+
+The method to address the quality of individual precision sensors is the same as for the static T-gradient monitors.
+QC of the sensors is part of the laboratory calibration. After mounting six sensors with their corresponding cables a
+temporary SUBD-25 connector will be added and the six sensors tested at room temperature. All sensors should work and give values withing specifications.  
+If any of the sensors gives problems, it will be replaced. If problem persists the cable will be check and/or replaced.
 
 \subsection{Gas Analyzers}
 \label{sec:fdsp-slow-cryo-qc-ga}
 
-The Gas Analizers will be guarranteed by the manufacturer. However, once received, the Gas Analyzer modules will be checked for both “zero” and the “span” values using a gas-mixing instrument. This is done by using two gas cylinders with both a zero level of the Gas Analyzer contaminant species and a cylinder with a known percentage of the contaminant gas. This should verify the proper operation of the Gas Analyzers. When eventually installed in SURF, this process will be repeated. It is also important to repeat the calibrations at the manufacturer recommended periods over the gas analyzer lifetime.
+The Gas Analizers will be guarranteed by the manufacturer. However, once received, the Gas Analyzer modules will be checked for both ``zero'' and the ``span'' values using a gas-mixing instrument. This is done by using two gas cylinders with both a zero level of the Gas Analyzer contaminant species and a cylinder with a known percentage of the contaminant gas. This should verify the proper operation of the Gas Analyzers. When eventually installed in SURF, this process will be repeated. It is also important to repeat the calibrations at the manufacturer recommended periods over the gas analyzer lifetime.
 \todo{More info is needed}
  
 
