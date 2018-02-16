@@ -16,17 +16,18 @@
 %which is divided in functional boxes, each of which are described in
 %turn in the sections below.
 
-The DAQ Design has been driven by finding a cost effective solution
-that satisfies the requirements. Seveal design choices have
-nevertheless been made.  From a hardware perspecive, the DAQ design
-follows a standard HEP experiment design, with customised hardware at
-the upstream, feeding and funnelling (merging) and moving the data
-into comupters.  Once the data and triggering information are in
-computers, a considerable degree of flexibility is available and the
-processing proceeds with a pipelined sequence of software operations,
-involving both parallel processing on multi-core computers and
-switched networks. The flexibility allows the procurement of computers
-and networking to be done late in the delivery cycle of the DUNE
+The design for the \dword{daq} has been driven by finding a cost
+effective solution that satisfies the requirements. Several design
+choices have nevertheless been made. 
+From a hardware perspecive, the DAQ design follows a standard HEP
+experiment design, with customised hardware at the upstream, feeding
+and funnelling (merging) and moving the data into computers. 
+Once the data and triggering information are in computers, a
+considerable degree of flexibility is available and the processing
+proceeds with a pipelined sequence of software operations, involving
+both parallel processing on multi-core computers and switched
+networks. The flexibility allows the procurement of computers and
+networking to be done late in the delivery cycle of the DUNE
 detectors, to benefit from increased capability of commercial devices
 and falling prices.
 
@@ -34,80 +35,92 @@ Since DUNE will operate over a number of decades, the DAQ has been
 designed with upgradability in mind.  With the fall in cost of serial
 links, a guiding principle is to include enough output bandwidth to
 allow all the data to be passed downstream of the custom hardware.
-This allows the possibility for a future very-fast farm of comuting
-elements to accomodate new ideas in how to collect the DUNE data.  The
+This allows the possibility for a future very-fast farm of computing
+elements to accommodate new ideas in how to collect the DUNE data.  The
 high output bandwidth also gives a risk mitigation path in case the
 noise levels in a part of the detector are higher than specified and
 higher than tolerable by the baseline trigger decision mechanism; it
-will allow aditional data processing to be added (at additional cost).
+will allow additional data processing to be added (at additional cost).
 
-The data collection will incorporate the data from single-phase and
-dual-phase TPCs and also single and dual-phase versions of the
-photon-detector readout system.  These are viewed as essentially four
-types of sub-detectors within the DAQ and will follow the same overall
-data collection scheme as shown in figure 1.  The readout is arranged
-in a hierarchical manner to allow localised trigger decisions to be
-made at the APA level, and then the cavern level before being combined
-over the full four caverns.  ch initial trigger decisions.  The
-control of the detector elements will allow a fault in one part to not
-halt data taking in another part, certainly at the per-cavern level,
-but maybe also at more local levels.  This will prevent a supernova
-burst following a failure in some part of a cavern from being missed.
+The data will be collected from the TPC and photon-detector readout
+systems of the single-phase and dual-phase \dwords{detmodule}. 
+These partitions are viewed as essentially four types of
+\dwords{submodule} within the DAQ and will follow the same overall
+data collection scheme as shown in figure 1. 
+The readout is arranged in a hierarchical manner to allow localized
+\dword{l0primitive} decisions to be made at the \dword{detunit} level,
+at the cavern level before being combined over the full four caverns. 
+The control of the detector elements will allow a fault in one part to
+not halt data taking in another part, certainly at the per-cavern
+level, but maybe also at more local levels. 
+This will prevent a supernova burst following a failure in some part
+of a cavern from being missed.
 
-[The folowing text will need considerable revision to make sure it
-  corresponds with whatever ends up as figure 1, but the text here
-  gives an idea that the overview will be a very quick visit of
-  everything, and all the detail is in the later sections.  Terms in
-  {\bf boldface} are temporary madeup things and must be replaced by the
-  officially decided names].
+\metainfo{The folowing text will need considerable revision to make
+  sure it corresponds with whatever ends up as figure 1, but the text
+  here gives an idea that the overview will be a very quick visit of
+  everything, and all the detail is in the later sections. 
+  Note, migrated \textbf{boldface} terms to ``DUNE Words'' (bv).}
 
 It is helpful, on first looking at the DUNE DAQ dataflow scheme, to
 consider how the main data is collected first and then to look at how
-the triggering and synchronisation functions are included; we take
-this approach in this overview.  The main data are initially merged
-within one APA and placed in a {\bf primary buffer} to allow
-triggering decisions to be made.  When a {\bf trigger decision} is
-made, all the data in a time window and in a designated region of
-interest (ROI) around the {\bf trigger} is extracted from the buffer
-and sent for event building, {\bf a second buffer area} and possible
-transfer to permanent storage at Fermilab.  This covers trigger
-decisions for beam, calibation, atmospheric neutrino, cosmic ray
-events, individual supernova neutrinos and also candidates for
-searches such as proton decays, or low energy events such as solar and
-diffuse supernova neutrinos.  Additionally, when a supernova burst is
-detected internally within DUNE, a further {\bf SSD buffer} will be
-used to store all the data for all APAs for a long period.  The {\bf
-  primary buffer} must be long enough for trigger decision latency
-(including the time for enough supernova events in a burst to arrive
-and appear over the background). Further details of the buffering
-scheme is described in section 7.2.2.
+the triggering and synchronization functions are included; we take
+this approach in this overview. 
+The main data are initially merged within one \dword{detunit} (eg, one
+APA) and placed in a \dword{ringbuffer} to allow \dwords{trigdecision}
+to be made. 
+When a \dword{trigdecision} is performed it results in all data in a
+determined time window and in a designated region of interest (ROI) as
+specified by the \dword{trigcommand} to be extracted from the
+\dword{ringbuffer} and sent for event building, \dword{diskbuffer} and
+possible transfer to permanent storage at Fermilab. 
+This covers trigger decisions for the purpose of collecting data
+covering interactions of beam and atmospheric neutrino, cosmic rays,
+individual supernova neutrinos and also candidates for searches such
+as proton decays, or low energy events such as solar and diffuse
+supernova neutrinos as well as sources of calibration. 
+Additionally, when a supernova burst is detected internally within
+DUNE, a further \dword{dumpbuffer} will be used to store all the data
+for all APAs for a long period. 
+The \dword{ringbuffer} must be long enough for trigger decision
+latency (including the time for enough supernova events in a burst to
+arrive and appear over the background). Further details of the
+buffering scheme is described in section~\ref{sec:fdsp-daq-ltr}
+% 7.2.2.
 
+% want a \subsubsection here?
 (Triggering Overview) In parallel with the data buffering scheme
-described above, summaries of detected hits {\bf trigger primitives}
-are assembled at the APA level to detect clusters of hits and apply
+described above, summaries of detected hits \dwords{l0primitive} are
+assembled at the APA level to detect clusters of hits and apply
 algorithms to distingush them from background (either radioactive
-decays or detector noise). This is described in detail in section
-7.2.3.  Whether this process is more suitable for FPGAs or computers
-is under study, as it depends on the interfaces, both can be
-accomodated in the architecture, and both have been costed (neither
-yet!).  To retain the APA-level modulariy, the trigger primitives are
+decays or detector noise). This is described in detail in
+Section~\ref{sec:fdsp-daq-ltp}.
+% 7.2.3. 
+Whether this process is more suitable for FPGAs or computers is under
+study, as it depends on the interfaces, both can be accomodated in the
+architecture, and both have been costed. \fixme{neither yet!}
+To retain the APA-level modulariy, the trigger primitives are
 collected and processed in the same APA node that buffers the data.
 The trigger primitives are then sent to the cavern level and then the
 detector-level triggers to allow both multi-APA triggers to be formed
 and also allow the supernova burst detection decisions to be made to
-initate data transfer to SSDs.  This is described in detail in section
-7.2.5.  When a trigger decision is formed, instructions are sent to
-the {\bf primary buffers} to retrieve the full data, build them into
-events and store the results in the {\bf secondary buffers}.  The
-events for the main physics analyses will be retained for offline
-study at this point in the DAQ.  A software trigger algorithm could be
-run at this point to eliminate obvious noise-source events (such as
-pickup on a row of wires), especially if numerous.  A further feature,
-useful for certain supernova studies will be to let a sample of
-below-threshold events through to the secondary buffers where they are
-retained for a few hours.  If a SNEWS external warning of supernova is
-subsequently received, these events can be kept permanently if
-desired, to allow lower thresholds during a SNEWS period than normal.
+initate data transfer to \dword{dumpbuffer}. 
+This is described in detail in Section~\ref{sec:fdsp-daq-sel}.
+% 7.2.5. 
+When a \dword{trigdecision} is formed, instructions are sent to the
+\dword{ringbuffer} to retrieve the full data, build them into events
+and store the results in the \dword{diskbuffer}.
+The events for the main physics analyses will be retained for offline
+study at this point in the DAQ. 
+A software trigger algorithm could be run at this point to eliminate
+obvious noise-source events (such as pickup on a row of wires),
+especially if numerous. 
+A further feature, useful for certain supernova studies will be to let
+a sample of below-threshold events through to the secondary buffers
+where they are retained for a few hours. 
+If a SNEWS external warning of supernova is subsequently received,
+these events can be kept permanently if desired, to allow lower
+thresholds during a SNEWS period than normal.
 
 (Synchronisation Overview) Unknown until the interface with elecronics is known
 
@@ -147,7 +160,7 @@ readout and buffering data flow in the context of a single APA.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Local Trigger Primitive Generation (Josh Klein \& J.J. Russel \& Brett Viren \& DP Expert?)}
-\label{sec:fdsp-daq-ltr}
+\label{sec:fdsp-daq-ltp}
 
 \fixme{Below are from slides bv may show at the Jan WS.  Content copied here and now as a starting point.}
 

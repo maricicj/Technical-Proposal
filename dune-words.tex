@@ -1,0 +1,213 @@
+\documentclass{article}
+
+
+
+\usepackage{siunitx}
+\input{common/units}
+
+\usepackage{hyperref}
+
+\input{common/glossary}
+
+\title{DUNE Words}
+\author{Brett Viren}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Overview}
+
+The DUNE glossary gives a concise definition of the special terms and
+in some cases abbreviations that are part of the DUNE collaboration's
+lexicon.
+The terms make up a technical vocabulary which DUNE collaborators
+use when speaking and writing about the detectors and experiment.
+
+For authoring official documents, particularly ones that span large
+parts of the DUNE scope is to \textbf{always} refer to DUNE terms
+through a fixed reference and \textbf{never} type them literally into
+the body of the document. 
+Of course in practice this ideal can only be approached. 
+To the text it is, the benefits include:
+
+\begin{itemize}
+\item Consistent terms which helps more easily convey meaning to the reader.
+\item Reduction in repetitive and potentially inconsistent explanation
+  of terms.  
+\item Synchronizing of meaning between collaborators.
+\end{itemize}
+
+Before writing and during editing a diligent author should find
+themselves continuously checking the glossary for previously defined
+terms and adding new terms as needed.
+
+The rest of this document describes how to use existing terms from the
+glossary when authoring the document body text and how to extend the
+glossary to introduce new terms.
+
+
+\section{Usage}
+
+A \LaTeX{} file \texttt{glossary.tex} defines some DUNE-specific
+macros on top of the standard \texttt{glossaries} package followed by
+the definitions of the terms themselves. 
+This section describes how to use the glossary in a document. 
+This document provides an example of its use.
+
+\subsection{Integrating into a document}
+
+To use the DUNE glossary in a document simply \verb|\input| it into
+the preamble \textbf{after} the packages \texttt{siunitx} and
+\texttt{hyperref}. 
+The latter is not strictly required but will allow the resulting PDF
+to have clickable glossary links. 
+
+To add a list of used glossary terms to the document add the standard
+\verb|\printglossaries| macro provided by the \texttt{glossaries}
+package where you want it.
+
+\subsection{Referencing terms}
+\label{sec:referencing}
+
+The benefit of the glossary is to use a common vocabulary throughout
+the document. 
+To do that one should avoid typing a literal DUNE term and instead
+reference it through its \textbf{label}. 
+Besides assuring consistency it allows editors to easily make sweeping
+changes to the ``spelling'' of a term across the document. 
+In the case of DUNE terms with abbreviations some automated
+conveniences are provided such as including the abbreviation in
+parenthesis the first time a term is used and only using the
+abbreviation thereafter while in the text always using the same macro.
+
+To reference an item, use one of the following macros. 
+The first four cover the case of capitalization and pluralization and,
+if an abbreviation exists, will automatically follow the behavior
+above. 
+To force an abbreviated or long form one the final two may be used.
+
+\begin{itemize}
+\item \verb|\dword{label}| nominal term
+\item \verb|\dwords{label}| plural term
+\item \verb|\Dword{label}| capitalized term
+\item \verb|\Dwords{label}| capitalized and plural term
+\item \verb|\dshort{label}| force usage of the abbreviated term
+\item \verb|\dlong{label}| force usage of the full term
+\end{itemize}
+
+
+The following examples are from this \LaTeX{} source:
+\begin{verbatim}
+First time, multiple: \dwords{adc}.
+
+Second time, singular: \dword{adc}.
+
+Long: \dlong{adc}.
+
+Short: \dshort{adc}.
+
+First time, singular: \dword{daq}.
+
+Second time, plual: \dwords{daq}.
+
+First time, singular: \dword{detmodule}
+
+Second time, capitalized, plural: \Dwords{detmodule}
+\end{verbatim}
+
+First time, multiple: \dwords{adc}.
+
+Second time, singular: \dword{adc}.
+
+Long: \dlong{adc}.
+
+Short: \dshort{adc}.
+
+First time, singular: \dword{daq}.
+
+Second time, plual: \dwords{daq}.
+
+First time, singular: \dword{detmodule}
+
+Second time, capitalized, plural: \Dwords{detmodule}
+
+
+
+\section{Extending}
+
+As of this writing, the \texttt{glossary.tex} file is included with a
+larger document (currently the DUNE Technical Proposal). 
+For future documents some effort to break out this glossary into an
+independently managed file should be pursued. 
+Until that happens, it is expected that this file will evolve along
+and as part of each major DUNE document.
+
+\subsection{Adding new terms}
+
+In general, new DUNE terms may be added to the DUNE glossary using the
+macros provided by the standard \texttt{glossaries} package. 
+To simplify defining new terms two DUNE-specific macros are defined in
+terms of the standard ones.
+
+\noindent To define a DUNE term that has no abbreviation use:
+
+\begin{verbatim}
+\newduneword{label}{term}{description}
+\end{verbatim}
+
+\noindent To define a DUNE term with an abbreviation use:
+
+\begin{verbatim}
+\newduneabbrev{label}{abbrev}{term}{description}
+\end{verbatim}
+
+\noindent The labeled arguments are defined as:
+
+\begin{description}
+\item[\texttt{label}] a descriptor that will be used to refer to this
+  term in the macros described in Section~\ref{sec:referencing}. 
+  A good choice for a label for a term with an abbreviation is to
+  lowercase that abbreviation. 
+  For terms that lack one, something short but similar to the full
+  term should be used. 
+  The \texttt{label} may contain spaces but making it concise and
+  memorable is better than verbose.
+\item[\texttt{abbrev}] the abbreviation or acronym for the term (only for \verb|\newduneabbrev|).
+\item[\texttt{term}] the DUNE term itself written out in words.
+\item[\texttt{description}] a concise but descriptive explanation of
+  what the term means. 
+  Avoid over specifying and over generalizing. 
+  Shoot for one or two sentences. 
+  One quirk is that the description must not end in punctuation. 
+\end{description}
+
+The term shown in the examples of Section~\ref{sec:referencing} are
+defined like:
+
+\begin{verbatim}
+\newduneabbrev{adc}{ADC}{Analog Digital Converter}{A sampling of a voltage
+  resulting in a discrete integer count corresponding in some way to
+  the input}
+\newduneabbrev{daq}{DAQ}{data aquisition}{The Data Acquisition system
+  accepts data from the detector \acrshort{fe} electronics, buffers
+  it, performs a \gls{trigdecision}, builds events from the selected
+  data and delivers the result to the offline \gls{diskbuffer}}
+\newduneword{detmodule}{detector module}{The entire DUNE far detector is
+  segmented into four modules, each with a nominal \SI{10}{\kton}
+  fiducial mass}
+\end{verbatim}
+
+This latter one gives an example of why \texttt{siunitx} is required. 
+Also note that it is acceptable to use \texttt{glossaries} macros to
+reference DUNE terms inside the descriptions of other DUNE terms. 
+Because the final glossary below only includes terms that have been
+referenced, this is a good way to assure completeness.
+ 
+
+
+
+\cleardoublepage
+\printglossaries
+
+\end{document}

@@ -1,0 +1,34 @@
+#!/bin/bash
+if [ -z "$1" ] ; then
+    echo "usage: $0 <mainfile> [clean|print|draft]"
+    echo "draft mode is default"
+    exit 1
+fi
+# strip off .tex if it's give
+name=$(basename $1 .tex)
+
+if [ "$2" = "clean" ] ; then
+    rm -f $name.{blg,bbl,gls,glg,alg,acr,ist,aux,toc,tdo,out,lot,lof,glo,acn,log}
+    if [ -f "${name}.pdf" ] ; then
+        echo "Not removing:"
+        echo "${name}.pdf"
+    fi
+    exit 0
+fi
+
+pdflatex="pdflatex $name"
+if [ "$2" == "print" ] ; then
+    pdflatex="pdflatex \def\isfinal{1} \input{$name}"
+fi
+
+
+$pdflatex
+$pdflatex
+bibtex $name
+$pdflatex
+$pdflatex
+makeindex -s $name.ist -t $name.glg -o $name.gls $name.glo
+makeindex -s $name.ist -t $name.alg -o $name.acr $name.acn
+# makeindex $name.nlo -s nomencl.ist -o $name.nls
+$pdflatex
+$pdflatex

@@ -31,39 +31,46 @@ This shows how to clone the repository and build a TP volume. Bare bones. See mo
 If you need a reliable LaTeX installation, Tom Junk has installed texlive 2017 in his area on the dunegpvm's at Fermilab. Feel free to use it! Just login and run his setup file:
 
 ```
-#+BEGIN_EXAMPLE
   $ ssh dunesl7gpvm01.fnal.gov  
   for bash and sh:  $ source /grid/fermiapp/products/dune/texlive2017/setup.sh
   for tcsh and csh: $ source /grid/fermiapp/products/dune/texlive2017/setup.csh
   $ mkdir /my/work/area
-#+END_EXAMPLE
 ```
 
 
  
 - Type this sequence to clone the repository:
 ```
-#+BEGIN_EXAMPLE
   $ cd /my/work/area
   $ git clone https://github.com/DUNE/Technical-Proposal.git
-#+END_EXAMPLE
 ```
  
 - Do a test edit and test build, e.g., the software-computing volume (yes, run pdflatex twice)
 ```
-#+BEGIN_EXAMPLE
   $ cd DUNE-TDR
   $ pdflatex software-computing
   $ pdflatex software-computing
-#+END_EXAMPLE
 ```
+
+There is also a script to run with the above as well as build bibliography and indices.
+
+```
+   $ ./compilit software-computing
+   $ ./compilit software-computing print
+   $ ./compilit software-computing clean
+```
+
+The first will build with line numbers, fixme's and other things useful for editing, the second will build with "print quality".  The third deletes intermediate files except the final PDF.
  
 - Type this sequence to commit (after it builds successfully):
 ```
-#+BEGIN_EXAMPLE
   $ git commit -a -m "Brief explanation of what you updated"
   $ git push
-#+END_EXAMPLE
+```
+
+- One must add new files just once and then commit as above.
+```
+  $ git add path/to/the/file.ext
 ```
 
 
