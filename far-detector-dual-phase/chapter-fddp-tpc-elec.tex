@@ -531,21 +531,53 @@ Anything specific apart from making cable connections?
 \subsection{Dual-Phase TPC Electronics Consortium Organization}
 \label{sec:fddp-tpc-elec-org-consortium}
 
-The Dual-Phase TPC electronics consortium consists of \num{7} participating institutions from France (\num{3}), Japan (\num{3}), and USA (\num{1}). The consortium leader is Dario Autiero (IPNL, France) and the technical lead is Takuya Hasegawa (KEK, Japan).
+The Dual-Phase TPC electronics consortium consists of seven participating institutions from France (\num{3}), Japan (\num{3}), and USA (\num{1}). The consortium leader is Dario Autiero (IPNL, France) and the technical leader is Takuya Hasegawa (KEK, Japan). The composition of the consortium along with the information for each institutional representative is provided in Table~\ref{tab:dp-ele-consortium-people}.
+\begin{dunetable}
+[DP TPC electronics consortium participants]
+{p{0.35\linewidth}p{0.25\linewidth}p{0.35\linewidth}}
+{tab:dp-ele-consortium-people}
+{DP TPC electronics consortium participants}   
+ Institution    & Investigator & Contact \\ \toprowrule
+France: APC  & Thomas Patzak & thomas.patzak@cern.ch \\ \colhline
+France: IPNL  & Dario Autiero & autiero@cern.ch  \\ \colhline
+France: LAPP & Dominique Duchesneau & duchesneau@lapp.in2p3.fr  \\ \colhline
+Japan: Iwate University & Shinya Narita & narita@iwate-u.ac.jp  \\ \colhline
+Japan: KEK    & Takuya Hasegawa & takuya.hasegawa@kek \\ \colhline
+Japan: NITKC & Seiji Kasai & kasai@kure-nct.ac.jp  \\ \colhline
+USA: Southern Methodist University & Thomas Coan & coan@smu.edu  \\ \colhline
+\end{dunetable}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Planning Assumptions}
 \label{sec:fddp-tpc-elec-org-assmp}
-
+The present design of the DP TPC electronics system relies on mostly on the elements that have already been developed and tested in LArProto detector. Commissioning of the ProtoDUNE-DP towards the end of this should provide some addition information. Some additional improvements related to the increase in the channel density supported by AMCs of charge readout could be envisioned for the purpose of cost reduction. However, no major alterations in the overall system design are expected. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{WBS and Responsibilities}
 \label{sec:fddp-tpc-elec-org-wbs}
 
-The detailed description of the WBS including the assignments of the responsible institutions could be found in DUNE-doc-5594.
+The description of the WBS including the assignments of the responsible institutions is documented in DUNE-doc-5594 and provided in addendum.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{High-level Cost and Schedule}
 \label{sec:fddp-tpc-elec-org-cs}
 
-The detailed cost model has been developed based on the scaling of the costs for the electronics system of ProtoDUNE-DP. It is documented in DUNE-doc-XXXX in addendum.  
+The detailed cost model has been developed based on the scaling of the costs for the electronics system of ProtoDUNE-DP. It is provided in addendum. 
+Table~\ref{tab:dp-ele-schedule} shows an extract from the international project schedule pertaining to the technical activities of the consortium.
+\begin{dunetable}[DP TPC electronics consortium schedule]
+{p{0.6\linewidth}lll}
+{tab:dp-ele-schedule}
+{DP TPC electronics consortium schedule}
+ Techincal activity  &  Days & Start date & End date \\ \toprowrule
+Preparation of costing for Technical Proposal & \num{20} & 02/26/18 & 03/23/18 \\ \colhline
+Initial Development of Installation Schedule & \num{20} & 02/26/18 & 03/23/18 \\ \colhline
+Further Development of Installation Schedule & \num{145} & 09/03/18 & 03/22/19 \\ \colhline
+Installation and Commissioning of PD-DP & \num{320} & 01/01/18 & 03/22/19 \\ \colhline
+Finalization of the number of channels for light readout & \num{20} & 09/03/18 & 09/28/18 \\ \colhline
+Implementation of routing for digital cards of light readout & \num{40} & 10/01/18 & 11/23/18 \\ \colhline
+Preparation of final costing for TDR & \num{85} & 11/26/18 & 03/22/19 \\ \colhline
+Firmware development for charge readout cards & \num{145} & 09/03/18 & 03/22/19 \\ \colhline
+\end{dunetable}
+
+
