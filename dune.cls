@@ -14,6 +14,8 @@
 \def\titleextra{ }
 
 % Provide finer-grained sectioning.
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
 \newcounter{subsubsubsection}[subsubsection]
 \def\subsubsubsectionmark#1{}
 \def\thesubsubsubsection {\thesubsubsection
