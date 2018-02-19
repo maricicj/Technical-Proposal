@@ -1,12 +1,12 @@
 \section{Photon Detection System (PD) Overview}
 \label{sec:fdsp-pd-ov}
-%\fixme{(Length: TDR=10 pages, TP=3 pages)}
-\metainfo{(Length: TDR=10 pages, TP=3 pages)}
+%\metainfo{(Length: TDR=10 pages, TP=3 pages)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction}
 \label{sec:fdsp-pd-intro}
-\metainfo{\color{blue} Content: Segreto}
+%\todo{\color{blue} Content: Segreto}
+
 Liquid Argon is known to be an abundant scintillator and emits about 40 
 photons/keV when excited  by minimum ionizing particles, in absence of 
 electric fields. The passage of ionizing radiation in LAr produces excitations 
@@ -22,24 +22,24 @@ fast and slow components is related to the ionization density of LAr and
 depends on the ionizing particle, being 0.3 for electron, 1.3 for alpha 
 particles and 3 for neutrons. This circumstance is at the base of the  
 particle discrimination capabilities of LAr, which is exploited by many 
-experiments.\\ 
+experiments.
 
 In both decays, photons are emitted in a 10 nm band centered around 127 nm, in 
-the Vacuum Ultra Violet (VUV) region of the electromagnetic spectrum.\\ 
+the Vacuum Ultra Violet (VUV) region of the electromagnetic spectrum.
 
 The paradigm for the detection of LAr scintillation light foresees the use of 
 wavelength shifters since the common (cryogenic) photosensors are not 
 sensitive to VUV radiation due to the lack of transparency of fused silica and 
 glass optical windows. The most widely used wavelength shifter used in 
-combination with LAr is Tetra-PhenylButadiene (TPB), which absorbs VUV photons 
+combination with LAr is Tetra-Phenyl Butadiene (TPB), which absorbs VUV photons 
 and re-emits them with a spectrum centered around 430 nm, where most of the 
-photosensors have their maximum Quantum Efficiency. TPB conversion efficincy 
+photosensors have their maximum Quantum Efficiency. TPB conversion efficiency 
 is known to be high, when compared to other wavelength shifters (....), and 
 it is often assumed to be 100\%, even if a reliable direct measurement of this 
 relevant quantity is not available in the literature. 
 In large LAr TPC, it is common to use photon collector systems which allow to 
 collect light from large areas and drive it in an efficient way towards the 
-active sensors.\\
+active sensors.
 
 Scintillation light detection is important in a LAr TPC: it is often 
 used for triggering purposes and $T_0$ time measurements, for the 
@@ -73,35 +73,33 @@ The operating principle is illustrated in Figure~\ref{figure-label}... (add figu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Design Considerations}
 \label{sec:fdsp-pd-des-consid}
-\metainfo{\color{blue} Content: Segreto/Warner/Mualem}
+%\todo{\color{blue} Content: Segreto/Warner/Mualem}
+
 The photon detection system of the Single Phase DUNE far detector is 
 constrained to be structured into modules shaped in form of thin bars (less 
-then 1 cm thick) with approximate dimensions of 8 cm $\times$ 200 cm by the need of 
-being installed on the mechanical frame of the APA and slided between the wire
+then 1 cm thick) with approximate dimensions of 8~cm $\times$ 200~cm by the need of 
+being installed on the mechanical frame of the APA and slid between the wire
 planes on its two sides.
 
 Three different designs of PD modules have been developed and are being 
-considered by the SP PD COnsortium. Two of them are based on the concept of 
+considered by the SP PD Consortium. Two of them are based on the concept of 
 light guides coupled to solid state silicon photomultipliers (SiPM) while the 
 third one, namely the ARAPUCA, is a light trap, which captures the photons inside
-boxes with 
-higlhly reflective internal surfaces where they are eventually detected by 
+boxes with highly reflective internal surfaces where they are eventually detected by 
 SiPM.
 
-The dip-coated light guides are pre-treated commercially-cut acrilic slabs dip 
+The dip-coated light guides are pre-treated commercially-cut acrylic slabs dip 
 coated with a solution of TPB, acrylic and toluene. When toluene evaporates it 
-leaves a thin film of TPB embedded in  acrylic matrix which acts as wavelenght 
+leaves a thin film of TPB embedded in  acrylic matrix which acts as wavelength 
 shifter. A fraction of the light is captured inside the acrylic bar by total 
 internal reflection and is detected at one end of the bar by an array of SiPM.
 
 The double-shift light guides are slightly different, since the conversion and 
 guiding processes of the photons are decoupled. They are constituted by a 
 radiator plate coated by pure TPB (through a spraying process) which is 
-optically ocoupled to a commercial shifting/guiding bar which absorbs the TPB blue
-light 
-and re-emits it in the green. A fraction of the double-shifted light is 
-captured 
-inside the bar by total internal reflections and again it is detected by an 
+optically coupled to a commercial shifting/guiding bar which absorbs the TPB blue
+light and re-emits it in the green. A fraction of the double-shifted light is 
+captured inside the bar by total internal reflections and again it is detected by an 
 array of SiPM installed at one of its ends.
 
 The ARAPUCA module is composed of an array of smaller boxes (of the order of 
@@ -126,7 +124,7 @@ Both designs have been demonstrated to have attenuation lengths for the
 trapped light comparable to the length of the bars themselves, which ensures a 
 reasonable uniformity along the beam direction. Their absolute efficiency has 
 been measured in a quite reliable way only recently and ranges between 0.1\% and
-0.2\%.\\
+0.2\%.
  
 The ARAPUCA concept, on the other hand, is quite new since it was proposed for 
 the first time in 2015 and was accepted for the installation in protoDUNE in 
@@ -148,7 +146,7 @@ background which otherwise could cause a huge counting rate for events near
 the anodic plane. It would also increase the light yield of the detector and 
 could allow to perform calorimetric measurements based on light.  This 
 possibility is under study through Monte Carlo simulations and its mechanical
-feasibility is being discussed with the HV Consortium.\\
+feasibility is being discussed with the HV Consortium.
 
 The actual minimal requirements for the light yield of the PD system is of 0.1 
 phel/keV near the cathode, which would allow to efficiently  detect ($>$ 90\%) 
@@ -161,28 +159,28 @@ neutrinos and a critical revision of the requirements is taking place.
 These considerations are driving the actual strategy for the design of the SP 
 FD DUNE far detector design and in particular for the R\&D program which will 
 be carried on before the Technical Design Report (mid 2019). A strong effort 
-should be put in exploring the possibilty of increasing the light yield of the 
+should be put in exploring the possibility of increasing the light yield of the 
 detector with the ARAPUCA concept by a factor ten with respect to bars' 
-read-out, compatibily with the resources available inside the Consortium, in 
-therms of manpower and fundings. This R\&D program will lead the Consortium to 
+read-out, compatible with the resources available inside the Consortium, in 
+terms of manpower and fundings. This R\&D program will lead the Consortium to 
 define a baseline design for the photon collector and one alternate design for risk
 mitigation.  
 
-Cocerning the active photosensors few options are under evaluation.
+Concerning the active photosensors few options are under evaluation.
 SensL SiPM, which have been heavily used in protoDUNE did not demonstrated to 
-be reliable enugh for cryogenic operations after a modification to their 
+be reliable enough for cryogenic operations after a modification to their 
 packaging and new vendors are being considered. 
 The plan is to use only devices which are certified for cryogenic operations 
 by the vendor. There are actually ongoing tests of cryogenic SiPM produced by
  Hamamatsu and by FBK (Fondazione Bruno Kessler, Italy).
 
 The electronic design will be strongly influenced by the outcomes of Monte 
-Carlo simulations, whcich will tell about the relevance of having pulse 
+Carlo simulations, which will tell about the relevance of having pulse 
 shape capabilities and how they improve Supernova neutrino detection. These
 consideration will have a role in defining the read-out scheme and the digitization
 frequency of the signals.  
 
-\fixme{Anne suggests: Within this section add ref to requirements document  when it's ready, and maybe list the most important half dozen in a table here). E.g.,}  
+\fixme{Add ref to requirements document  when it's ready, and maybe list the most important half dozen in a table here). E.g.,}  
 
 
 \begin{dunetable}
@@ -198,18 +196,19 @@ Requirement  \\ \toprowrule
 
 \fixme{By the end of the volume, for every requirement listed in this section, there should exist an explanation of how it will be satisfied.}
 
-\subsection{Criteria for photon collection options performance evaluation}?\fixme{\color{blue} Content: Segreto}
+\subsection{Photon Collection Options Evaluation}
+%\todo{\color{blue} Content: Segreto}
 
-The performances of the different photon collection options will be 
-evaluated in 
-the facilities available to the Consortium which will allow to perform 
+The performance of the different photon collection options will be 
+evaluated in the facilities available to the Consortium which will allow to perform 
 relative and absolute measurements at room and cryogenic temperature.
 
 An important piece of information will come from the protoDUNE experiment, 
 which is being constructed at CERN and will be operated starting from the 
-second half of 2018.\\
+second half of 2018.
+
 All the three different designs are present in protoDUNE, in particular 29 
-double-shift guides, 29 dip-coated guides and 2 ARAPUCA arrays. The 
+double-shift guides, 29 dip-coated guides and two ARAPUCA arrays. The 
 presence of the Time Projection Chamber will allow to precisely reconstruct 
 in 3D the track of any ionizing event inside the active volume. The 
 matching of the track with the associated light signal will enable to 
@@ -218,16 +217,17 @@ modules.
 Absolute measurements will be possible depending on the accuracy of the
 Monte Carlo simulations of the optical properties of the detector. 
 Unfortunately the fact that  some of the optical parameters which 
-regulate VUV light propagation in LAr are poorly known, such as Ryleigh 
+regulate VUV light propagation in LAr are poorly known, such as Rayleigh 
 scattering length, will influence the precision of the absolute 
-measurements.\\
+measurements.
+
 The protoDUNE test will also give the opportunity of performing long 
 term test of the PD modules for the first time. It will be possible to 
 verify if there is a decay in their performances and eventually to 
 quantify it. This is a relevant information, which needs to be taken into 
 account also in the final design of the modules to ensure that the 
 minimal requirements are satisfied along the whole life of the DUNE 
-experiment.\\
+experiment.
 
 The R\&D program will go on in parallel with the protoDUNE operation and 
 more comparative measurements will be needed before the Technical Design 
@@ -235,39 +235,26 @@ Report, when a baseline design will be singled out.
 The TallBo facility at Fermilab will be extremely important to this scope. 
 It is constituted by a 450 liters cryostat with 56 cm inner diameter and up 
 to a 183 cm liquid depth and allows to host up to three different PD 
-modules with dimensions close to the real ones.\\
+modules with dimensions close to the real ones.
+
 Other facilities are accessible to the Consortium which will allow to test 
 smaller scale prototypes of the modules (or a piece of them), like the 
 SCENE set-up at Fermilab, the cryogenic facilities at Colorado State 
-UNiversity and UNICAMP (Brazil) and the optical facilities at Fermilab, 
+University and UNICAMP (Brazil) and the optical facilities at Fermilab, 
 Indiana University and UNICAMP. These facilities will be useful for the 
 single modules optimization process.
          
 
-
-\section{Scope}
+\subsection{Scope}
+\label{sec:fdsp-pd-scope}
+%\todo{\color{blue} Content: Segreto/Warner/Mualem}
 The scope of the photon detector (PD) system for the DUNE far detector 
 reference design includes design, procurement, fabrication, testing,
  delivery and installation of the following components:
 \begin{itemize}
         \item light collection system;
-        \item silicon photo-multipliers (SiPMs);
+        \item photosensors (silicon photomultipliers);
         \item readout electronics;
-        \item calibration system (???)
-        \item realted infrastructures
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Scope}
-\label{sec:fdsp-pd-scope}
-\fixme{\color{blue} Content: Segreto/Warner/Mualem}
-
-The scope of the Photon Detection system includes the continued procurement of materials for, and the fabrication, testing, delivery and installation of the following systems: 
-
-\fixme{Whatever the items are...}
-
-\begin{itemize}
-\item Photon Collectors 
-\item SiPMs
-\item ...
+        \item calibration system (tbd);
+        \item related infrastructures.
 \end{itemize}
