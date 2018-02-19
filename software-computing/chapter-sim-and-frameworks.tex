@@ -17,7 +17,7 @@
 \subsection{Muon Monitors}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Event Geneartors}
+\section{Event Generators}
 
 The event generators provided with LArSoft create MCParticle and MCTruth data products in
 the {\it{art}} event store.  Any number of event generators, including multiple instances of the
@@ -29,6 +29,17 @@ to additional generators without investing in software integration.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Neutrino Interaction simulations}
+
+Not only must the $V-A$ coupling of the neutrino to both the weak charged and neutral currents be simulated,
+but the struck nucleon and its environment must be simulated in detail in order for DUNE's oscillation
+program to succeed.  Typically the struck nucleon is ejected, but frequently a $\Delta$ resonance is made,
+which decays promptly, frequently into a pion and a nucleon.  In higher-energy scattering events, even
+more particles can be produced.  In interactions at all energies, nucleons can be emitted as a result
+of final-state interactions.  Correlations between nucleons in the initial state manifest themselves as
+correlated nucleon emission in the final state.  Neutrino interaction generators are in a state of rapid
+development and improvement, as data are collected from neutrino experiments of increasing sophistication
+and dataset size.  Below is a summary of some of the available generators, their features, and their
+computing footprints relevant for DUNE.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{GENIE $\nu$ interaction generator}
@@ -66,6 +77,15 @@ oscillaton signal models.
 
 \subsection{Cosmic-Ray Generators}
 
+While the Far Detector is 4850 feet underneath the surface and thus has a low rate of cosmic rays (approximately 
+four per day per m$^2$ penetrate the top surface), these cosmic-ray events contribute significantly to the data
+volume and they are quite useful for calibrating the detector.  Their energies are quite high; the average energy
+of a cosmic-ray muon at the 4850-foot level is approximately 400~GeV.  Many of the cosmic-ray muons will produce
+electromagnetic showers in the detector, while others will be present as minimum-ionizing particles, or populate
+the relativistic rise portion of the Bethe-Bloch curve.  Careful simulation of cosmic-ray events will be necessary
+to take advantage of them for calibration purposes, as well as to identify them as backgrounds to physics analyses
+such as atmospheric-neutrino measurements and nucleon-decay searches.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{CRY}
 
@@ -73,7 +93,7 @@ oscillaton signal models.
 \subsubsection{CORSIKA}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{MUSUN/MUSIC}
+\subsubsection{MUSUN/MUSIC}  % from Karl
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Radiological Generator}
