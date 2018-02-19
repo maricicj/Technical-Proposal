@@ -25,7 +25,7 @@ The baseline sensor model is the Lakeshore PT102, which has demonstrated excelen
 For the readout cables a custom cable made by Axon is the baseline. It consists in four teflon-jacketed (extruded PFA)
 silver platted annealed cupper wires (AWG28), forming two twisted pairs, with an metalic external shield
 (silver platted annealed cupper) and an outer teflon (extruded PFA) jacket. The cable has a 3.7 mm outer diameter and weights 28 g/m.
-The redout system will be descrived below in a separate subsection. 
+The readout system will be described below in a separate subsection. 
 
 % % % %
 \subsubsection{Static T-Gradient monitors}
@@ -33,13 +33,13 @@ The redout system will be descrived below in a separate subsection.
 Several vertical arrays of high precision temperature sensors cross-calibrated in the laboratory will be installed behind the APAs.
 Since the electric potential in this area is zero no electric field shielding is required, simplifying enormously the mechanical design.
 
-Sensors are cross-calibrated in the lab using a well controlled environment and a high precission readout system, descrived below in a separate subsection.  
+Sensors are cross-calibrated in the lab using a well controlled environment and a high precission readout system, described below in a separate subsection.  
 Four sensors are placed as close as possible in a small cylyndrical aluminum capsule. The capsule is introduced in a polystire box with 15 cm thick walls
 and a 10x10x15 $cm^3$ empty space. A small quantity of LAr is used to cooldown the capsule to $~90 K$. Then the capsule is covered by LAr such that it penetrates
 inside fully covering the sensors. Once the temperature stabilizes to the 1 mk level (after 15-30 minutes) measurements are taken. 
 
-Te baseline design for the mechanics of the system is shown in Fig.~\ref{}. It consists in two stailess strings ancored at top and bottom corners of the cryostat
-using the M10 bolts ... One of the strings is used to route the cables while the other serves as support for temperature sensors. 
+The baseline design for the mechanics of the system is shown in Fig.~\ref{}. It consists in two stainless strings anchored at top and bottom corners of the cryostat
+using M10 bolts. One of the strings is used to route the cables while the other serves as support for temperature sensors. 
 
 
 \begin{dunefigure}[sensor support]{fig:sensor-support}
@@ -56,9 +56,9 @@ using the M10 bolts ... One of the strings is used to route the cables while the
 T-Gradient monitors will provide a vertical temperature profiling outside the TPCs. Those will be complemented by a coarser 2D array at the top and bottom of the
 detector. Sensors, cables and readout will be the same as for the T-gradient monitors. 
 
-In principle a similar distribution of sensors will be used at TOP and bottom.
+In principle a similar distribution of sensors will be used at top and bottom.
 Following ProtoDUNE-SP design, bottom sensors will use the cryogenic pipes as support structure, while top sensors will be anchored to the ground planes.
-Teflon (see Fig.~\ref{fig:cable-support}) pieces will be used to route cables from the sensors to the DSS/cryogenic ports.
+Teflon pieces (see Fig.~\ref{fig:cable-support}) will be used to route cables from the sensors to the DSS/cryogenic ports.
 
 \begin{dunefigure}[sensorcable support]{fig:cable-support}
   {Left: support for two cables on ground planes. Right: Supports for three cables  mounted on cryogenics pipes using split clamps}
@@ -72,13 +72,13 @@ Teflon (see Fig.~\ref{fig:cable-support}) pieces will be used to route cables fr
 \subsubsection{Readout system for thermometers}
 \label{sec:fdsp-slow-cryo-therm-readout}
 
-A high precision and very stable system is required to achieved the design precission of $< 5 mk$.
+A high precision and very stable system is required to achieved the design precihsion of $< 5 mk$.
 The proposed readout system is the one used in ProtoDUNE-SP, which is based on a variant of an existing mass PT100 temperature readout system developed at
 CERN for one of the LHC experiments. The system consists of three parts:
 \begin{itemize}
 \item An accurate current source for the excitation of the temperature sensors, implemented by a compact electronic circuit using high a precision voltage reference from Texas Instruments. 
 \item A multiplexing circuit based on an ADG707 Analog Device multiplexer electronic device;
-\item A hig resolution and accuracy voltage signal readout module based on National Instruments NI9238, which has 24 bits resolution over 1 Volt range.
+\item A high resolution and accuracy voltage signal readout module based on National Instruments NI9238, which has 24 bits resolution over 1 Volt range.
   This module is inserted in a National Instruments Ethernet DAQ backplane, which will distribute the temperature values to the main Slow Control Software
   through the standard protocol, OPC UA. The Ethernet DAQ will include also the multiplexing logic.
 \end{itemize}
