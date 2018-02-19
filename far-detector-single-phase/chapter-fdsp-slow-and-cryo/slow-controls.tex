@@ -2,8 +2,23 @@
 \section{Slow Controls}
 \label{sec:fdsp-slow-cryo-ctrl}
 
+% same for SP and DP
 
-\fixme{Include an image of the subsystem, indicating its parts. Show how the system fits into the overall system).}
+The slow controls system will collect, archive, and display data from
+a broad variety of sources, and will provide real time alarms and
+warnings for detector operators. Data is acquired via network
+interfaces.  Figure \ref{fig:sp-slow-controls-diagram} shows the
+connections between major parts of the slow controls system and other
+systems.  The following subsections describe the required hardware and
+software for the slow controls.
+
+\begin{dunefigure}[Slow Controls connections and data]{fig:sp-slow-controls-diagram}
+{Typical Slow Controls system connections and data flow}
+\includegraphics[width=0.7\textwidth]{slow-controls-diagram}
+\end{dunefigure}
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,7 +70,7 @@ would fit tightly into one rack or very comfortably into two.
 \subsubsection{Slow Controls Signal Processing Hardware}
 \label{sec:fdsp-slow-cryo-slow-dsp}
 \fixme{Is this the place for the laundry list of Things to Be Monitored?
- ({\it but which are not cryo related})}
+ ({\it but which are not cryo related}) --- I think not! According to Sowjanya's scope text, CISC will not be providing signal processing hardware. (Check this.)}
 
 
 
@@ -68,8 +83,51 @@ would fit tightly into one rack or very comfortably into two.
 % Sowjanya
 \subsection{Slow Controls Software}
 \label{sec:fdsp-slow-cryo-sw}
-\fixme{Glenn's talk from the parallel session @CERN is a great starting
-  point here}
+
+% same for SP and DP
+
+The Slow Controls software will need to include the following components
+to provide complete monitoring and control of detector sub-systems:
+%
+\begin{description}
+ \item{Control systems base} that performs input and output operations
+  and defines processing logic, scan conditions, alarm conditions,
+  archiving rate, etc.;
+ \item{Alarm server} that monitors all channels and sends alarm
+  messages to operators; 
+ \item{Data archiver} that performs automatic sampling and storage of
+  values for history tracking;
+ \item{Integrated Operator interface} that provides display panels for
+  controls and monitoring.
+\end{description}
+
+An additional requirement for the software is to be able to indirectly
+interface with external systems ({\em e.g.}\ Cryogenics control
+system) and databases ({\em e.g.}\ beam database) to export data into
+slow controls process variables (or channels) for archiving and status
+displays. This allows integrating displays and warnings into one
+system for the experiment operators, and to provide integrated
+archiving for sampled data in the archived database. In this case, one
+can imagine an Input Output Controller (IOC) running on a central DAQ
+server provides ``soft'' channels for these data.
+Fig.\ \ref{fig:sp-slow-controls-diagram} shows a typical workflow of a
+slow controls system.
+
+In terms of key features of the software, a highly evolved software is
+needed that is designed for managing real-time data exchange, scalable
+to large number of channels and high bandwidth if needed. The software
+should be well documented, supported, and known to be reliable. The base
+software should also allow easy access of any channel by name. The
+archiver software should allow data storage in SQL database with
+adjustable rates and thresholds such that one can easily retrieve data
+for any channel by using channel name and time range. Among the key
+features, the alarm server software should remember state, support
+arbitrary number of clients and provide logic for delayed alarms and
+acknowledging alarms. As part of the software, a standard naming
+convention for channels will be followed to aid dealing with large
+number of channels and sub-systems.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ed T
