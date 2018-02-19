@@ -51,6 +51,13 @@ to additional generators without investing in software integration.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Nucleon Decay and Exotic Particle Simulation}
 
+The nucleons in $^{40}Ar$ nuclei are bound together very tightly, and have nonzero expectation values of their
+kinetic energies.  When a nucleon decays, the decay products scatter within the nucleus before exiting, in a manner
+similar to scattering products in neutrino interactions.  The resulting nucleus de-excites into a stable configuration
+after the event.  Nucleon-decay generators take these effects into account.  Similar issues exist for neutron-antineutron
+oscillaton signal models.
+
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{GENIE}  % Hector Mendez will supply something here.
 
@@ -202,3 +209,20 @@ Huffman algorithm.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trigger Simulation}
+
+Triggers are being designed for the Far Detector, and the tradeoffs between physics sensitivity,
+trigger rate, buffer size, and data volume are investigated with simulated signal events and
+realistic backgrounds.  Cosmic-ray events, beam-neutrino interactions, atmospheric neutrino interations,
+and nucleon decay events are the easiest to trigger on, using energy-sum triggers.  These events
+are also confined to a very short amount of time, and so readout of the detector for a drift time plus some
+extra before and after to capture pedestals is expected to suffice.
+ 
+ Supernova-burst triggers on the other hand pose significant challenges.  The burst of neutrinos is expected
+to last tens of seconds, in which a few tens to a few thousands of neutrino scatters may be recorded.  The
+triggering system must identify a burst quickly in order to save full detector information in a buffer
+long enough to capture the entire burst.  Disk-writing speeds and network speeds will not be fast enough
+to save an entire burst, though SSD's may provide sufficient write speed.  A trigger must be formed so 
+as not to write over the SSD memory continuously.  This trigger needs to run on specialized hardware, and/or
+computers dedicated to triggering supernova events, possibly with GPU assistance.  As such, LArSoft is
+unlikely to be the right tool for computing trigger decisions, but LArSoft-simulated MC samples are
+ideal for providing input to smaller, faster trigger algorithms developed separately.
