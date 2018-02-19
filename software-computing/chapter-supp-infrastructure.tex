@@ -5,10 +5,102 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Supporting Computing Infrastructure} 
 \fixme{6 pages}
-\section{Build systems} % Top Junk
-\subsection{Code validation}
-\subsection{Continous Integration}
+
+The physics program of DUNE requires significant amounts of data to be collected, processed,
+and analyzed by a large, international collaboration.  Detector simulations, some of which may
+be much larger than the data in size and in the number of parameters to be studied for evaluation
+of systematic uncertainties need to be processed in a similar way as the data and cataloged so they
+too can be analyzed by the collaboration.  All of this is supported by the computing resources
+available to the collaboration, but it requires a significant amount of tooling and support to
+use.  This section describes the supporting infrastructure, both hardware, software, and networking
+tools needed to execute the computing plan.
+
+\section{Build systems}
+
+Several build systems are currently in place to support both the managed software stack and also user builds
+of code to be contributed to the managed stack, or privately modified versions of public code.  Software management
+is described in Chapter~\ref{chap:codemgt}.  The officially released code stack is compiled on build servers at Fermilab,
+one per supported platform, running, Jenkins~\cite{jenkins}, an automated build and continuous integration
+package.  Currently the platforms SLF6, SLF7, and MacOS 10.12 and 10.13 are supported.  As new OS versions are
+released, the Jenkins build scripts and configurations are modified to build for them.
+
+Because DUNE's software stack, and LArSoft underneath it, is large, it takes a significant amount of CPU in
+order to compile it from source.  While this is not such a serious issue with the official build, which only
+is done once per tagged release, it is an issue with interactive code development and debugging.  To help speed
+the process of private builds, a dedicated 16-core build node has been reserved at Fermilab for the purpose of
+compiling code.  The build tools {\tt{make}} and {\tt{ninja}} are able to identify parallelizable compile and link
+steps in a build workflow and distribute work among as many cores as are available or which are specified by the
+user.  The choice of 16 cores was made based on timing tests with more or fewer cores included in a build that
+used Fermilab's NAS storage (/dune/app) to host the input files for the build.  The effect of disk latency induced
+diminishing returns from more cores beyond 16 in the build node.  A similar build node has been designated for use
+at CERN.
+
+\subsection{Code validation and Continuous Integration}
+
+A series of tests are run when code is checked in to a LArSoft repository, or to dunetpc.  These tests run on
+dedicated servers.  Jenkins is used to orchestrate the tests.  The tests are done on the development head by
+default, but other git branches can be tested upon request.
+
+The first test is to build the relevant repositories' code.  If a modification is pushed to the dunetpc repository,
+dunetpc is rebuilt, compiling against the develop head of the LArSoft repositories.  The reason the entire stack
+must be rebuilt is because dependencies between the development heads of multiple repositories may need to be
+satisfied in order for code to build and run as intended.  These builds are performed on all supported platforms.
+
+Once built, a series of test scripts is run in order to exercise the code.  These scripts and configuration files
+are version controlled in the same repositories as the code being tested.  Two varieties of tests are run:
+unit tests, and integration tests.  Unit tests separate out the functionality of a small component of the software
+and test it in isolation of the rest of the software stack.  The goal of unit tests is to provide fast feedback
+on code functionality that is also easy to understand, without the complications of dependent software possibly
+confounding the results.  Unit tests require an investment to create, however.  Code that requires framework
+support, such as services that provide detector geometry or basic parameters such as the electron lifetime, must
+have a test harness created that provides the required support.  Configuration parameters also must be specified
+for code that requires them, and these must be chosen for the values that are intended to be tested.  The results
+of the test are usually text files that can be compared from one software release to another, or from one commit
+to another.  Reference output files are stored on the test machines and are used for purposes of this comparison.
+If the results of a test change for a known reason, then the reference output files are updated.  Due to their nature
+of testing only small pieces of code, the output of unit tests changes infrequently.
+
+Integration tests, on the other hand, are designed to test the entire software stack with realistic, but controlled,
+inputs.  As such, they are easier to construct than the unit tests.  Typically the framework main program is invoked
+with a configuration file (FHiCL) file and an input data file specified, and typically only one event
+is processed.  Reference data files and corresponding
+output files are maintained in order to run the integration tests.  Outputs take the form of text to the logfile,
+separately-produced log files, histograms, and {\it{art}}-formatted root files.  An automated script opens the
+{\it{art}}-formatted output and counts the number and sizes of each output data product, comparing these with
+a reference.  If differences are found, then an e-mail is sent to the software coordinators, as well as the
+user who made the most recent commit.  Test results and comparisons with previous test results are available
+on the continuous integration test web site, maintained at Fermilab.
+
+These tests take some time to run: code must be built, input files copied, jobs run, and the output saved.  Furthermore,
+commits may come with correlated dependencies.  A commit to one repository may require another repository's updates
+to be applied in order for the software to run.  In order to reduce the test load and minimize the occurrence of
+testing partially-finished commits, a 15-minute waiting period is introduced before tests are run.  A history
+is kept of the CPU time taken to run each test; changes to the amount of CPU time to run a particular test can
+indicate the presence of a new problem, even if the outputs are acceptable.
+
+Code that is no longer supported may fail one or more tests.  Indeed, this may be the first indication of 
+a problem with a software component that is caused by an upgrade to another software component.  If the code
+is no longer in use, its test is removed from the test suite, in order to keep the test error message queue clean,
+showing only relevant results.  Some code is supported on only a subset of platforms, if personpower is not
+available to maintain a particular piece of code on all platforms.  The test infrastructure allows tests to
+be enabled on a desired subset of target platforms.  In the case of code that is no longer expected to be run,
+it is removed from the develop head of the repository (previous tagged versions still are available), and its
+tests are also removed.  This is the responsibility of the code authors, or, in the case of their absence,
+the software management team.
+
 \subsection{Physics Validation}
+
+A variation on the integration test mentioned above produces performance plots showing the efficiencies, purities,
+cluster completeness, angular and position resolutions, of reconstructed outputs:  vertices, hits, clusters, tracks,
+and showers.  These tests require larger input samples and run many events through the reconstruction steps.
+These tests have been and will continue to be very valuable in spotting subtle changes in shared software that
+may have been made in order to optimize the performance of one experiment, but, once checked in to LArSoft,
+may negatively impact the performance of DUNE's reconstruction chain.  The outputs of the physics validation,
+including histograms of efficiencies and resolution, as well as historical comparisons of 1D summaries
+(e.g. average track efficiencies vs. date on which the test was run), are monitored by DUNE's software management
+and simulation and reconstruction leaders.  Feedback is provided persons whose recent commits are likely to
+have caused the changes in physics performance until the issue is resolved.
+
 \section{Production and Workflow Management} % Ivan Furic
 \subsection{Production Infrastructure}
 \subsection{HEPCloud and Submission Systems}
