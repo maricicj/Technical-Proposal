@@ -1,0 +1,130 @@
+% see dune-words.tex for explanation.
+
+\usepackage[acronyms,toc]{glossaries}
+\makeglossaries
+
+
+% \newduneword{label}{term}{description}
+\newcommand{\newduneword}[3]{
+    \newglossaryentry{#1}{
+        text={#2},
+        long={#2},
+        name={\glsentrylong{#1}},
+        first={\glsentryname{#1}},
+        firstplural={\glsentrylong{#1}\glspluralsuffix},
+        description={#3}
+    }
+}
+
+%                 1      2     3       4
+% \newduneabbrev{label}{abbrev}{term}{description}
+\newcommand{\newduneabbrev}[4]{
+  % this makes acronym entries even if they neither term or abbrev is
+  % referenced in the text.
+  % \newacronym[see={[Glossary:]{#1}}]{abbrev-#1}{#2}{#3}
+  \newacronym{abbrev-#1}{#2}{#3}
+  \newglossaryentry{#1}{
+    text={#2},
+    long={#3},
+    name={\glsentrylong{#1}{} (\glsentrytext{#1}{})},
+    first={\glsentryname{#1}},
+    firstplural={\glsentrylong{#1}\glspluralsuffix{} (\glsentrytext{#1}\glspluralsuffix{})},
+    description={#4}
+  }
+}
+\newcommand{\dshort}[1]{\acrshort{abbrev-#1}}
+\newcommand{\dlong}[1]{\acrlong{abbrev-#1}}
+
+\newcommand{\dword}[1]{\gls{#1}}
+\newcommand{\dwords}[1]{\glspl{#1}}
+\newcommand{\Dword}[1]{\Gls{#1}}
+\newcommand{\Dwords}[1]{\Glspl{#1}}
+
+\newduneabbrev{adc}{ADC}{analog digital converter}{A sampling of a voltage
+  resulting in a discrete integer count corresponding in some way to
+  the input}
+
+\newduneabbrev{fe}{FE}{front-end}{The front-end refers a point which is
+  ``upstream'' of the data flow for a particular subsystem. 
+  For example the front-end electronics is where the cold electronics
+  meet the sense wires of the TPC and the front-end DAQ is where the
+  DAQ meets the output of the electronics}
+
+\newduneabbrev{daq}{DAQ}{data aquisition}{The Data Acquisition system
+  accepts data from the detector \acrshort{fe} electronics, buffers
+  it, performs a \gls{trigdecision}, builds events from the selected
+  data and delivers the result to the offline \gls{diskbuffer}}
+
+\newduneword{detmodule}{detector module}{The entire DUNE far detector is
+  segmented into four modules, each with a nominal \SI{10}{\kton}
+  fiducial mass}
+
+\newduneword{submodule}{sub-detector}{A detector unit of granularity less
+  than one \gls{detmodule} such as the TPC of the single-phase
+  \gls{detmodule}}
+
+
+\newduneword{detunit}{detector unit}{A \gls{submodule} may be partitioned
+  into a number of similar parts. 
+  For example the single-phase TPC \gls{submodule} is made up of APA
+  units}
+
+\newduneabbrev{tpm}{TPM}{trigger primitive message}{A message flowing
+  up the trigger hierarchy from local to global context}
+
+\newduneabbrev{tcm}{TCM}{trigger command message}{A message flowing
+  down the trigger hierarchy global to local context}
+
+\newduneword{l0primitive}{L0 trigger primitive}{Information derived by
+  the DAQ \gls{fe} hardware and which describes a region of space (eg,
+  one or several neighboring channels) and time (eg, a contiguous set
+  of ADC sample ticks) associated with some activity}
+
+\newduneword{l1primitive}{L1 trigger primitive}{Or \textit{L1 trigger}
+  or module trigger. 
+  Information derived from \gls{l0primitive} information at the level
+  of one \gls{detmodule} and sent to \gls{gtl}}
+
+
+\newduneabbrev{mtl}{MTL}{Module Trigger Logic}{Trigger processing
+  which consumes \gls{detunit} level \gls{l0primitive} information and
+  emits \gls{l1primitive} information to the \glspl{gtl}. 
+  It also accepts \glspl{trigcommand} from the \gls{gtl} and
+  interprets and routes them to \gls{detunit} level components}
+
+\newduneabbrev{gtl}{GTL}{Global Trigger Logic}{Trigger processing
+  which consumes \gsl{detmodule} level \gls{l1primitive} information
+  and other global sources of trigger input and emits
+  \gls{trigcommand} information back to the \glspl{mtl}}
+
+\newduneword{trigcommand}{trigger command}{Information derived from
+  one or more \glspl{l0primitive} and which consists of addresses at
+  the level of \glspl{detunit} and a period of time. 
+  These are delivered to and interpreted by \gls{detunit} level
+  components for the purpose of reading out the corresponding data
+  from the \gls{ringbuffer}}
+
+\newduneword{ringbuffer}{primary DAQ buffer}{A buffer in the
+  \dshort{daq} with sufficient size to store data long enough for a
+  trigger decision to be made and with sufficient endurance and
+  throughput to allow constant flow of full-stream data}
+
+
+\newduneword{diskbuffer}{secondary DAQ buffer}{A secondary
+  \dshort{daq} buffer holds a small subset of the full rate as
+  selected by a \dword{trigcommand}. 
+  This buffer also marks the interface with the DUNE Offline}
+
+\newduneword{dumpbuffer}{DAQ dump buffer}{This \dshort{daq} buffer
+  accepts a high-rate data stream, in aggregate, from an associated
+  \dword{submodule} sufficient to collect all data likely relevant to
+  a potential Supernova Burst.}
+
+\newduneword{trigdecision}{trigger decision}{The process by which
+  trigger primitives are converted into trigger commands}
+
+\newduneword{octant}{octant}{Any of the eight parts into which 4$\pi$
+  is divided by three mutually perpendicular axes. 
+  In particular in referencing the value for the mixing angle
+  $\theta_{23}$}
+

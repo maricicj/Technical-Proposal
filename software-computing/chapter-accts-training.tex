@@ -1,17 +1,103 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Where we discuss the mapping of computing resources to personnel
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Accounts and Training} % Eileen Berman owns this chapter 
-\fixme{5 pages}
+\chapter{Accounts, Collaborative Tools and Training} % Eileen Berman owns this chapter 
+%\fixme{5 pages}
 \section{DUNE Accounts}
-\subsection{Account Management}
-\subsection{Account Authorization}
-\subsection{Account Authentication and Computing Credentials}
-\section{Communications Tools}
-\section{Documentation}
-\subsection{Documentation for General Collaborators}
-\subsection{Analysis Computing Documentation and Examples}
-\subsection{Domain specific and expert documentation}
-\section{Training and Documentation}
 
+\subsection{Account Management}
+DUNE provides read access to it's introductory information (including joining DUNE and getting accounts) without requiring authentication.  This supports new collaborators who are just getting involved with DUNE.  Access beyond this requires collaborators obtain a username/password. Approval mechanisms exist to insure approvals for accounts to access DUNE resources are given to current DUNE collaborators or those working closely with DUNE. Increasing the automation of these approval mechanisms is ongoing. DUNE is working towards integrating joining the collaboration with automatically obtaining the accounts necessary to access it's resources.
+
+\subsection{Authentication}
+DUNE resources require authentication for write access and often for read access. The majority of these resources are accessed by obtaining a Fermilab account or for CERN resources, a CERN account.  DUNE maintains a central process for collaborators wishing to obtain CERN computing accounts, as is outlined on the main DUNE website, DUNE at Work. 
+
+Fermilab accounts are provisioned through the standard publicly accessible Fermilab account form.  These accounts allow the user to access DUNE resources for submitting grid jobs and to access many of the DUNE collaboration tools discussed below. As part of this process a DUNE collaborator will get -
+\begin{itemize}
+\item a Fermilab ID
+\item Fermilab Kerberos accounts
+\item Fermilab Services accounts
+\item entered into the DUNE virtual organization (VO)
+\item the ability to log in to the DUNE interactive nodes and the central Fermilab Unix machines (fnalu)
+\end{itemize}
+
+For new collaborators that already have Fermilab accounts, the last two DUNE specific items can be requested via a standard Fermilab service desk ticket.
+
+Future improvements to this process include supporting federated identities and expand the tools supporting single sign-on.  Federation would allow collaborators to use their institutions' computer account for access to DUNE resources. DUNE has started working with Fermilab in this area for access to many of its tools.
+
+\subsection{Authorization}
+Additional authorization is required for several of the tools DUNE uses that are available to the broader Fermilab audience.  This authorization is handled centrally by the DUNE Software \& Computing Collaborative Tools group. Currently this authorization process is handled on a per request basis. Improvements are planned to integrate this authorization with joining the DUNE collaboration.
+
+\section{Collaborative Tools}
+A centralized set of collaborative tools is essential in providing efficient communication and a platform for collaboration across the entire international DUNE experiment/project.  The DUNE collaborative tools strategy includes the following -
+\begin{itemize}
+\item adoption of a well-supported minimal tool set to meet collaboration needs
+\item adopted tools should be well-supported and centrally managed at the host institution
+\item adopted tools should provide ease of access to a world-wide community
+\item standard tools should be adopted when possible
+\item maintain as minimum a set of unique authentication mechanisms as possible to access the tool set
+\item maintain awareness of the changing needs of the collaboration and act upon these needs
+\end{itemize}
+
+The current tool set that follows the above strategy is as follows -
+\begin{itemize}
+\item Consistently named mailing lists - hosted and supported by Fermilab
+\item Meeting support - Indico, hosted and supported by Fermilab
+\item Remote meeting connection capability - Zoom, supported by Fermilab
+\item Collaborator database - DUNE Collaboration Database, hosted and supported by Fermilab
+\item DUNE support requests - DUNE Service Request Portal, supported by Fermilab
+\item DUNE web presence - dunescience.org, hosted and supported by Fermilab (includes access to DUNE approved plots and the DUNE data catalog)
+\item Collaborative daily communication tool - slack (dunescience.slack.com)
+\item Software repository - redmine, hosted and supported by Fermilab, and github
+\end{itemize}
+
+All of the tools listed above are accessible to the entire world-wide collaboration through a web browser. Links to and information about each tool are available through the DUNE at Work web portal. All of the tools hosted at Fermilab support authentication to protected information via the Fermilab services username/password.
+
+Evolution of the collaboration and communication needs of DUNE are inevitable. Several of the current tools (zoom, DUNE collaboration database) are second generation tools, adopted when the collaboration/project needs evolved beyond what the initial tools offered. Future tools should interface together more seamlessly, support more automation and support common authentication mechanisms such as federated identity and single sign on. Plans exist to integrate entry into the DUNE collaboration database with the provisioning of Fermilab accounts, enabling quicker access to the DUNE tool set for new collaborators.
+
+\section{Documentation}
+Documentation is an essential communication tool enabling collaboration, consistency and continuity planning across the entire DUNE experiment/project. The documentation strategy supporting this must be able to adapt to the changing needs of a large long-lived international community and includes the following -
+\begin{itemize}
+\item adoption of a well-supported minimal tool set to meet documentation needs
+\item providing a well-supported centralized archival storage
+\item providing a well-supported centralized mechanism for documentation collaboration
+\item providing ease of access to a world-wide community, especially new collaborators
+\item providing ease of use of the documentation tool set itself
+\item maintaining awareness of the changing needs of the collaboration and act upon these needs
+\end{itemize}
+Currently DUNE has adopted the use of Sharepoint, DocDB, doxygen and a MediaWiki to satisfy this strategy. There is a current effort to migrate information from Sharepoint to WordPress and the MediaWiki to improve overall ease of use. It is expected this tool set will further evolve over the lifetime of the project/experiment.  This is especially true in the area of authentication as access evolves to support federated identities and single sign-on and to support newly emerging web technologies.
+
+Sharepoint, WordPress, DocDB and MediaWiki are supported by the Fermilab Computing Sector.  Doxygen runs on Fermilab supported infrastructure and contains documentation of the DUNE scientific software stack.
+
+\subsection{Documentation for General Collaborators}
+DUNE has integrated access to it's on-line documentation/information into a \href{https://web.fnal.gov/collaboration/DUNE/SitePages/Home.aspx}{single web portal}. Access is unrestricted for viewing of general/introductory information enabling new collaborators to find information quickly. This information includes -
+\begin{itemize}
+\item joining the DUNE collaboration and mailing lists
+\item general information about DUNE
+\item getting Fermilab and CERN computing accounts
+\item getting started with DUNE's collaborative and documentation tool set
+\item introduction to DUNE consortia and computing
+\item visiting Fermilab, CERN, and SURF
+\end{itemize}
+Much of this information is in the process of being migrated to the new DUNE WordPress site.  Content will continue to be publicly accessible and will be maintained by DUNE administrative staff.
+
+\subsection{Analysis Computing Documentation and Examples}
+Introductory documentation for doing analysis and interfacing to DUNE resources is maintained as part of the tutorial documentation described below. The documentation and associated demos are examined, updated and expanded several times per year to insure accuracy.
+
+More advanced information is available on the \href{https://wiki.dunescience.org/wiki/DUNE_Computing}{DUNE wiki} and is maintained by DUNE Software \& Computing Working Group personnel covering data management, databases, and production and processing.
+
+Placing this information on the DUNE wiki has encouraged individual groups to create and maintain their own documentation.  The DUNE wiki and DocDB together serve as standard locations for finding DUNE documentation, with the DUNE wiki often serving as an organizing window into documentation maintained in DocDB.  
+
+\subsection{Domain/Service Specific Documentation}
+Domain specific documentation (e.g., DAQ) is written and maintained by domain experts.  The DUNE wiki organizes and maintains space for domain experts to create pages with information and links to additional documents in DocDB as appropriate. Operational (e.g., shifter) documentation will be accessible to the entire collaboration and updated and reviewed periodically to maintain accuracy and insure comprehensibility for a global community. 
+
+Service specific documentation is created and maintained by the groups responsible for the service provided, often external to DUNE.  DUNE Software \& Computing documentation includes links to documentation provided as part of these services. Close relationships have been developed with the service providing organizations to maintain awareness of changes and updates.  This includes service providers at Fermilab and at CERN.
+
+\section{Training}
+Training is an essential aspect of enabling new collaborators to quickly make progress and contribute to the experiment.  DUNE Software \& Computing has organized and run training classes at the DUNE Collaboration Meetings and DUNE Physics Week.  The content of these tutorials has included -
+\begin{itemize}
+\item Getting accounts and access to computing resources
+\item Introduction to Using LArSoft and Gallery
+\item Introduction to Data Management and Storage
+\item Introduction to Running Grid Jobs
+\item Best Practices in Data Management and Grid Usage
+\end{itemize}
+Tutorials on these subjects have been given for using both FNAL and CERN resources and include step by step demos.  A complete list of these tutorials (and others useful to DUNE collaborators) can be found on the \href{https://wiki.dunescience.org/wiki/DUNE_Computing/List_of_DUNE_Tutorials,_LArSoft_Workshops,_etc,_etc,_etc}{DUNE wiki} including associated presentations and video recordings.
+
+These tutorials have been well attended and have proven especially useful to new collaborators.  Plans for evolving the content of the tutorials and making use of external on-line training initiatives (SoftwareCarpentry, MOOCs (Massive Open Online Courses)) are being investigated.  These plans include covering generic programming and debugging skills and intermediate level use of LArSoft and other HEP software. 

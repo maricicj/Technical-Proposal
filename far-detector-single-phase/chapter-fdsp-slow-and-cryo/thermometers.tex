@@ -5,18 +5,18 @@
 
 As mentioned above, a detailed 3D temperature map is important to monitor the correct functioning of the cryogenic system and the LAr uniformity.
 Given the complexity and size of purity monitors, those can only be installed on the cryostat sides to provide a local measurement of
-the LAr purity. While a direct measurement of the LAr purity across the entire cryostat is not realistic, a sufficiently detailed 3D temperature map
+the LAr purity. While a direct measurement of the LAr purity across the entire cryostat is not viable, a sufficiently detailed 3D temperature map
 can be used to predict the LAr purity using CFD simulations. Specially important is the vertical coordinate since this will be closely related to
-the LAr flow and uniformity. 
+the LAr recirculation and uniformity. 
 
 High precision temperature sensors will be distributed near the TPC walls in two ways:
-i) forming high density (>1 sensor/m) vertical arrays (the so-called T-gradient monitors), and ii) in coarser ($~$ 1 sensor/5 m) 2D arrays 
+i) forming high density (>2 sensors/m) vertical arrays (the so-called T-gradient monitors), and ii) in coarser ($~$ 1 sensor/5 m) 2D arrays 
 at the top and bottom of the detector, which are the most delicate regions (the so-called individual sensors).   
 
 Since temperature variations inside the cryostat are expected to be very small ($0.02 K$), to properly measure the 3D temperature map 
 sensors must be cross-calibrated to better than $0.005 K$. Most sensors will be calibrated in the laboratory, prior to installation,
 as described in the next section. This is in fact the only viable method for sensors behind the APAs and top/bottom of the detector since the available space is restricted.  
-Given the precision required and the unknown longevity of the sensors (which could require a new calibration after sometime), and complementary method
+Given the precision required and the unknown longevity of the sensors (which could require a new calibration after some time), and complementary method
 will be used for T-gradient monitors behind the front end-walls. In those areas there is sufficient space for a movable system, which can be used to cross-calibrate insitu
 the temperature sensors. This calibration method is described in the section about dynamic T-gradient monitors. 
 
@@ -60,7 +60,6 @@ In principle a similar distribution of sensors will be used at TOP and bottom.
 Following ProtoDUNE-SP design, bottom sensors will use the cryogenic pipes as support structure, while top sensors will be anchored to the ground planes.
 Teflon (see Fig.~\ref{fig:cable-support}) pieces will be used to route cables from the sensors to the DSS/cryogenic ports.
 
-
 \begin{dunefigure}[sensorcable support]{fig:cable-support}
   {Left: support for two cables on ground planes. Right: Supports for three cables  mounted on cryogenics pipes using split clamps}
 % This PDF is made from the .dot of the same name.
@@ -74,10 +73,8 @@ Teflon (see Fig.~\ref{fig:cable-support}) pieces will be used to route cables fr
 \label{sec:fdsp-slow-cryo-therm-readout}
 
 A high precision and very stable system is required to achieved the design precission of $< 5 mk$.
-The proposed readout system for the temperature sensors is based on a variant of an existing mass PT100 temperature readout system developed at CERN for one of the LHC experiments.
-The goal of this system is to improve the precision as a reference system (Lakeshore 218) that the collaboration had evaluated as being appropriate,
-but with reduced cost and space utilization.
-The system consists of three parts:
+The proposed readout system is the one used in ProtoDUNE-SP, which is based on a variant of an existing mass PT100 temperature readout system developed at
+CERN for one of the LHC experiments. The system consists of three parts:
 \begin{itemize}
 \item An accurate current source for the excitation of the temperature sensors, implemented by a compact electronic circuit using high a precision voltage reference from Texas Instruments. 
 \item A multiplexing circuit based on an ADG707 Analog Device multiplexer electronic device;
@@ -85,3 +82,5 @@ The system consists of three parts:
   This module is inserted in a National Instruments Ethernet DAQ backplane, which will distribute the temperature values to the main Slow Control Software
   through the standard protocol, OPC UA. The Ethernet DAQ will include also the multiplexing logic.
 \end{itemize}
+
+As shown in Fig.~\ref{} the system has a resolution better than 1 mk.  
