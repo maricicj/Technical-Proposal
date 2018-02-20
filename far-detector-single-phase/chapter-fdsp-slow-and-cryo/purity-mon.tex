@@ -77,7 +77,7 @@ A custom LabVIEW application running in the DAQ PC is developed and consists of 
 
 The Xe flash lamp and the front-end electronics will be installed close to the purity monitor flange to reduce light loss in an optical fiber and signal loss. Other pieces of equipment will be mounted in a DCS rack. They distribute powers to the flash lamp and the front-end electronics and collect data from the electronics. The DCS system will communicate with the purity monitor DAQ software and have the control of HV and LV of the purity monitor system. 
 
-
+The electronics of Purity Monitors may induce noise in TPC electronics which is caused by the current surge in the discharging process of the main capacitor of the purity monitor xenon light source when producing a flash.  The light source for the purity monitor system will produce a lot of UV light in the detector which could potentially interfere with physics measurements and damage the Photon Detector System. To solve these problems, a software will be developed for a light source triggering mechanism to prevent the PrM flash lamp from flashing during TPC and photon detector data taking. The purity monitor will also send signals to TPC and photodetectors to veto any TPC/photon signals during Purity monitor measurements. In addition, we will make faraday cage to the ground and shield the light source.
 
 %\begin{dunefigure}[Purity Monitor]{fig:PrMon}
 %  {Overall design of the individual purity monitors devices which are immersed into the LAr.}
