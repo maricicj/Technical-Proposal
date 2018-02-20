@@ -27,7 +27,7 @@ Each uTCA crate (for both charge and light readout) is connected to the DAQ syst
 
 The design of the electronics for the charge readout covers the analog front-end cards containing pre-amplifier ASICs operating at cryogenic temperatures and digitization cards with the relevant system for their synchronization working in the warm environment outside of the cryostat. The principle requirements for the system is to read and digitize signals from a total of \num{153600} channels (per one DP detector module) and be capable of continuously streaming the collected and losslessly compressed data to DAQ without any zero suppression. Given the amplification of the charge in CRP, the electronics needs to be sensitive to the signals over a large dynamic range (up-to \num{40} times the MIP-level signals for a nominal CRP gain of \num{20}) to avoid saturation of the analog inputs by large localized energy disposition generated in hadronic shower events. The charge amplification provided by the CRP loosens requirements on the intrinsic noise of the FE analog electronics. For the CRP nominal gain of \num{20}, the signal-to-noise ratio for a MIP signal (\SI{30}{fC}) should be at around \num{100}, which would not pose any problem for the detection/reconstruction. The magnitude of noise, however, plays a role in the quality of the lossless compression on the raw data performed by the digital electronics. A compression factor of \num{10} can be achieved with the noise levels below \num{1} ADC RMS.  %be careful of RMS<1...
 
-The primary objective of the light readout system is to detect signals, from a minimum of one photo-electron on one PMT, giving a precise timestamp that can be used in conjunction with the charge signals to determine the time (drift) co-ordinate of the event.  Precise measurements of signal charge will allow the continual monitoring of the PMT gain at the single photo-electron level, and the determination of the number of photons in each scintillation event.  In addition, an ADC will continuously stream data, downsampled to \SI{400}{ns} as for the charge signals,  which, amongst other items, will allow measurements of the scintillation time-profile. 
+The primary objective of the light readout system is to detect signals, from a minimum of one photo-electron on one PMT, giving a precise timestamp that can be used in conjunction with the charge signals to determine the time (drift) co-ordinate of the event.  Precise measurements of signal charge will allow the continual monitoring of the PMT gain at the single photo-electron level, and the determination of the number of photons in each scintillation event.  In addition, an ADC will continuously stream data, downsampled to \SI{400}{ns} as for the charge signals,  which, amongst other items, will allow measurements of the scintillation time-profile. The light readout system will also sample a small number of signals from the PhotoDetection calibration System; the calibration trigger and $\approx$ 20 channels from reference sensors.
 
 The cryogenic analog electronics for charge readout is housed in SFT chimneys. Their design must enable access to the FE card for possible maintenance/replacement without any risk of contaminating the pure liquid argon in the main cryostat volume. The chimneys must possess a cooling system that would permit to control the temperature around the FE cards around \SI{110}{\kelvin} for their optimal noise. In addition, the cooling system is to compensate for the heat input from the chimney into the cryostat volume.
 
@@ -307,7 +307,7 @@ The analog signals from each PMT channel follow two separate branches (see Figur
 %details on CatiROC
 The main characteristics of the ADC are shown in Table \ref{tab:dpele-adc}.
 
-For normal operation, in continuous sampling mode, the time samples will be down-sampled by the FPGA to a coarse \SI{400}{ns} sampling to match that of the Charge Read Out and limit the quantity of data streamed. Before this downsampling, there is the possibility of online pulse processing within the FPGA, to make continuous measurements such as rise and fall times. Even at the coarse sampling of \SI{400}{ns} studies of the liquid argon scintillation time-profile are possible (with the long fall timeconstant of $\sim$\SI{1500}{ns}) and also matching of the electroluminescence signal (also known as proportional scintillation light) to that of the charge signal.  Low light-level signals, such as the single or few photoelectron signals, will show no time structure, but will consist of 1 sample several LSB above the baseline. %err.. is that true??
+For normal operation, in continuous sampling mode, the time samples will be down-sampled by the FPGA to a coarse \SI{400}{ns} sampling to match that of the Charge Read Out and limit the quantity of data streamed. Before this downsampling, there is the possibility of online pulse processing within the FPGA, to make continuous measurements such as rise and fall times. Even at the coarse sampling of \SI{400}{ns} studies of the liquid argon scintillation time-profile are possible (with the long fall timeconstant of $\sim$\SI{1500}{ns}) and also matching of the electroluminescence signal (also known as proportional scintillation light) to that of the charge signal.  Low light-level signals, such as the single or few photoelectron signals, will show no time structure, but will consist of 1 sample several LSB above the baseline. 
 
 %RMS and PMT gain?
 \begin{dunetable}
@@ -406,6 +406,18 @@ Once checked, the SFT chimneys are packed and shipped to SURF.
 \subsection{Light Readout Electronics}
 \label{sec:fddp-tpc-elec-prod-lro}
 
+The production of the Light Read Out AMC cards is currently envisaged to be made in the same manner as the cards for ProtoDUNE Dual-Phase since the number of cards to be produced, and channels to test, is small. The electronic composants will be purchased, to required specifications, for the production of the card. The project will be managed by a qualified engineer, and followed by a specialist in Quality assurance.
+
+The produced cards will be first delivered to the home institutes for testing before being shipped to the DUNE far site.  Basic quality tests will be made upon delivery to ensure conformity of production; including visual inspection and electrical testing.
+
+A series of tests will be performed on each card to ensure their correct fonctionnement and evaluate their performance. Measurements will include; linearity measurements (DNL and INL) of each ADC channel, and tests of the linearity of response of the ASIC. The level of cross-talk on the ASIC must also be quantified.
+
+A dedicated single channel setup, with PMT (Hamamatsu R5912-02-mod), and identical cabling and splitter, can be used to characterise the expected noise level of each channel, and response to single photoelectrons up to saturation. 
+
+Multiple cards will be operated in a uTCA crate with the DUNE DAQ.
+
+After shipping and installation on-site, a small series of tests will be performed with a pulse generator to verify the good working condition of the cards. Noise level measurements will also be made as part of the integration effort.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Assembly Procedures}
 %\label{sec:fddp-tpc-elec-assy}
@@ -445,8 +457,11 @@ Software and Computing to DP TPC Electronics & 7117 \\ \colhline
 The cold flange of the SFT chimneys forms the interface between the CRP and the TPC electronics systems. On the side facing the crystostat the flange hosts \num{20} \num{64} pin KEL connectors (XX\todo{part number}) for plugging the flat cables from the CRP. These are 68 channel twisted pair flat cables each carrying signals from \num{32} anode strips and are part of the CRP system. Each analog FE card reads \num{64} anode strips implying receiving signals from two KEL connectors. The order in which the cables are connected into cold flange determines the mapping of the electronic channels to the physical location of the strips on the CRP.
 \fixme{Perhaps an image of the cold flange showing the connectors?}
 
-\fixme{Interfaces to light readout}
-The light readout electronics requires negative polarity signals as the input...
+%\fixme{Interfaces to light readout}
+The light readout electronics is designed for negative polarity PMT signals, with the amplitude of single photoelectrons on the input of the card between 1 and 10 mV. Typically assuming a gain of \num{1E6} (no accounting for attenuation of the signals) from a PMT, the Catiroc ASIC can measure a range of 1 to 400 photoelectrons (\si{160}{\femoto\coulomb} to \si{70}{\pico\coulomb}), the ADC will sample from \si{1}{\milli\volt} to \si{1}{\volt} corresponding to \num{1} to \num{1000} photoelectrons, including the time response of the scintillator the range can increase to $\sim$\num{6000}. Increasing the gain of the PMT to \num{1E7}, lowers the upper values by a factor of 10.
+
+The internal noise level of the catiroc is below \si{0.1}{\milli\volt}. The objective for the noise level of the ADC is for each channel to have the RMS noise level greater than \si{0.5}{LSB}, aiming for \si{1}{LSB} \si{0.1}{\milli\Volt}.
+%at 65 MHz...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DAQ System}
@@ -529,7 +544,9 @@ Software integration ... Provide tools to read and decode data packets
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Integration with Photon Detection System}
 \label{sec:fddp-tpc-elec-install-pmt}
-Anything specific apart from making cable connections?
+The light read out cards will recieve the PMT signals via their connection to the splitter boxes. Equally the calibration system of the Photon Detection System will have specified inputs to the cards.
+
+%Anything specific apart from making cable connections? I'm not sure what should go here?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Calibration}
