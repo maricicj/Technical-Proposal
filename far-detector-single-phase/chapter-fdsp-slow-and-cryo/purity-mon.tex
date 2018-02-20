@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Purity Monitors}
+\subsection{Purity Monitors} 
 \label{sec:fdsp-slow-cryo-purity-mon}
 %Laura, Jianming
 A fundamental requirement of a LAr TPC is to make ionization electrons drift over long distances in liquid argon. Part of the charge is inevitably lost due to the presence of electronegative impurities in the liquid. To keep such loss to a minimum, purifying the liquid argon during operation is essential, as it is the monitoring of impurities.
 
-Residual Gas Analysers are an obvious choice when analysing gas argon and can be exploited for the monitoring of the gas in the ullage of the tank. Unfortunately, commercially available mass spectrometers have a detection limit of $\sim$10\,ppb, whereas DUNE requires a sensitivity down to the ppt level. This gives us a case to construct small, ``portable'' devices, called ``purity monitors'', to monitor purity in all the phases of operations, guaranteeing successful commissioning and meeting the requirement to measure position-dependent purity necessary to achieve DUNE's physics goal. 
+Residual Gas Analyzers are an obvious choice when analyzing gas argon and can be exploited for the monitoring of the gas in the ullage of the tank. Unfortunately, commercially available mass spectrometers have a detection limit of $\sim$10\,ppb, whereas DUNE requires a sensitivity down to the ppt level. This gives us a case to construct small, ``portable'' devices, called ``purity monitors'', to monitor purity in all the phases of operations, guaranteeing successful commissioning and meeting the requirement to measure position-dependent purity necessary to achieve DUNE's physics goal. 
 %Purity monitors also have the potential to be developed as a calibration tool that provides high precision and real-time electron lifetime measurements for wire-by-wire detector calibration. 
 
 Purity monitors will be placed inside the vessel, as well as outside the cryostat \textcolor{red}{before and after} the recirculation system.
 
-Purity monitors have already been successfully employed in the ICARUS detector and in the 35-ton prototype detector at Fermilab. The ProtoDUNE Single-Phase and Dual-Phase detectors also employ purity monitors. A similar design to the ones used in the protoDUNEs will be exploited in the DUNE FD.
+Purity monitors have already been successfully employed in the ICARUS detector and in the 35-ton prototype detector at Fermilab. The ProtoDUNE Single-Phase and Dual-Phase detectors also employ purity monitors. A similar design to the ones used in the ProtoDUNEs will be exploited in the DUNE FD.
 
 \subsubsection{Physics and Simulation}
 % Andrew, Jianming
@@ -17,7 +17,7 @@ A purity monitor (PrM) is a miniature TPC which directly measures the electron l
 
 $$\tau = \sum_i \frac{1}{k_i [S_i]}$$
 
-where the sum runs over all species of impurities in the liquid; $\tau$ is in s; $k_i$ is the electron attachment coefficinet rate specific to the impurity in units of $l (mol s)^-1$; and $[S_i]$ is the concentration of the specific impurity in units of $mol/l. The electron attachment rate is a function of electric field, but this field dependence is not significant for the range of LArTPC operation (electric field of $\sim$ 500V/cm), as shown in Figure~\ref{fig:ks}.
+where the sum runs over all species of impurities in the liquid; $\tau$ is in s; $k_i$ is the electron attachment coefficient rate specific to the impurity in units of $l (mol s)^-1$; and $[S_i]$ is the concentration of the specific impurity in units of $mol/l$. The electron attachment rate is a function of electric field, but this field dependence is not significant for the range of LArTPC operation (electric field of $\sim$ 500V/cm), as shown in Figure~\ref{fig:ks}.
 
 \begin{figure}[h]
 \centering
@@ -29,7 +29,7 @@ Assuming all impurities affecting the electron lifetime are of type $O_2$, the e
 
 $$ \O_2 [ppb] = \frac{300 [ppb \mu]}{\tau [\mu s]}$$
 
-Depending on their length and the electric field operated at, purity monitors can be sentitive to tens of ppt oxygen equivalent. 
+Depending on their length and the electric field operated at, purity monitors can be sensitive to tens of ppt oxygen equivalent. 
 
 For the single-phase DUNE far detector module the drift distance is 3.6 m. For the dual-phase DUNE far detector module the maximum drift distance is 12 m, and the requirement for the electron lifetime is even higher. 
 
@@ -80,7 +80,7 @@ The purity monitor consists of four parallel, circular electrodes: a photocathod
 %The purity monitor consists of four parallel, circular electrodes: a disk holding a photocathode, two grid rings (anode and cathode), and an anode disk. 
 The cathode grid is at ground potential. The cathode, anode grid, and anode are electrically accessible via modified vacuum grade high voltage feedthroughs. 
 The anode grid and the field shaping rings are connected to the cathode grid by an internal chain of 50 M$\Omega$ resistors to ensure the uniformity of the electric fields in the drift regions. 
-A stainless mesh cylinder is used as a Faraday cage to isolate the purity monitor from electrostatic b b ackgrounds. The purity monitor measures the electron drift lifetime between its anode and cathode. The electrons are generated by the purity monitor's UV-illuminated gold photocathode via photoelectric effect. As the electron lifetime in liquid argon is inversely proportional to the electronegative impurity concentration, the fraction of electrons generated at the cathode that arrive at the anode ($Q_A/Q_C$) after the electron drift time $t$ is a measure of the electron lifetime $\tau$: $Q_A/Q_C=e^{-t/\tau}$.
+A stainless mesh cylinder is used as a Faraday cage to isolate the purity monitor from electrostatic b b backgrounds. The purity monitor measures the electron drift lifetime between its anode and cathode. The electrons are generated by the purity monitor's UV-illuminated gold photocathode via photoelectric effect. As the electron lifetime in liquid argon is inversely proportional to the electronegative impurity concentration, the fraction of electrons generated at the cathode that arrive at the anode ($Q_A/Q_C$) after the electron drift time $t$ is a measure of the electron lifetime $\tau$: $Q_A/Q_C=e^{-t/\tau}$.
 %THIS FORMULA IS ONLY APPRIXIMATE, CORRECT FORMULA IS: Q_A/Q_C = \frac{T_C \sinh(T_A/2\tau))}{T_A \sinh(T_C/2\tau)} \exp \left(-\frac{T_D+\frac{T_A+T_C}{2}}{\tau} \right)
 
 \begin{figure}[h]
@@ -110,7 +110,7 @@ A custom LabVIEW application running in the DAQ PC is developed and consists of 
 
 The Xe flash lamp and the front-end electronics will be installed close to the purity monitor flange to reduce light loss in an optical fiber and signal loss. Other pieces of equipment will be mounted in a DCS rack. They distribute powers to the flash lamp and the front-end electronics and collect data from the electronics. The DCS system will communicate with the purity monitor DAQ software and have the control of HV and LV of the purity monitor system. 
 
-The electronics of Purity Monitors may induce noise in TPC electronics which is caused by the current surge in the discharging process of the main capacitor of the purity monitor xenon light source when producing a flash.  The light source for the purity monitor system will produce a lot of UV light in the detector which could potentially interfere with physics measurements and damage the Photon Detector System. To solve these problems, a software will be developed for a light source triggering mechanism to prevent the PrM flash lamp from flashing during TPC and photon detector data taking. The purity monitor will also send signals to TPC and photodetectors to veto any TPC/photon signals during Purity monitor measurements. In addition, we will make faraday cage to the ground and shield the light source.
+The electronics of Purity Monitors may induce noise in TPC electronics which is caused by the current surge in the discharging process of the main capacitor of the purity monitor xenon light source when producing a flash.  The light source for the purity monitor system will produce a lot of UV light in the detector which could potentially interfere with physics measurements and damage the Photon Detector System. To solve these problems, a software will be developed for a light source triggering mechanism to prevent the PrM flash lamp from flashing during TPC and photon detector data taking. The purity monitor will also send signals to TPC and photodetectors to veto any TPC/photon signals during Purity monitor measurements. In addition, we will make faraday cage to the ground and shield the light source.
 
 %\begin{dunefigure}[Purity Monitor]{fig:PrMon}
 %  {Overall design of the individual purity monitors devices which are immersed into the LAr.}
@@ -121,21 +121,17 @@ The electronics of Purity Monitors may induce noise in TPC electronics which is 
 \subsubsection{Production and Assembly}
 \label{sec:PrMon-Production-Assembly}
 %Andrew
-Production of the individual purity monitors and the assembly of them into the string that will be placed into the DUNE-FD cryostat will follow the same methodology that is being developed for DUNE.  Each of the individual monitors will be fabricated, assembled and then tested in a smaller test stand.  After confirming that each of the individual purity monitors operates at the required performance, they would be assembled together via the support tubes used to mount the system to the inside of the cryostat such that three purity monitors are grouped together to form a "string" of purity monitors, as shown in Fig.~\ref{fig:PrMon-SystemString}.  The assembly of the individual purity monitors into the string would follow the steps laid out in Fig.~\ref{fig:PrMon-StringAssembly}.  
+Production of the individual purity monitors and the assembly of them into the string that will be placed into the DUNE-FD cryostat will follow the same methodology that is being developed for DUNE.  Each of the individual monitors will be fabricated, assembled and then tested in a smaller test stand.  After confirming that each of the individual purity monitors operates at the required performance, they would be assembled together via the support tubes used to mount the system to the inside of the cryostat such that three purity monitors are grouped together to form a "string" of purity monitors, as shown in Fig.~\ref{fig:PrMon-SystemString}.  The assembly of the individual purity monitors into the string would follow the steps laid out in the first 5 panels of Fig.~\ref{fig:PrMon-Assembly}.  
 
-%\begin{dunefigure}[Purity Monitor String]{fig:PrMon-SystemString}
-%  {Design of the purity monitor string that will contain three purity monitors.}
-%  \includegraphics[width=0.3\textwidth]{PrMon-SystemString.pdf}%
-%\end{dunefigure}
+\begin{dunefigure}[Purity Monitor String]{fig:PrMon-SystemString}
+  {Design of the purity monitor string that will contain three purity monitors.}
+  \includegraphics[width=\textwidth]{PrMon-SystemString.pdf}
+\end{dunefigure}
 
-%\begin{dunefigure}[Purity Monitor String Assembly]{fig:PrMon-SystemAssembly}
-%  {Assembly sequence of the purity monitor string.}
-%  \includegraphics[width=0.3\textwidth]{PrMon-SystemAssembly.pdf}%
-%\end{dunefigure}
-
-
-
-
+\begin{dunefigure}[Purity Monitor String Assembly]{fig:PrMon-Assembly}
+  {Assembly sequence of the purity monitors.}
+  \includegraphics[width=\textwidth]{PrMon-Assembly.pdf}
+\end{dunefigure}
 
 
 \subsubsection{Installation, Integration and Commissioning}
