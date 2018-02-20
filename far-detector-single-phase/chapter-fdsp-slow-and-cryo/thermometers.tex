@@ -10,7 +10,7 @@ can be used to predict the LAr purity using CFD simulations. Specially important
 the LAr recirculation and uniformity. 
 
 High precision temperature sensors will be distributed near the TPC walls in two ways:
-i) forming high density (>2 sensors/m) vertical arrays (the so-called T-gradient monitors), and ii) in coarser ($~$ 1 sensor/5 m) 2D arrays 
+i) forming high density (>2 sensors/m) vertical arrays (the so-called T-gradient monitors), and ii) in coarser ($\sim$ 1 sensor/5 m) 2D arrays 
 at the top and bottom of the detector, which are the most delicate regions (the so-called individual sensors).   
 
 Since temperature variations inside the cryostat are expected to be very small ($0.02 K$), to properly measure the 3D temperature map 
@@ -21,7 +21,8 @@ will be used for T-gradient monitors behind the front end-walls. In those areas 
 the temperature sensors. This calibration method is described in the section about dynamic T-gradient monitors. 
 
 In the baseline design for all three systems mentioned above three elements are common: the sensor model, the cable model and the readout system.
-The baseline sensor model is the Lakeshore PT102, which has demonstrated excelent performance in ProtoDUNE-SP. Those sensors have  ...
+The baseline sensor model is the Lakeshore PT102, which has demonstrated excelent performance in ProtoDUNE-SP.
+%Those sensors have  ...
 For the readout cables a custom cable made by Axon is the baseline. It consists in four teflon-jacketed (extruded PFA)
 silver platted annealed cupper wires (AWG28), forming two twisted pairs, with an metalic external shield
 (silver platted annealed cupper) and an outer teflon (extruded PFA) jacket. The cable has a 3.7 mm outer diameter and weights 28 g/m.
@@ -34,13 +35,19 @@ Several vertical arrays of high precision temperature sensors cross-calibrated i
 Since the electric potential in this area is zero no electric field shielding is required, simplifying enormously the mechanical design.
 
 Sensors are cross-calibrated in the lab using a well controlled environment and a high precission readout system, described below in a separate subsection.  
-Four sensors are placed as close as possible in a small cylyndrical aluminum capsule. The capsule is introduced in a polystire box with 15 cm thick walls
+Four sensors are placed as close as possible (such that identical temperature can be assumed for all of them)inside a small cylyndrical aluminum capsule,
+which helps in minimizing convection. The capsule is introduced in a polystire box with 15 cm thick walls
 and a 10x10x15 $cm^3$ empty space. A small quantity of LAr is used to cooldown the capsule to $~90 K$. Then the capsule is covered by LAr such that it penetrates
-inside fully covering the sensors. Once the temperature stabilizes to the 1 mk level (after 15-30 minutes) measurements are taken. 
+inside fully covering the sensors. Once the temperature stabilizes to the 1 mk level (after 15-30 minutes) measurements are taken. Then the capsule is taken out from LAr
+and kept at room temperature until it reaches 200 K. Then the procedure is repeated again five times. This allows computing the reproducibility of the sensors.
+After those five measurements three of the sensors are replaced by a new set. The fourth sensor acts as refference and is kept in all sets. For each new set of three
+sensors the procedure is repeated 5 times. As shown in Figure ~\ref{} a reproducibility of $2 mk$ has being achieved in ProtoDUNE-SP. 
 
 The baseline design for the mechanics of the system is shown in Fig.~\ref{}. It consists in two stainless strings anchored at top and bottom corners of the cryostat
-using M10 bolts. One of the strings is used to route the cables while the other serves as support for temperature sensors. 
+using M10 bolts. One of the strings is used to route the cables while the other serves as support for temperature sensors. The need of intermediate anchoring points is under discussion. 
 
+
+The four wires of each cable will be soldered to the inner pins of male SUBD-25 connectors on the flanges. 
 
 \begin{dunefigure}[sensor support]{fig:sensor-support}
   {Lakeshore PT102 sensor mounted on a PCB with an IDC-4 connector}
@@ -50,15 +57,18 @@ using M10 bolts. One of the strings is used to route the cables while the other 
 % % % %
 \subsubsection{Dynamic T-Gradient monitors}
 
+\fixme{Missing text}
+
 % % % %
 \subsubsection{Individual Temperature Sensors}
 
 T-Gradient monitors will provide a vertical temperature profiling outside the TPCs. Those will be complemented by a coarser 2D array at the top and bottom of the
-detector. Sensors, cables and readout will be the same as for the T-gradient monitors. 
+detector. Sensors, cables and readout system will be the same as for the T-gradient monitors. 
 
 In principle a similar distribution of sensors will be used at top and bottom.
 Following ProtoDUNE-SP design, bottom sensors will use the cryogenic pipes as support structure, while top sensors will be anchored to the ground planes.
-Teflon pieces (see Fig.~\ref{fig:cable-support}) will be used to route cables from the sensors to the DSS/cryogenic ports.
+Teflon pieces (see Fig.~\ref{fig:cable-support}) will be used to route cables from the sensors to the DSS/cryogenic ports, which will be used to extract the cables.
+The four wires of each cable will be soldered to the inner pins of male SUBD-25 connectors on the flanges. 
 
 \begin{dunefigure}[sensorcable support]{fig:cable-support}
   {Left: support for two cables on ground planes. Right: Supports for three cables  mounted on cryogenics pipes using split clamps}
