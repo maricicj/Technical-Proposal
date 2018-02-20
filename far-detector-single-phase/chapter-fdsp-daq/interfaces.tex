@@ -51,7 +51,36 @@ them to the data selection system.
 \subsection{Offline Computing (Kurt Biery)}
 \label{sec:fdsp-daq-intfc-fnal-cmptg}
 
-Where the data goes after it leaves DAQ.
+The interface between the \dword{daq} and Offline Computing is described in
+DUNE-doc-7123. The \dword{daq} team will be responsible for reducing the
+data volume to the level that is agreed upon by all interested parties,
+and the raw data files will be transfered from SURF to Fermilab using
+a dedicated network connection. A disk buffer will be provided by the
+\dword{daq} on or near the SURF site to hold the data from several days
+of data taking so that the operation of the experiment will not be affected
+if there happens to be a network disruption between SURF and Fermilab.
+
+During stable running, the data volume that will be produced by the
+\dword{daq} systems of all four \dwords{detmodule} will be no larger
+than 30 PB/yr. This rate is expected to be independent of the number
+of \dwords{detmodule} that are operational. During the construction
+of the second, third, and fourth \dwords{detmodule}, the extra rate
+per \dword{detmodule} will be used to gather data to aid in the
+refinement of the data selection algorithms.
+During commissioning, the data rate is expected to  be higher,
+and it is anticipated that a data volume
+of 30 PB will be necessary to commission a \dword{detmodule}.
+
+The disk buffer at SURF is planned to be 300 TB in size.  The data
+link from SURF to Fermilab will support 20 Gbps.  The Offline Computing
+team will be responsible for developing the software to manage the
+transfer of files from SURF to Fermilab. The \dword{daq} team will be
+responsible for producing a
+reference implementation of the software that is used to access and
+decode the raw electronics data. They will also be responsible for
+providing the framework for real-time \dword{dqm}, and
+both groups will have responsibility for developing the \dword{dqm}
+algorithms that run inside this framework.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Slow Control}
