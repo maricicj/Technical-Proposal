@@ -3,23 +3,22 @@
 \label{sec:fdsp-slow-cryo-install}
 % anselmo, sowjanya
 
-Installation of internal cryogenic pipes should occur soon after the cryostat is completed.
-Then, the installation of cryogenics instrumentation devices inside the cryostat will be done in several phases:
-\begin{enumerate}
-\item Before detector installation: Individual temperature sensors anchored to the cryogenic pipes at the bottom of the cryostat and static T-gradient monitors
-  will be installed right after the installation of the pipes. Additional level meters could be also installed during this phase. 
-\item During detector installation: Temperature sensors anchored to the top ground planes will be installed in several steps.
-  In principle as soon as a CPA enters the cryostat and stored there, the corresponding cables and sensors can be mounted on its ground planes. Cables exceeding the dimensions of
-  the ground planes will be roled and stored temperarilly there until they are put in their final position. At this moment cables will be routed towards their ports.   
-\item After detector installation: dynamic T-gradient monitors and purity monitors will be deployed  once the detector in installed. 
-\end{enumerate}
+%Then, the installation of cryogenics instrumentation devices inside the cryostat will be done in several phases:
+%\begin{enumerate}
+%\item Before detector installation: Individual temperature sensors anchored to the cryogenic pipes at the bottom of the cryostat and static T-gradient monitors
+%  will be installed right after the installation of the pipes. Additional level meters could be also installed during this phase. 
+%\item During detector installation: Temperature sensors anchored to the top ground planes will be installed in several steps.
+%  In principle as soon as a CPA enters the cryostat and stored there, the corresponding cables and sensors can be mounted on its ground planes. Cables exceeding the dimensions of
+%  the ground planes will be roled and stored temperarilly there until they are put in their final position. At this moment cables will be routed towards their ports.   
+%\item After detector installation: dynamic T-gradient monitors and purity monitors will be deployed  once the detector in installed. 
+%\end{enumerate}
 
-Since purity monitors will be most likely not hang from a flange they will have to be installed at an earlier stange ... 
+%Since purity monitors will be most likely not hang from a flange they will have to be installed at an earlier stange ... 
 
 
-Special treatment need the long devices as the purity monitor system, and T-gradient monitors.
+%Special treatment need the long devices as the purity monitor system, and T-gradient monitors.
 
-The installation of gas analyzers will be inst
+%The installation of gas analyzers will be inst
 
 
 %Integration: Initial integration between the two systems will be accomplished at vertical slice and DAQ test stands:
@@ -27,40 +26,109 @@ The installation of gas analyzers will be inst
 %Integration/installation of CISC devices (cameras, RTDs) on ground planes will be tested at system integration/assembly sites. Final integration will take place as the two systems are commissioned.
 
 
+%Some parts of the CISC system will be commissioned prior to HV commissioning, and before cryostat filling with LAr.
+%This is the case for RTDs on GPs, cold and inspection cameras and thermal interlocks for PS. Final commissioning of
+%those systems will be done once the cryostat is filled, since operation will be different in the presence of LAr.
+%Commissioning the control/monitoring of HV PS and any related hardware interlocks could probably be done at an early
+%stage as well, provided no real HV is provided to the cathode/field-cages. Final commissioning will be done once HV is
+%switched on. This will also require coordination from other groups such as LBNF, DAQ, APA etc. The commissioning of the
+%interfacing elements should follow naturally after (successful) integration testing.
+
+\subsection{Cryogenics Internal Piping}
+\label{sec:fdsp-slow-cryo-install-pipes}
+
+Installation of internal cryogenic pipes should occur soon after the cryostat is completed.
+
+\subsection{Purity Monitors}
+\label{sec:fdsp-slow-cryo-instal-pm}
+
+
+\subsection{Thermometers}
+\label{sec:fdsp-slow-cryo-instal-th}
+
+
+Individual temperature sensors on pipes and cryostat membrane should be installed prior to any detector component, right after the installation of the pipes.
+First, all cable supports will be anchored to pipes. Then each cable will be routed individually starting from sensor end (with IDC-4 female connector but no sensor)
+to the corresponding cryostat port. Once all cables going to the same port have been routed, they will be cut to the same length such that they can be properly soldered
+to the pins of the SUBD-25 connectors on the flange. In order to avoid damaging the sensors, those will be installed at a later stage just before unfolding the bottom ground planes.
+
+Static T-gradient monitors should be installed before the outer APAs. Thus, the best moment could be right after the installation of the pipes
+and before the installation of individual sensors. This will proceed in several steps: i) installation of the two stainless steel strings to the bottom and top corners of the cryostat,
+ii) tension and verticality checks, iii) installation of cable supports in one of the strings, iv) installation of sensor supports in the other string, v) cable routing starting from
+the sensor end towards the corresponding cryostat port, vi) cut all cables at the same point in that port, vii) solder cable wires to the pins of the SUBD-25 connectors on the flange,
+viii) plug sensors onto IDC-4 connectors at a later stage, just before moving corresponding APA insto its final position. 
+
+Individual sensors on top ground plane will have to be integrated with the ground planes. For each CPA (with its corresponding 4 GP modules)
+going inside the cryostat, cable and sensor supports will be anchored to the GP threaded rods as soon as possible.
+Once the CPA is moved into its final position and its top GPs are ready to be unfolded, sensors on those GPs will be installed. Once unfolded, cables 
+exceeding the GP limits can be routed to the corresponding cryostat port either using neighboring GPs or DSS I-bins. 
+
+
+Dynamic T-gradient monitors will be installed after the completion of the detector ...
+
+
+\fixme{Missing text for Dynamic T-gradients}
+
+Commissioning of all thermometers will proceed in several steps. Since in a first stage only cables will be installed,
+the readout performance and the noise level inside the cryostat will be
+tested with precision resistors. Once sensors are installed the entire chain will be check again at room temperature.
+The final commissioning phase will be done during and after cryostat filling.  
+
+
+\subsection{Gas Analyzers}
+\label{sec:fdsp-slow-cryo-install-ga}
+ 
+
+\subsection{Liquid Level Monitoring}
+\label{sec:fdsp-slow-cryo-install-llm}
+
+
+\subsection{Cameras}
+\label{sec:fdsp-slow-cryo-install-c}
+
+
+\subsection{Light emitting system}
+\label{sec:fdsp-slow-cryo-install-les}
+
+
+\subsection{Slow Controls Hardware}
+\label{sec:fdsp-slow-cryo-install-sc-hard}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Transport and Handling}
 \label{sec:fdsp-slow-cryo-install-transport}
 
 Most instrumentation devices will be shiped to SURF in pieces and mouted onsite. The proper 
+Instrumentation devices are in general small except the support structures for Purity Monitors and T-gradient monitors,
+which will cover the entire height of the cryostat. Being the load on those structures relatively small (<100 kg) they can be fabricated in parts of less than 3 m,
+which can be easily transported to SURF. Those parts can also be movedeasily transported down the shaft and through the tunnels.
+All instrumentation devices except the dynamic T-Gradient monitors, which will be introduced into the cryostat through the cryostat port above, can be
+moved into the cryostat without the crane.
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integration Facility Operations}
-\label{sec:fdsp-slow-cryo-install-facil-ops}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Underground Operations}
-\label{sec:fdsp-slow-cryo-install-undergr}
+\fixme{Missing text for  cryogenics internal piping}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integration }
-\label{sec:fdsp-slow-cryo-install-integration}
-
-Slow controls needs to be integrated with HV devices as soon as possible 
+%\subsection{Integration Facility Operations}
+%\label{sec:fdsp-slow-cryo-install-facil-ops}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Commissioning}
-\label{sec:fdsp-slow-cryo-install-commiss}
+%\subsection{Underground Operations}
+%\label{sec:fdsp-slow-cryo-install-undergr}
 
 
-Some parts of the CISC system will be commissioned prior to HV commissioning, and before cryostat filling with LAr.
-This is the case for RTDs on GPs, cold and inspection cameras and thermal interlocks for PS. Final commissioning of
-those systems will be done once the cryostat is filled, since operation will be different in the presence of LAr.
-Commissioning the control/monitoring of HV PS and any related hardware interlocks could probably be done at an early
-stage as well, provided no real HV is provided to the cathode/field-cages. Final commissioning will be done once HV is
-switched on. This will also require coordination from other groups such as LBNF, DAQ, APA etc. The commissioning of the
-interfacing elements should follow naturally after (successful) integration testing.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Integration }
+%\label{sec:fdsp-slow-cryo-install-integration}
+
+%Slow controls needs to be integrated with HV devices as soon as possible 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Commissioning}
+%\label{sec:fdsp-slow-cryo-install-commiss}
+
+
