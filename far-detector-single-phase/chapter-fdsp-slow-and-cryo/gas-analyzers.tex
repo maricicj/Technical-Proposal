@@ -1,5 +1,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gas Analyzers}
 \label{sec:fdsp-slow-cryo-gas-anlyz}
-
 % alan h
+
+ Gas analyzers are commercially-produced modules that measure trace quantities of specific gases contained within a stream of carrier gas. The carrier gas for DUNE is argon, and the trace gases of interest are oxygen (O2), water (H2O), and nitrogen (N2). O2 and H2O impact the electron lifetime in LAr, while N2 impacts the efficiency of scintillation light production. In the LAr environment, these trace gases represent contaminants that need to be kept at levels below 0.1 ppb.
+The Ar is sampled from either the Ar vapor in the ullage or from the LAr by the use of small diameter tubing run from the sampling point to the gas analyzer. Typically the tubing runs from the sampling points are connected to a switchyard valve that is used to route the sample points to the desired gas analyzers. Fig.~\ref{fig:GA-switchyard} is a photo of such a switchyard.
+
+\begin{dunefigure}[GasAnalyzer switchyard]{fig:GA-switchyard}
+  {A Gas Analyzer switchyard that routes sample points to the different gas analyzers.}
+  \includegraphics[width=0.35\textwidth]{figures/GasAnalyzerSwitchyard.png}%
+\end{dunefigure}
+
+Three examples of usage:
+
+\begin{enumerate}
+\item[i)] A proven procedure to eliminate the air atmosphere from the cryostat after detector installation to levels low enough to begin cooldown is an Argon piston purge followed by a recirculation of the remaining argon gas through the filtration system. This process is described more fully in section~\ref{sec:fdsp-slow-cryo-install-commiss}. Fig.~\ref{fig:GA-purge} shows the evolution of the N2, O2, and H2O levels from gas analyzer data taken during the purge and recirculation stages of the DUNE \num{35}\si{t} Prototype Phase 1 run.
+
+\item[ii)] High precision O2 and H2O analyzers can track the trace contaminants from the $\>$tens of ppb to the 100s of ppt. This is useful when other means of monitoring the impurity level (e.g., purity monitors, or TPC tracks) are not yet sensitive. Fig.~\ref{fig:GA-O2} shows an example plot of the O2 level at the beginning of LAr purification from one of the later \num{35}\si{t} Prototype High Voltage runs.
+
+\item[iii)] The gas analyzers can also monitor the tanker LAr deliveries purity during the cryostat-filling period. This allows tracking the impurity load on the filtration system and rejecting any deliveries that are out of specifications. Likely specifications for the delivered LAr are in the $\sim$ten ppm range per contaminant.
+
+\end{enumerate}
+
+\begin{dunefigure}[GasAnalyzer purge]{fig:GA-purge}
+  {Plot of the O2, H2O, and N2 levels during the Piston Purge and Gas Recirculation stages of the \num{35}\si{t} Cryostat Phase 1 run}
+  \includegraphics[width=0.5\textwidth]{figures/Phase1_purge_gas_recirculation.pdf}%           
+\end{dunefigure}
+
+As any one gas analyzer covers only one contaminant species and $\sim$3-4 orders of magnitude of range, multiple units are needed both for the three contaminant gases and to cover the ranges ($\sim$1 to < 0.1 ppb for O2) that are seen between the cryostat closure to the beginning of TPC operations. Since the total cost of these analyzers is $\>$ $\textdollar$100k, it is useful to be able sample more than a single location or cryostat with the same gas analyzers. At the same time the tubing run lengths from the sample point should be as short as possible in order to keep the response of the gas analyzer timely. This puts some constraints on the sharing of devices since, for example, the argon deliveries are at the surface, perhaps necessitating a separate surface gas analyzer.
+
+\begin{dunefigure}[GasAnalyzer purge]{fig:GA-O2}
+  {O2 as measured by a precision O2 analyzer just after the 35T cryostat was filled with LAr, continuing with the LAr pump start and beginning of LAr recirculation through the filtration system. As the gas analyzer loses sensitivity, the purity monitor is able to pick up the impurity measurement. Note that the purity monitor is sensitive to both O2 and H2O impurities giving rise to its higher level of impurity.}
+  \includegraphics[width=0.5\textwidth]{figures/O2AnalyzerPrM2_HVRun1.png}% 
+\end{dunefigure}
