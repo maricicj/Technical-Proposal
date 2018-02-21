@@ -22,13 +22,14 @@ if [ "$2" == "print" ] ; then
 fi
 
 
-$pdflatex
-$pdflatex
-bibtex $name
-$pdflatex
-$pdflatex
-makeindex -s $name.ist -t $name.glg -o $name.gls $name.glo
-makeindex -s $name.ist -t $name.alg -o $name.acr $name.acn
+$pdflatex || exit 1
+$pdflatex || exit 1
+bibtex $name || exit 1
+$pdflatex || exit 1
+$pdflatex || exit 1
+makeindex -s $name.ist -t $name.glg -o $name.gls $name.glo || exit 1
+makeindex -s $name.ist -t $name.alg -o $name.acr $name.acn || exit 1
 # makeindex $name.nlo -s nomencl.ist -o $name.nls
-$pdflatex
-$pdflatex
+$pdflatex || exit 1
+$pdflatex || exit 1
+
