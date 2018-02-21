@@ -35,3 +35,10 @@ far-detector-dual-phase.pdf
 far-detector-single-phase.pdf
 software-computing.pdf
 latexmk-out
+*.acn
+*.glo
+*.ist
+*.acr
+*.alg
+*.glg
+*.gls
