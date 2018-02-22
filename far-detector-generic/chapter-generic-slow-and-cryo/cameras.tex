@@ -4,25 +4,148 @@
 % glenn, jim s, chuck
 % same text in single and dual phase
 
+Cameras provide direct visual information about the state of the
+detector during critical operations and when damage or unusual
+conditions are suspected.  Cameras in the WA105 \(3\times 1\times
+  1\SI{1}{m^3}\) dual phase cryostat allowed spray from cool-down nozzles
+to be seen, and the level and state of the liquid argon to be observed
+as it covered the CRP \cite{Murphy:20170516}.  A camera was used in
+the Liquid Argon Purity Demonstrator cryostat\cite{Adamowski:2014daa}
+to study high voltage discharges in liquid argon, and in EXO-100
+during operation of a TPC \cite{Delaquis:2013hva}.  Warm cameras
+viewing LAr from a distance have been used to observe high voltage
+discharges in liquid argon in fine detail \cite{Auger:2015xlo}.
+Cameras are commonly used during calibration source deployment in
+many experiments (e.g., \cite{Banks:2014hra}).
+
+In DUNE, cameras will be used to verify the stability, straightness,
+and alignment of the hanging TPC structures during cool-down and
+filling; to ensure that there is no bubbling near the ground planes
+(single phase) or charge readout planes (dual phase); to inspect the
+state of movable parts in the detector (calibration devices, dynamic
+thermometers) as needed; and to closely inspect parts of the TPC as
+necessary following any seismic activity or other unanticipated
+occurence.  These functions will be performed using set of fixed
+``cold'' cameras permanently mounted at fixed points in the cryostat
+for use during filling and commissioning, and a movable, replaceable
+``warm'' inspection camera that can be deployed through any free
+instrumentation flange at any time throughout the life of the
+experiment.  Table \ref{tab:fdgen-cameras-req} summarizes the
+requirements for the camera system.
+
+\begin{dunetable}
+[Camera system Requirements]
+{p{0.45\linewidth}p{0.50\linewidth}}
+{tab:fdgen-cameras-req}
+{Camera system requirements}   
+ Requirement & Physics Requirement Driver \\ \toprowrule
+{\bf Cold cameras} \\ \colhline
+minimal heat dissipation when camera not in operation & do not generate bubbles when HV is on \\ \colhline
+longevity exceeds 18 months & cameras must function throughout cryostat filling and detector commissioning \\ \colhline
+Frame rate \(\geq\SI{10}{\per s}\) & observe bubbling, waves, detritus, etc. \\ \colhline
+{\bf Inspection cameras} \\ \colhline
+low heat transfer to LAr when in operation & do not generate bubbles, some use cases may require operation when HV is on \\ \colhline
+deployable without exposing LAr to air & keep LAr free N2 and other electronegative contaminants \\ \colhline
+replaceable camera enclosure & replace broken camera, or upgrade, throughout life of experiment \\ \colhline
+{\bf Light emitting system} \\ \colhline
+no emitted wavelength shorter than \(\SI{400}{nm}\) & avoid damaging TPB waveshifter \\ \colhline
+longevity exceeds 18 months & lighting for fixed cameras must function throughout cryostat filling and detector commissioning \\ \colhline
+\end{dunetable}
+
+
+The following sections describe the design considerations for the cold
+and warm cameras and the associated lighting system.  The same basic
+design may be used for both the single and dual phase detectors.
+
+
+
 % % % %
 \subsubsection{Cryogenic Cameras (cold)}
+
+The fixed cameras will be used to monitor the following during filling:
+\begin{itemize}
+\item positions of corners of APA, CPA, FC, GP (~ 1 mm scale);
+\item relative straightness and alignment of APA, CPA, and FC (<~ 1 mm);
+\item relative position of profiles and endcaps (~ 0.5 mm)
+\item state of LAr surface: is there bubbling? significant? detritus?
+\end{itemize}
+
+There are published articles and unpublished presentations describing
+completely or partially successful operation of low-cost,
+off-the-shelf CMOS cameras in custom enclosures immersed in cryogens.
+({\em E.g.,}, EXO-100: \cite{Delaquis:2013hva}; DUNE 35-ton test
+\cite{McConkey:2016spe}; WA-105: \cite{Murphy:20170516}.)  Generally
+it is reported that such cameras show poor performance and ultimately
+fail to function below some temperature of order \(150\sim\SI{
+  200}{K}\), but some report that their cameras recover fully after
+being stored (not operated) at temperatures as low as \SI{77}{K} and
+then brought up to minimum operating temperature.
+
+However, as with photon sensors, experience has also shown that it is
+non-trivial to ensure reliable and reproducible mechanical and
+electrical integrity of such cameras in the cryogenic environment.
+({\em E.g.}, \cite{McConkey:2016spe} and
+\cite{Valencia-Rodriquez:20180130}.)  Off-the-shelf cameras and camera
+components are generally only specified by the vendors and original
+manufactures for operation down to \SI{-40}{\celsius} or \SI{-50}{\celsius}.
+In addition, many low-cost cameras use digital interfaces not intended
+for long distances, such as USB (\(2\sim\SI{5}{m}\)) or CSI (circuit
+board scale), leading to signal degradation and noise problems.
+
+The design for the DUNE fixed cameras will use an enclosure based on
+the successful EXO-100 design\cite{Delaquis:2013hva} which was also
+used successfully in LAPD. The enclosure will be connected to
+stainless steel gas line to allow the enclosure to be flushed with
+argon gas at low enough pressure to prevent liquification, using the
+same design of the gas line for the beam plug tested in the 35-ton HV
+test and in ProtoDUNE.  A thermocouple in the enclosure will allow
+temperature monitoring, and a heating element will provide temperature
+control.  The camera will transmit its video signal using either a
+composite video signal over shielded coax or ethernet over optical
+fiber.  Most importantly the DUNE CISC Consortium must work with
+vendors to design camera circuit boards that are robust and reliable
+in the cryogenic environment.
+
+
 
 % % % %
 \subsubsection{Inspection Cameras (warm)}
 
+
+\fixme{turn into complete sentences .... }
+
+Targets: * Status of profiles, endcaps (~ 0.5 mm)
+* Status of HV feedthrough and cup
+* Observe any y-axis deployment of sources
+* Status of thermometers, especially dynamic thermometers
+* observe HV discharge or corona on HV FT, cup, or FC
+
+Considerations: need operate only as long as inspection lasts, camera
+replacable in case of failure, can keep warm continuously during
+deployment and have more options for commercial cameras (e.g., could
+deploy same model camera used successfully for HV spark observations
+in \cite{Auger:2015xlo}).
+
+Design: enclosure as for cold, mounted on movable/steerable fork, adjustable
+height over ~1m range using design similar to dynamic temperature probe.
+(Need figure from Jim S!)
+Deploy through
+gate valve with same purging system as deployable calibration source.
+Preserve option for longer deployment with glovebox-based system similar
+to KamLAND full-volume calibration system.
+
 % % % %
 \subsubsection{Light emitting system}
 %%% same text as dual-phase
-The light emitting system will be based on Light-Emitting Diodes (LEDs),
-with the capability of illuminating interior with selected wavelengths
-(IR and visible) that are suitable for detection by the CCD cameras.
-Performance criteria for the light emission system are based on the
-efficiency of detection with the cameras, in conjunction with adding
-minimal heat to the cryostat. The use of very high efficiency LEDs will
-assist with the goal of reducing heat generation; as an exmple, one
-\SI{750}{nm}
-red LED has a specification of 32\%\ conversion of
-electrical input power to light. 
+The light emitting system will be based on Light-Emitting Diodes
+(LEDs), with the capability of illuminating interior with selected
+wavelengths (IR and visible) that are suitable for detection by the
+cameras.  Performance criteria for the light emission system are based
+on the efficiency of detection with the cameras, in conjunction with
+adding minimal heat to the cryostat. The use of very high efficiency
+LEDs will assist with the goal of reducing heat generation; as an
+exmple, one \SI{750}{nm} red LED has a specification of
+32\%\ conversion of electrical input power to light.
 
 While data on the performance of LEDs at cryogenic temperatures is sparse,
 there are some studies related to NASA projects\cite{Carron:2017zzz}, which
@@ -36,7 +159,7 @@ but the wavelength changes cited would have no impact on illumination.
 \includegraphics[width=0.7\textwidth]{CISC-Lighting}
 \end{dunefigure}
 
-A `chain' of LEDs should be connected in series and driven with a
+A ``chain'' of LEDs should be connected in series and driven with a
 constant-current circuit. It would be advantageous to pair each
 LED in parallel with an opposite polarity LED and a resistor
 (see Fig.~\ref{fig:gen-cisc-LEDs}).
