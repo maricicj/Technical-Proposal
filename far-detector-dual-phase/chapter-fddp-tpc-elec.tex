@@ -400,7 +400,7 @@ The commerical VHDCI signal cables (connecting the AMCs to the SFT chimneys) are
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Digital Electronics}
-%\label{sec:fddp-tpc-elec-prod-utca}
+%\label{sec:fddp-tpc-elec-prod-amc}
 
 \subsection{Charge Readout Electronics}
 \label{sec:fddp-tpc-elec-prod-cro}
@@ -477,7 +477,7 @@ The internal noise level of the CatiROC is below \SI{0.1}{\milli\volt}. The obje
 
 The hardware interface between DP-Electronics and DAQ has two components. The first interface is the \SI{10}{Gbit/s} optical fibers for data transfer between the uTCA crates and the network interface of the DAQ system. The second one is a \SI{1}{Gbit/s} optical fiber that connects the DAQ White Rabbit Grand Master switch to the DP electronics timing system.   
 
-In the baseline design a given DP detector module would have \num{245} \SI{10}{Gbit/s} optical links for streaming the digitized data to DAQ from the charge readout (\num{240} links) and light light readout (\num{5} links) electronics housed in uTCA crates on top of the cryostat structure.  In the current specifications, the fibers are multimode OM3 fibers\footnote{http://shop.fiber24.net/index.php/en/FO-Patch-Cable-OM3-Multi-mode-50-125-m-Duplex-LC-PC-LC-PC/c-OM3-DUPLEX-1TO1/a-FOPC-F2-O3-DX-LCU-LCU} with LC-LC connectors suitable for the transmission over distances of up to \SI{300}{\metre}.  They are provided by the DAQ consortium. On the side of the uTCA crate, the fibers are connected to an optical transceiver in the MCH\footnote{http://www.nateurope.com/products/NAT-MCH.html} (two SFP+ (XAUI) links).  On the DAQ, they go to the Level 1 (LV1) machines of the trigger farm, or switches, depending on the network topology adopted in the DAQ system design.
+In the baseline design a given DP detector module would have \num{245} \SI{10}{Gbit/s} optical links for streaming the digitized data to DAQ from the charge readout (\num{240} links) and light light readout (\num{5} links) electronics housed in uTCA crates on top of the cryostat structure.  In the current specifications, the fibers are multimode OM3 fibers \cite{om3fibers} with LC-LC connectors suitable for the transmission over distances of up to \SI{300}{\metre}.  They are provided by the DAQ consortium. On the side of the uTCA crate, the fibers are connected to an optical transceiver in the MCH (two SFP+ (XAUI) links) \cite{natmch}.  On the DAQ, they go to the Level 1 (LV1) machines of the trigger farm, or switches, depending on the network topology adopted in the DAQ system design.
 
 The \SI{1}{Gbit/s} link going from the White Rabbit Grand Master to the DP-electronics time distribution network serves to provide the synchronization to the reference clock common for the entire FD and derived from a GPSDO (GPS-Disciplined Oscillator) clock unit installed on the surface. The clock information is distributed to the WR-MCH slave module in each uTCA crate via a set of White Rabbit switches. These switches and the interconnecting \SI{1}{Gbit/s} fibers form the timing sub-system of the DP electronics system and are included in the design of the latter. The White Rabbit synchronization protocol includes the automatic and continuous calibration of the propagation delays between the master and the connected slaves. This allows maintaining the overall synchronization between different nodes at sub-ns level. The Grand Master could be possibly located 
 \begin{itemize}
@@ -568,7 +568,7 @@ The cables carrying the PMT signals from the splitter boxes need to be connected
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Comissioning}
-\label{sec:fddp-tpc-elec-install-calib}
+\label{sec:fddp-tpc-elec-comission}
 
 The SFT chimneys are commissioned as a first step. The chimneys are evacuated and then filled with nitrogen gas at slight overpressure with respect to the atmospheric pressure.
 
@@ -590,7 +590,7 @@ The electronics system can be commissioned after the installation of the uTCA an
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Risks and Vulnerabilities}
-\label{sec:fddp-tpc-elec-safety}
+\label{sec:fddp-tpc-elec-risks}
 
 The design of the DP electronics system takes into account several risks factors:
 \begin{itemize}
